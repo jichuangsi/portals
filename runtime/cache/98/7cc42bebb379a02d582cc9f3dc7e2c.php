@@ -1,0 +1,4 @@
+<?php
+//000000000000
+ exit();?>
+a:2:{i:0;a:13:{s:2:"id";i:23;s:3:"pid";i:0;s:4:"type";i:2;s:4:"name";s:6:"娱乐";s:3:"url";s:26:"/index.php/cms/list-9.html";s:6:"target";i:0;s:6:"ifshow";i:1;s:4:"list";i:10;s:5:"style";s:0:"";s:8:"activate";s:5:"cms-9";s:5:"level";i:1;s:12:"title_prefix";s:0:"";s:13:"title_display";s:6:"娱乐";}i:1;a:13:{s:2:"id";i:34;s:3:"pid";i:0;s:4:"type";i:2;s:4:"name";s:6:"科技";s:3:"url";s:27:"/index.php/cms/list-10.html";s:6:"target";i:0;s:6:"ifshow";i:1;s:4:"list";i:0;s:5:"style";s:0:"";s:8:"activate";s:6:"cms-10";s:5:"level";i:1;s:12:"title_prefix";s:0:"";s:13:"title_display";s:6:"科技";}}

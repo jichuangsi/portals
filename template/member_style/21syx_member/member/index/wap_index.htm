@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>会员中心</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="__STATIC__/icon/icon.css">
+	<link rel="stylesheet" href="__STATIC__/icon/iconfont.css">
+	<script type="text/javascript" src="__STATIC__/js/core/jquery.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/layer/layer.js"></script>
+</head>
+<body>
+<style>
+	.aui-palace-grid-icon img{
+		width: 30px !important;
+		height: 30px !important;
+	}
+</style>
+        <link href="__STATIC__/verycong/21syx_member/wap_index_style.css" rel="stylesheet" type="text/css"/>
+
+
+        <section class="aui-flexView">
+            <header class="aui-navBar aui-navBar-fixed">
+                <a href="/member.php/member/remind/set.html" style="float:left;margin:10px;display: none;"> <i class="si si-settings" style="font-size:24px; color:#FFFFFF;"></i></a>                    
+                <a href="/member.php/member/msg/index.html" style="float:left;margin:10px;"><i class="fa fa-fw fa-envelope-o" style="font-size:24px; color:#FFFFFF;"></i></a>
+                <div class="aui-center">
+                    <span class="aui-center-title"></span>
+                </div>
+                <a href="{:purl('signin/index/index',[],'index')}" class="aui-navBar-item">
+                    <div class="aui-lag-member">
+                        <i class="icon icon-vip"></i>
+                        签到{$webdb.MoneyName}
+                   
+                    </div>
+                </a>
+            </header>
+           
+            <section class="aui-scrollView">
+                <div class="aui-head-bg">
+                    <div class="aui-head-user">
+                        <a href="{:url('member/user/edit')}"><img src="{$info.icon|tempdir}" onerror="this.src='__STATIC__/images/nobody.gif'"/></a>
+                    </div>
+                    <div class="aui-head-name">
+                        <h2>
+                            {$info.nickname}<br><em>{$info.groupid|getGroupByid}</em>
+                        </h2>
+                    </div>
+                </div>
+                <div class="aui-palace">
+                    <a href="{:purl('marketing/rmb/index',[],'member')}" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon" style="padding-top:15px; color:#FF0000; font-weight:300;">
+                            {$info.rmb}
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>余额/元</h2>
+                        </div>
+                    </a>
+                    <a href="javascript:;" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon" style="padding-top:15px;color:#aaaaaa; ">
+                            {$info.rmb_freeze}
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>冻结金额</h2>
+                        </div>
+                    </a>
+                    <a href="{:purl('marketing/jifen/index',[],'member')}" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon" style="padding-top:15px;">
+                            {$info.money}
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>{$webdb.MoneyName}/{$webdb.MoneyDW}</h2>
+                        </div>
+                    </a>
+                    <a href="{:purl('marketing/rmb/add',[],'member')}" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <i class="iconfont icon-chongzhi1"  style="color:#1E9FFF; font-size:30px;"></i>
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>余额充值</h2>
+                        </div>
+                    </a>
+                    <a href="{:purl('marketing/rmb/getmoney',[],'member')}" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <i class="iconfont icon-tixian" style="color:#1E9FFF; font-size:30px;"></i>
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>余额提现</h2>
+                        </div>
+                    </a>
+                    <a href="{:purl('marketing/rmb/edit',[],'member')}" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <i class="iconfont icon-shoukuan"  style="color:#1E9FFF; font-size:30px;"></i>
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>收款设置</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="divHeight"></div>
+                <div class="aui-flex b-line aui-flex-two">
+                    <div class="aui-flex-box">基础设置</div>
+                    <div class="aui-flex-fr"></div>
+                </div>
+                <div class="aui-palace aui-palace-two" style="padding-top: 15px;">
+                    <a href="{:purl('fav/fav/index',[],'member')}" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <i  style="color:#FF5722; font-size:30px;"><img src="__STATIC__/member/MyCollection.png" /> </i>
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>我的收藏</h2>
+                        </div>
+                    </a>
+                    <a href="/index.php/cms/content/mycomment" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <i  style="color:#FF5722; font-size:30px;"><img src="__STATIC__/member/Mycomment.png" /></i>
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>我的评论</h2>
+                        </div>
+                    </a>
+                    <a href="/index.php/cms/content/myfabulous" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <i  style="color:#FF5722; font-size:30px;"><img src="__STATIC__/member/MyFabulous.png" /></i>
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>我的点赞</h2>
+                        </div>
+                    </a>
+                    <a href="/index.php/cms/content/browsinghistory" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <i  style="color:#FF5722; font-size:30px;"><img src="__STATIC__/member/History.png" /></i>
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>浏览历史</h2>
+                        </div>
+                    </a>
+                    <a style="display: none;" href="/member.php/member/bindlogin/weixin.html" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <i  style="color:#5FB878; font-size:30px;"><img src="__STATIC__/member/weixin.png" /></i>
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>其它登录</h2>
+                        </div>
+                    </a>
+                     <a style="display: none;" href="/member.php/member/yz/mob.html" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <i  style="color:#5FB878; font-size:30px;"><img src="__STATIC__/member/Authentication.png" /></i>
+                        </div>
+                        <div class="aui-palace-grid-text">
+							<h2>实名认证</h2>
+                        </div>
+                    </a>
+                    {if ($info['groupid'])==11}
+	                    <a style="display: none;" href="#" class="aui-palace-grid" onclick="m151()">
+	                       <div class="aui-palace-grid-icon" >
+	                             <i  style="color:#5FB878; font-size:30px;"><img src="__STATIC__/member/xinwen.png" /></i>
+	                        </div>
+	                        <div class="aui-palace-grid-text">
+	                            <h2>霸闻资讯</h2>
+	                        </div>
+	                    </a>
+	                    <script>
+							function m151(){
+								layer.open({
+								  type: 1, 
+								  title:'版块中心',
+								  content: '<center><li class="postlimin"><a href="/member.php/cms/list.html">我发布的内容</a></li><li class="postlimin"><a href="/member.php/cms/content/postnew.html">发布内容</a></li><li class="postlimin"><a href="/member.php/cms/content/copynews.html">采集公众号文章</a></li></center>' //这里content是一个普通的String
+								});           
+							}
+						</script>
+                    {else/}
+	                    <a style="display: none;" href="/member.php/member/yz/idcard.html" class="aui-palace-grid">
+	                        <div class="aui-palace-grid-icon">
+	                            <i  style="color:#5FB878; font-size:30px;"><img src="__STATIC__/member/media.png" /></i>
+	                        </div>
+	                        <div class="aui-palace-grid-text">
+								<h2>自媒体认证</h2>
+	                        </div>
+	                    </a>
+                    {/if}
+                    <a href="/index.php/cms/content/contactus" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <i  style="color:#5FB878; font-size:30px;"><img src="__STATIC__/member/ContactUs.png" /></i>
+                        </div>
+                        <div class="aui-palace-grid-text">
+							<h2>联系我们</h2>
+                        </div>
+                    </a>
+                    {if ($info['groupid'])==3 || ($info['groupid'])==12}
+                    	<a style="display: none;" href="#" class="aui-palace-grid" onclick="m152()">
+	                        <div class="aui-palace-grid-icon" >
+	                             <i  style="color:#5FB878; font-size:30px;"><img src="__STATIC__/member/xinwen.png" /></i>
+	                        </div>
+	                        <div class="aui-palace-grid-text">
+	                            <h2>霸闻资讯</h2>
+	                        </div>
+	                    </a>
+	                    <script>
+							function m152(){
+							layer.open({
+							  type: 1, 
+							  title:'版块中心',
+							  content: '<center><li class="postlimin"><a href="/member.php/cms/list.html">我发布的内容</a></li><li class="postlimin"><a href="/member.php/cms/content/postnew.html">发布内容</a></li><li class="postlimin"><a href="/member.php/cms/content/copynews.html">采集公众号文章</a></li><li class="postlimin"><a href="/member.php/cms/mysort/index.html">分类管理</a></li></center>' //这里content是一个普通的String
+							});           
+							}
+							</script>
+                    {/if}
+                    <!--<a href="/member.php/member/yz/idcard.html" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+						{notempty name="info.idcard_yz"}
+                            <i class="iconfont icon-shenfenrenzheng" style="color:#5FB878; font-size:30px;"></i>
+						{else /}
+                            <i class="iconfont icon-shenfenrenzheng" style="color:#5FB878; font-size:30px;"></i>
+						{/notempty}
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>{notempty name="info.idcard_yz"}身份已认证{else /}<font color="#cccccc">身份未认证</font>{/notempty}</h2>
+                        </div>
+                    </a>-->
+                <!--<a href="{:url('member/user/edit')}" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <i class="si si-user-following" style="color:#1E9FFF; font-size:30px;"></i>
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>资料修改</h2>
+                        </div>
+                    </a>-->
+
+                    <!--<a href="/member.php/member/group/index.html" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <i class="iconfont icon-shengji" style="color:#FF5722; font-size:30px;"></i>
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>升级等级</h2>
+                        </div>
+                    </a>-->
+                    <!--<a href="{:purl('marketing/jifen/index',[],'member')}" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <i class="iconfont icon-log" style="color:#009688; font-size:30px;"></i>
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>{$webdb.MoneyName}日志</h2>
+                        </div>
+                    </a>-->
+                    <!--<a href="{:purl('marketing/jifen/add',[],'member')}" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <i class="iconfont icon-chongzhi" style="color:#1E9FFF; font-size:30px;"></i>
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>{$webdb.MoneyName}充值</h2>
+                        </div>
+                    </a>-->
+                    <!--<a href="{:iurl('index/login/quit')}" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <i class="iconfont icon-tuichu" style="color:#FF5722; font-size:30px;"></i>
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>帐号退出</h2>
+                        </div>
+                    </a>-->
+                </div>
+
+
+
+
+
+
+
+                <div class="divHeight" style="display: block;"></div>
+                 <div class="aui-flex b-line " style="display: block;">
+                    <div class="aui-flex-box">更多功能</div>
+                    <div class="aui-flex-fr" ></div>
+                </div> 
+                <div class="aui-palace aui-palace-two" style="display: block;">
+    <!--会员个性菜单--> {php}$mli="";{/php}
+    {if $menu['often']['sons']}
+    {volist name="menu.often.sons" id="vo"}{php}++$mli;{/php}
+                    <a href="#" class="aui-palace-grid" onClick="m{$mli}()">
+                        <div class="aui-palace-grid-icon" style="background-color:#009688;border-radius:5px;">
+                            <i class="{$vo.icon|default='fa fa-sun-o'}" style="color:#FFFFFF; font-size:24px;padding:5px;"></i>
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>{$vo.title}</h2>
+                        </div>
+                    </a>	
+<script>
+function m{$mli}(){
+layer.open({
+  type: 1, 
+  title:'{$vo.title}',
+  content: '{foreach name="vo.sons" id="rs"}<li class="postlimin"><a href="{$rs.url}">{$rs.title}</a></li>{/foreach}' //这里content是一个普通的String
+});           
+}
+</script>					
+    {/volist}
+    {php}$menu=[];{/php}<!--把默认菜单清除掉--> 
+    {/if}
+    
+    {foreach name="menu" id="vo"}{php}++$mli;{/php}
+    {empty name="vo.sons.1"}
+                    <a href="#" class="aui-palace-grid" onClick="m{$mli}()">
+                        <div class="aui-palace-grid-icon" style="background-color:#009688;border-radius:5px;">
+                            <i class="{$vo.icon|default='fa fa-sun-o'}" style="color:#FFFFFF; font-size:24px;padding:5px;"></i>
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>{$vo.title}</h2>
+                        </div>
+                    </a>	
+<script>
+function m{$mli}(){
+layer.open({
+  type: 1, 
+  title:'{$vo.title}',
+  content: '{volist name="vo.sons.0.sons" id="rs"}<li class="postlimin"><a href="{$rs.url}">{$rs.title}</a></li>{/volist}' //这里content是一个普通的String
+});           
+}
+</script>
+    {else}
+    {foreach name="vo.sons" id="ar"}{php}++$mli;{/php}
+                    <a href="#" class="aui-palace-grid" onClick="m{$mli}()">
+                        <div class="aui-palace-grid-icon" style="background-color:#1E9FFF;border-radius:25px;">
+                            <i class="{$ar.icon|default='si si-layers'}" style="color:#FFFFFF; font-size:24px;padding:5px;"></i>
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>{$ar.title}</h2>
+                        </div>
+                    </a>		
+<script>
+function m{$mli}(){
+layer.open({
+  type: 1, 
+  title:'{$vo.title}',
+  content: '<center>{volist name="ar.sons" id="rs"}<li class="postlimin"><a href="{$rs.url}">{$rs.title}</a></li>{/volist}</center>' //这里content是一个普通的String
+});           
+}
+</script>
+    {/foreach}
+    {/empty}
+    {/foreach}
+					
+                </div>
+
+					
+			
+<style>.postlimin{line-height:30px;margin:10px;padding:2px 5px; border:1px solid #CCCCCC;border-radius:5px;text-align:center;}</style>
+
+
+
+
+{include file="index@footmenu" /}
+<script src="__STATIC__/mui/js/mui.min.js"></script>
+</body>
+</html>

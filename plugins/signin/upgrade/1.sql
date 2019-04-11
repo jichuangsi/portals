@@ -1,0 +1,1 @@
+ALTER TABLE  `qb_signin_cfg` ADD  `fx_1` VARCHAR( 5 ) NOT NULL COMMENT  '1级推荐人奖励',ADD  `fx_2` VARCHAR( 5 ) NOT NULL COMMENT  '2级推荐人奖励',ADD  `fx_3` VARCHAR( 5 ) NOT NULL COMMENT  '3级推荐人奖励';

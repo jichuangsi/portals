@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1; maximum-scale=1.0; user-scalable=no;" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black"  />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="keywords" content="抽奖" />
+<meta name="description" content="我要抽奖" />
+<title>抽奖</title>
+<link rel="stylesheet" type="text/css" href="./css.css" />
+<script type="text/javascript" src="jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="jQueryRotate.2.2.js"></script>
+<script type="text/javascript" src="jquery.easing.min.js"></script>
+<script type="text/javascript">
+/*$(function(){
+	$("#startbtn").rotate({
+		bind:{
+			click:function(){
+				var a = Math.floor(Math.random() * 360);
+				 $(this).rotate({
+					 	duration:3000,
+					 	angle: 0, 
+            			animateTo:1440+a,
+						easing: $.easing.easeOutSine,
+						callback: function(){
+							alert('中奖了！');
+						}
+				 });
+			}
+		}
+	});
+});*/
+$(function(){ 
+     $("#startbtn").click(function(){ 
+        lottery(); 
+    }); 
+}); 
+function lottery(){ 
+    $.ajax({ 
+        type: 'POST', 
+        url: 'data.php', 
+        dataType: 'json', 
+        cache: false, 
+        error: function(){ 
+            alert('出错了！'); 
+            return false; 
+        }, 
+        success:function(json){ 
+            $("#startbtn").unbind('click').css("cursor","default"); 
+            var a = json.angle; //角度 
+            var p = json.prize; //奖项 
+            $("#startbtn").rotate({ 
+                duration:10000, //转动时间 
+                angle: 0, 
+                animateTo:1800+a, //转动角度 
+                easing: $.easing.easeOutSine, 
+                callback: function(){ 
+					//alert(p);
+                    var con = confirm('恭喜你，中得'+p+'\n还要再来一次吗？'); 
+                    if(con){ 
+                        lottery(); 
+                    }else{ 
+                        return false; 
+                    } 
+                } 
+            }); 
+        } 
+    }); 
+} 
+function SharShowMessage(){
+	var t = $(document).height();
+	$('.Share_Message').html('<div></div>');
+	$('.Share_Message').height(t).fadeIn();
+}
+function SharHiddenMessage() {
+	$('.Share_Message').fadeOut();
+}
+</script>
+</head>
+<body>
+<div id="header">
+</div>
+<div id="main">
+   <div class="demo">
+        <div id="disk"></div>
+        <div id="start"><img src="start.png" id="startbtn"></div>
+   </div>
+</div>
+<div id="footer">
+    <div class="butters"><span onClick="SharShowMessage();">邀请好友一起玩</span></div>
+	<div class="contents">
+		<dl class="base">
+			<dt>游戏奖品：</dt>
+			<dd>
+				<ul>
+					<li>一等奖：10</li>
+					<li>二等奖：10</li>
+					<li>三等奖：10</li>
+					<li>四等奖：10</li>
+					<li>五等奖：10</li>
+					<li>六等奖：10</li>
+					<li>七等奖：10</li>
+				</ul>
+			</dd>
+		</dl>
+		<dl class="more">
+			<dt>1.活动时间：</dt>
+			<dd>
+				2015-10-13 09:46:51 至 2015-10-31 09:46:53
+			</dd>
+		</dl>
+		<dl class="more">
+			<dt>2.游戏说明：</dt>
+			<dd>
+				参与游戏即送10积分,仅送给未中奖的用户.干枯
+			</dd>
+		</dl>
+		<div class="tags"><span>中奖排名</span></div>
+		<ul class="lists listh">
+			<li>奖品</li>
+			<li>等级</li>
+			<li>中奖时间</li>
+		</ul>
+		<ul class="lists listl">
+			<li>32G内存U盘</li>
+			<li>四等级</li>
+			<li>2015-10-17 10:30</li>
+		</ul>
+		<ul class="lists listl">
+			<li>500G移动硬盘</li>
+			<li>二等级</li>
+			<li>2015-10-17 10:30</li>
+		</ul>
+		<ul class="lists listl">
+			<li>32G内存U盘</li>
+			<li>四等级</li>
+			<li>2015-10-17 10:30</li>
+		</ul>
+	</div>
+</div>
+<div class="Share_Message" onClick="SharHiddenMessage();"></div>
+</body>
+</html>

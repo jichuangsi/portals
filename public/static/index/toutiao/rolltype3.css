@@ -1,0 +1,74 @@
+.ShowRollPicBox3{
+	position:relative;
+	overflow:hidden;
+}
+.ShowRollPicBox3 .bigimg li{
+	position:absolute;
+ 	width:100%;
+	height:100%;
+	overflow:hidden;	
+	left:0;
+	top:0;
+	background:#FFF;
+}
+.ShowRollPicBox3 .bigimg li img{
+	position: absolute;
+	width:100%;
+	height:100%;
+	left:0;
+	top:0;
+	/*left: 50%;
+	top: 50%;
+  -webkit-transform: translate3D(-50%, -50%, 0);
+      -ms-transform: translate3D(-50%, -50%, 0);
+          transform: translate3D(-50%, -50%, 0);
+	max-width:100%;
+	max-height:100%;*/
+}
+.ShowRollPicBox3 .ListTitle{
+	position: absolute;
+	width:100%;
+	height:50px;
+	line-height:50px;
+	background:rgba(0,0,0,0.6);
+	left:0;
+	bottom:0;
+}
+.ShowRollPicBox3 .ListTitle li{
+	padding:0 80px 0 100px;
+	line-height:50px;
+	height:50px;
+	text-align:center;
+	overflow:hidden;
+	font-size:16px;
+	color:#DDD;
+}
+.ShowRollPicBox3 .pages{
+	position: absolute;
+	width:80px;
+	height:30px;
+	line-height:30px;
+	left:70px;
+	bottom:10px;
+	color:#FFF;
+	font-size:16px;
+}
+.ShowRollPicBox3 .pages .now{
+	font-size:24px;
+	color:#F30;
+}
+.ShowRollPicBox3 .changeShow ol,.ShowRollPicBox3 .changeShow li{
+	position: absolute;
+	width:20px;
+	height:30px;
+	bottom:10px;
+	cursor:pointer;
+}
+.ShowRollPicBox3 .changeShow ol{
+	left:20px;
+	background:url(prav.png) center center no-repeat;
+}
+.ShowRollPicBox3 .changeShow li{
+	right:20px;
+	background:url(next.png) center center no-repeat;
+}

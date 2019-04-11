@@ -1,0 +1,27 @@
+{extend name="$member_style_layout" /}
+
+{block name="title"} {$tab_ext.page_title} {/block}
+
+{block name="content"}
+	{include file="member@common/menu" /}
+	{include file="member@common/table02" /}
+	{$pages}
+	<script>
+		$(function(){
+			$('.goback a').remove();
+			$('.goback').append('<a href="/index.php/giftshop/"  class="fa fa-reply"> 返回</a>');
+			$('.web').append("我的地址");
+		});
+	</script>
+	<style>
+		.qb_header{
+			background: -webkit-linear-gradient(#07EBC8, #357BF5);
+		    background: -o-linear-gradient(#07EBC8, #357BF5);
+		    background: -moz-linear-gradient(#07EBC8, #357BF5);
+		    background: linear-gradient(#07EBC8, #357BF5);
+		}
+		.web{
+			font-size: 20px !important;
+		}
+	</style>
+{/block}

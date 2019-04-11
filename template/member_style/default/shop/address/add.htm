@@ -1,0 +1,10 @@
+{extend name="$member_style_layout" /}
+
+{block name="content"}
+	{include file="member@common/form" /}
+	<script>
+		$(function(){
+			$('.c_address').attr('placeholder',"请输入详细地址")
+		});
+	</script>
+{/block}

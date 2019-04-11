@@ -1,0 +1,4 @@
+<?php
+//000000000000
+ exit();?>
+a:3:{i:0;a:13:{s:2:"id";i:1;s:3:"pid";i:0;s:4:"type";i:1;s:4:"name";s:12:"网上商城";s:3:"url";s:20:"/index.php/giftshop/";s:6:"target";i:0;s:6:"ifshow";i:1;s:4:"list";i:100;s:5:"style";s:0:"";s:8:"activate";s:4:"shop";s:5:"level";i:1;s:12:"title_prefix";s:0:"";s:13:"title_display";s:12:"网上商城";}i:1;a:13:{s:2:"id";i:18;s:3:"pid";i:0;s:4:"type";i:1;s:4:"name";s:12:"新闻资讯";s:3:"url";s:26:"/index.php/cms/list-9.html";s:6:"target";i:0;s:6:"ifshow";i:1;s:4:"list";i:11;s:5:"style";s:0:"";s:8:"activate";s:3:"cms";s:5:"level";i:1;s:12:"title_prefix";s:0:"";s:13:"title_display";s:12:"新闻资讯";}i:2;a:13:{s:2:"id";i:45;s:3:"pid";i:0;s:4:"type";i:1;s:4:"name";s:6:"论坛";s:3:"url";s:15:"/index.php/bbs/";s:6:"target";i:0;s:6:"ifshow";i:1;s:4:"list";i:0;s:5:"style";s:0:"";s:8:"activate";s:0:"";s:5:"level";i:1;s:12:"title_prefix";s:0:"";s:13:"title_display";s:6:"论坛";}}
