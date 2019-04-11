@@ -1,0 +1,46 @@
+<link rel="stylesheet" type="text/css" href="__STATIC__/index/toutiao/guide.css">
+<div class="BencandyHead">
+	<div class="InBox">
+		<dl>
+			<dt>
+				<ul>
+					<ol><a href="/"><img src="__STATIC__/index/toutiao/logo.png"></a></ol>
+					<li>
+<a href='/' class="home">网站首页</a> -&gt; 
+
+<!-- 频道 -->
+<?php $array = config('system_dirname') ? modules_config(config('system_dirname')):''; if($array): $url=iurl(config('system_dirname').'/index/index'); ?>
+<a href="<?php echo $url; ?>"><?php echo $array['name']; ?></a>
+<?php endif; ?>
+<!-- 栏目 -->
+<?php $array=[];if($fid&&$_name=sort_config()[$fid]['name'])$array=empty($array=sort_get_father($fid))?[$fid=>$_name]:$array+[$fid=>$_name];foreach($array AS $key=>$name):$url=iurl(config('system_dirname').'/content/index',['fid'=>$key]); ?>
+ -&gt; <a href="<?php echo $url; ?>"><?php echo $name; ?></a>
+<?php endforeach; ?>
+<!-- 自定义标题与链接 -->
+<?php if($link_name!=''): $url=$link_url?$link_url:'#'; ?>
+<a href="<?php echo $url; ?>"><?php echo $link_name; ?></a>
+<?php endif; ?>
+					</li>
+				</ul>
+			</dt>
+			<dd>
+				<div class="SearchBox1">
+					<form method="get" action="{:urls('search/index/lists')}" onsubmit="return cksearch();" target="_blank">
+						<div class="input"><input id="keyword_s" type="text" name="keyword" placeholder='请输入关键字'/></div>
+						<div class="sub"><input name="button" type="submit" value="搜索"/></div>
+					</form>
+<script type="text/javascript">
+<!--
+function cksearch(){
+	if ($('#keyword_s').val()==''){
+		layer.alert("关键字不能为空");
+		return false;
+	}
+}
+//-->
+</script> 
+				</div>
+			</dd>
+		</dl>
+	</div>
+</div>

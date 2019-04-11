@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+		<title>游戏</title>
+	</head>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.body_Hearcont {
+			width: 100%;
+			height: 45px;
+			background-color: #ffdd33;
+		    text-align: center;
+		    font-weight: bold;
+		    line-height: 45px;
+		    font-size: 16px;
+		    font-weight: bold;
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		}
+		.game_div{
+			margin-top: 60px;
+			width: 100%;
+			text-align: center;
+			display: flex;
+		}
+		.game_div ul li{
+			width: 49%;
+			list-style-type: none;
+			float: left;
+		}
+		.footer{
+			width: 100%;
+			position: fixed;
+			left: 0;
+    		bottom: 0;
+			z-index: 100;
+		}
+		.footer ul{
+			display: flex;
+			background: rgba(0,0,0,0.8);
+		}
+		.footer ul li{
+			list-style: none;
+			flex: 1;
+		    height: 50px;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		}
+		.footer ul li a span{
+			width: 100%;
+		    font-size: 14px;
+		    line-height: 15px;
+		    padding-top: 5px;
+		}
+		    
+		a{
+			text-decoration: none;
+			display: flex;
+		    flex-direction: column;
+		    color: #fff;
+		}
+	</style>
+	<body>
+		<div class="body_Hearcont">游戏</div>
+		<div  class="game_div">
+			<ul>
+				<li>
+					<div onclick="window.location.href='/index.php/p/gamedial-index-index.html'">
+						<div>
+							<img style="width: 90%;height: 157px;" src="../../imgs/turntable.png"/>
+						</div>
+						幸运大转盘
+					</div>
+				</li>
+				<li>
+					<div onclick="window.location.href='/index.php/p/eggs-index-index.html'">
+						<div>
+							<img style="width: 90%;height: 157px;" src="../../imgs/eggs.png"/>
+						</div>
+						敲金蛋
+					</div>
+				</li>
+			</ul>
+		</div>
+		<p style="text-align: center;color: #ccc;clear: both;margin-top: 30px;">更多精彩游戏，敬请期待....</p>
+		<div class="footer">
+			<ul>
+				<li style="position:relative;"><a href="/index.php/cms/"><i class="123"></i><span>首页</span></a>
+							</li>
+				<li style="position:relative;"><a href="/member.php/member/plugin/execute/plugin_action/index/plugin_controller/jifen/plugin_name/marketing.html"><i class="123"></i><span>收益</span></a>
+							</li>
+				<li style="position:relative;"><a href="/index.php/giftshop/"><i class="123"></i><span>商城</span></a>
+							</li>
+				<li style="position:relative;"><a href="/template/index_style/toutiao/cms/content/game.html"style="color:#ff0;"><i class="123"></i><span>游戏</span></a>
+							</li>
+				<li style="position:relative;"><a href="/member.php/member/index.html" ><i class="123"></i><span>我的</span></a>
+			</ul>
+		</div>
+	</body>
+</html>

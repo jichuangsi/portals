@@ -1,0 +1,92 @@
+.TopContBox{
+	height:50px;
+	position:relative;
+	z-index:100000;
+}
+.TopContBox:after{
+	content:'';
+	width:100%;
+	height:15px;
+	background:#FFF;
+	position:fixed;
+	left:0;
+	top:35px;
+}
+.TopContBox ul{
+	position:fixed;
+	width:100%;
+	height:35px;
+	background:#222;
+	left:0;
+	top:0;
+	color:#CDCDCD;
+	font-size:14px;
+}
+.TopContBox ul ol{
+	width:400px;
+	float:left;
+	padding-left:15px;
+	line-height:35px;
+	height:35px;	
+}
+.TopContBox ul ol a.home{
+	display:block;
+	float:left;
+	padding:5px 10px 0 0;
+}
+.TopContBox ul ol a.home img{
+	width:25px;
+	height:25px;
+}
+#liveclock{
+	width:300px;
+	float:left;
+}
+.TopContBox ul ol span{
+	color:#FF9900;	
+}
+.TopContBox ul li{
+	float:right;
+	padding-right:15px;
+	line-height:35px;
+	word-spacing:10px;
+}
+.TopContBox ul li a{
+	color:#EEE;
+}
+.TopContBox ul li .logon{
+	display:table;
+	height:35px;
+}
+.TopContBox ul li .logon div{
+	display:table-cell;
+	vertical-align:middle;
+}
+.TopContBox ul li .logon div.input input{
+	width:80px;
+	height:20px;
+	border:#DDD solid 1px;
+	margin:0 10px 0 5px;
+	border-radius:3px;
+	text-indent:5px;
+}
+.TopContBox ul li .logon div.sub input{
+	height:25px;
+	line-height:25px;
+	border:0;
+	background:#EEE;
+	color:#666;
+	padding:0 10px;
+	border-radius:5px;
+	margin-right:10px;
+	cursor:pointer;
+}
+.TopContBox ul li .logon div.sub input:hover{
+	background:green;
+	color:#FFF;
+}
+.TopContBox ul li .logon div.morelogin{
+	padding:0 0 0 10px;
+	word-spacing:10px;
+}
+.show-sockpuppet span{ position:relative; top:5px;}

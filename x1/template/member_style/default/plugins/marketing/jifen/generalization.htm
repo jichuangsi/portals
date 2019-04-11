@@ -1,0 +1,278 @@
+
+{extend name="$member_style_layout" /}
+{block name="title"}我的收益{/block}
+
+{block name="content"}
+<link rel="stylesheet" href="__STATIC__/icon/iconfont.css">
+<style>
+	.qb_member_note{
+		background: url('__STATIC__/index/toutiao/Profit.png') no-repeat;
+		background-size: 100%;
+		height: 53px;
+		/*line-height: 53px;*/
+		line-height: 2;
+		color: #fff;
+		margin-top: 45px;
+	}
+	.web{
+		text-align: center;
+	}
+	.qb_header{
+		background-color: #ffdd33;
+		font-weight: bold;
+		text-align: center;
+		height: 45px;
+		line-height: 45px;
+		position: fixed;
+	    top: 0;
+	    left: 0;
+	    z-index: 10;
+	    font-size: 19px;
+	}
+	.jifen_list{
+		width: 100%;
+		display: flex;
+		margin-top: 10px;
+		justify-content: space-between;
+	}
+	.aui-palace-grid{
+		    position: relative;
+		    float: left;
+		    padding: 1px;
+		    width: 33.333333%;
+		    box-sizing: border-box;
+		    margin-bottom: 15px;
+	}
+	.aui-palace-grid-icon{
+		width: 35px;
+	    height: 35px;
+	    margin: 0 auto;
+	}
+	.aui-palace-grid-text{
+		display: block;
+	    text-align: center;
+	    color: #333333;
+	    font-size: 13px;
+	    white-space: nowrap;
+	    text-overflow: ellipsis;
+	    overflow: hidden;
+	}
+	a{
+		color: #666;
+		text-decoration: none;
+	}
+	.jifen_top{
+		width: 100%;
+		margin-top: 45px;
+		background: url('__STATIC__/index/toutiao/banner.png') no-repeat;
+		background-size: 100%;
+		position: relative;
+		max-height: 288px;
+	}
+	.jifenFunctionList{
+		width: 90%;
+		background-color: #FFFFFF;
+		border-radius: 10px;
+		position: absolute;
+		left: 5%;
+		bottom: 0%;
+		font-size: 14px;
+	}
+	.jifenFunctionList img{
+		width: 30px;
+		height: 30px;
+	}
+	.MyInfo{
+		/*padding-left: 5%;*/
+		padding: 10px 5%;
+		display: flex;
+		font-size: 14px;
+	}
+	.MyInfo span{
+		width: 33.33333%;
+		display: block;
+	}
+	.jifen_div{
+		width: 90%;
+		margin-left: 5%;
+		padding: 20px 0px;
+		background-color: #fff;
+		border: none;
+		border-radius: 9px;
+		margin-bottom: 20px;
+	}
+	.jifen_info ul{
+		display: flex;
+	}
+	.jifen_btn{
+		padding: 0px 12px;
+		outline: none;
+		border: 1px solid #ec6841;
+		border-radius: 15px;
+		background: #fff;
+		font-size: 13px;
+	}
+</style>
+
+<script>
+	$(function(){
+		$('.CopyRight').remove();
+		$(".footer a").css('color','#fff');
+		$(".footer a[href*='marketing']").css('color','#FFDD33');
+		$('.goback').find('a').remove();
+		$('.member').find('a').remove();
+		$('.qb_header').find('div').remove();
+		$('.qb_header').text('我的收益');
+		$('.shares').css({"position":"fixed","top":"13px","bottom":"","z-index":"10"});
+	});
+</script>
+<div class="jifen_top">
+	<div class="ss" style="padding-bottom: 50%;"></div>
+	<div class="jifenFunctionList">
+		<div style="margin-top: 8%;width: 90%;margin-left: 5%;">
+		<a href="/member.php/member/group/index.html" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <img src="__STATIC__/index/toutiao/1_1.png" />
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>升级等级</h2>
+                        </div>
+		</a>
+		<a href="/member.php/member/plugin/execute/plugin_action/index/plugin_controller/log/plugin_name/propagandize.html" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                             <img src="__STATIC__/index/toutiao/2-2.png" />
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>我的代理</h2>
+                        </div>
+		</a>
+		<a href="/member.php/member/plugin/execute/plugin_action/index/plugin_controller/jifen/plugin_name/marketing.html" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                             <img src="__STATIC__/index/toutiao/3-3.png" />
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>积分详情</h2>
+                        </div>
+		</a>
+		</div>
+	</div>
+	
+</div>
+	<?php $moneyss=0; ?>
+	{volist name="listdb" id="rs"}
+	<ul class="qb_member_ListType1" style="display: none;">
+		<ol>
+			<span class="FL">项目：{$rs.title|get_word="60"}</span>
+			<span class="FR {gt name="$rs.money" value="0"}  red{else /} gray{/gt}">{$rs.money}</span>
+		</ol>
+		<li>
+			<span class="FL glyphicon glyphicon-time gray">{:date("Y-m-d H:i:s",$rs.posttime)}</span>
+			<!--<a href="{:purl('delete',['id'=>$rs['id']])}" class="FR">删除</a>-->
+		</li>
+	</ul>
+	<?php  $moneyss += $rs['money'];?>
+{/volist}
+<div class="MyInfo">
+	<span  style="text-align: left;">总收益:{$userdb.money}</span><span  style="text-align: center;">今日收益:{$moneyss}</span><span  style="text-align:right ;">代理收益:{$userdb.money}</span>
+</div>
+<div class="jifen_div">
+	<div class="jifen_info" style="margin: 0px 20px;">
+		<div class="info_name">
+			<ul>
+				<ol>玩游戏赚积分</ol>
+				<li style="margin-left: 20px;color: #ff8033;"  onclick="details(this)">以积分赚积分</li>
+			</ul>
+		</div>
+		<div style="margin: 5px 0px;">
+			<ul>
+				<ol style="flex: 1;padding: 1px 5px;">幸运大转盘</ol>
+				<li>
+					<button onclick="window.location.href='/index.php/p/gamedial-index-index.html'" class="jifen_btn">玩游戏</button>
+				</li>
+			</ul>
+		</div>
+		<div style="margin: 5px 0px;">
+			<ul>
+				<ol style="flex: 1;padding: 1px 5px;">砸金蛋</ol>
+				<li>
+					<button onclick="window.location.href='/index.php/p/eggs-index-index.html'" class="jifen_btn">玩游戏</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="jifen_div">
+	<div class="jifen_info" style="margin: 0px 20px;">
+		<div class="info_name">
+			<ul>
+				<ol>看资讯赚积分</ol>
+				<li style="margin-left: 20px;color: #ff8033;" onclick="details(this)" class="detailsBtn">详情&nbsp;<i class="fa fa-caret-down"></i></li>
+			</ul>
+		</div>
+		<div style="margin: 5px 0px;display: none;" class="info_details" >
+			<ul>
+				<ol style="flex: 1;padding: 1px 17px;font-size: 13px;">看5篇新闻奖励10积分<br />看10篇新闻奖励20积分<br />看15篇新闻奖励30积分<br /> </ol>
+				<li style="display: flex;">
+					<button style="margin: auto;" onclick="window.location.href='/index.php/cms/'" class="jifen_btn">看资讯</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="jifen_div">
+	<div class="jifen_info" style="margin: 0px 20px;">
+		<div class="info_name">
+			<ul>
+				<ol>积分说明</ol>
+				<li style="margin-left: 20px;color: #ff8033;"  onclick="details(this)">详情&nbsp;<i class="fa fa-caret-down"></i></li>
+			</ul>
+		</div>
+		<div style="margin: 5px 0px;padding: 0px 15px;display: none;" class="info_details">
+			<h3 style="color: #ff8033;">积分怎么获取？</h3>
+			<div style="font-size: 12px;padding: 0px 10px;">
+				1.每日签到可以获取积分<br />
+				2.玩游戏运气好的话也可以获取不同额度的积分喔<br />
+				3.每日浏览资讯会有积分奖励<br />
+			</div>
+			<h3 style="color: #ff8033;">积分有什么用？</h3>
+			<div style="font-size: 12px;padding: 0px 10px;">
+				1.积分可以到商城兑换商品<br />
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="div_propagandize" style="display:none;">
+<div style="padding:20px;line-height:150%;">
+<div style="border-bottom:1px solid #ddd;margin-bottom:10px;padding:10px;">
+欢迎分享,分享有收益。<br>
+1、直接推荐他人注册可获得 10 个积分的奖励<br>
+2、间接推荐他人注册可获得 5 个积分的奖励<br>
+3、上上级推荐还可获得 2 个积分的奖励<br>
+</div>
+<!--分享网址：<a href="http://192.168.31.122?p_uid=1">http://192.168.31.122?p_uid=1</a>-->
+分享网址：<a href="http://192.168.31.122?p_uid=1">{:get_url('home')}?p_uid={$userdb.uid}</a>
+<br>
+分享二维码如下：
+<br><!--<center><img width="200" src="/index.php/index/qrcode/index.html?url=http%3A%2F%2F192.168.31.122%3Fp_uid%3D1"></center>-->
+<center><img width="250" src="{:get_qrcode('/?p_uid='.$userdb.uid)}"></center>
+</div>
+</div>
+<script type="text/javascript">
+	function details(obj){
+		$(obj).parent().parent().siblings().toggle(500);
+	}
+
+	function show_propagandize(){
+	layer.open({
+		type:1,
+		title:false,
+		content:$('#div_propagandize'),
+		area:['95%','80%'],
+	});
+}
+</script>
+<i class="fa fa-share-square-o shares" onclick="show_propagandize()" style="position: fixed; right: 10px; font-size: 20px; color: rgb(102, 102, 102); top: 13px; z-index: 10;">分享</i>
+{:hook_listen('layout_body_foot',$userdb,$webdb,true)}
+{/block}
+

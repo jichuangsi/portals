@@ -1,0 +1,33 @@
+{extend name="$member_style_layout" /}
+
+{block name="title"}我的签到记录{/block}
+{block name="content"}
+ 
+<div class="MainCont mtop10">
+	<div class="head"><div class="tag">我的签到记录</div></div>
+    <div class="cont">
+{include file="../../default/plugins/signin/log/sign"}
+<a href="{:purl('index/index',[],'index')}" target="_blank" class="layui-btn layui-btn-danger">签到排名榜</a>	
+    	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="ListTable">
+          <tr>
+			<th width="20%">签到时间</th>
+			<th width="10%">奖励积分</th>
+			 <!--<th width="10%">签到频道</th>-->
+            <th>签到位置</th> 
+            <th width="10%">删除</th>
+          </tr>
+{volist name="listdb" id="rs"}
+          <tr>
+            <td>{$rs.create_time|format_time}</td>
+			<td>{$rs.money}</td>
+			<!--<td><a href="{:iurl($rs[module_dir].'/index/index')}" target="_blank">{$rs.module_name}</a></td>-->
+            <td><a href="{$rs.url}" target="_blank">{$rs.title|default='平台'}</a></td>  
+            <td><a href="{:purl('delete',['id'=>$rs['id']])}" class="qb-del"></a></td>
+          </tr>
+{/volist}
+        </table>
+        <div class="Showpage">{$pages}</div>
+    </div>
+</div>
+
+{/block}

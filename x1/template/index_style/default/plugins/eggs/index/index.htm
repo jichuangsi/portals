@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="uft-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=no" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black"  />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>砸金蛋抽礼品</title>
+<link rel="stylesheet" type="text/css" href="__STATIC__/plugins/eggs/css.css" />
+<script type="text/javascript" src="__STATIC__/js/core/jquery.min.js"></script>
+<script type="text/javascript" src="__STATIC__/plugins/eggs/jQueryRotate.2.2.js"></script>
+<script type="text/javascript" src="__STATIC__/plugins/eggs/jquery.easing.min.js"></script>
+<script type="text/javascript" src="__STATIC__/layer/layer.js"></script>
+<script type="text/javascript">
+var evenplayMoney = parseInt("{$webdb.paymoney_pound}");
+$(function(){ 
+     $("#startbtn").click(function(){ 
+     	lottery();
+/* //不消耗积分
+	 	if(evenplayMoney>0){
+			var con = confirm('每次砸金蛋需要消耗积分 '+evenplayMoney+' 个，你是否还要继续？'); 
+			if(con){ 
+				lottery(); 
+			} 
+		}else{
+			lottery();
+		}
+		*/
+    }); 
+}); 
+function lottery1(msg){
+	$('#main').removeClass('noclick');	
+	$('#main .hammer').animate({'left':'80%','top':'-10%'},300,function(){
+		$(this).animate({'left':'65%','top':'20%'},500,function(){
+			$('#main .egg span').hide();
+			$('#main .egg em').show();	
+			$('#main .showmsg span').html(msg);
+			$('#main .showmsg').show();	
+			$('#main .showmsg span').animate({'top':'-50%'},1000);
+		});
+	});	
+}
+function lottery(){
+	//var url="{:purl('signin/api/sign',[],'index')}";
+	$.get('{:purl("check")}',function(res){
+		console.log(res);
+		$("#startbtn").unbind('click').css("cursor","default");
+		if(res.code==2){
+			layer.msg('你还没登录,请先登录!');
+			window.location.href="{:get_url('login')}";
+			return false;
+		}else if(res.code==3){
+			layer.msg(res.msg);
+			return false;
+		}else if(res.code==0){
+			var a = res.data.angle; //角度 
+            		var p = res.data.prize; //奖项 
+			var jf = res.data.jf; //中奖积分
+
+			lottery1('恭喜 抽中'+p);
+/*			
+            $("#startbtn").rotate({ 
+                duration:10000, //转动时间 
+                angle: 0, 
+                animateTo:1800+a, //转动角度 
+                easing: $.easing.easeOutSine, 
+                callback: function(){
+					if(jf>0){
+						var saymsg = '恭喜你，抽中 ' + p + '获得积分 '+jf+' 个';
+					}else{
+						var saymsg = '很遗憾你没抽中';
+					}
+                    var con = confirm(saymsg+'\n还要再来一局吗？'); 
+                    if(con){ 
+                        lottery(); 
+                    }else{
+						window.location.reload();
+                        return false; 
+                    }
+					return false; 
+                } 
+            });
+            */
+		}else{
+			alert(res.msg);
+			return false;
+		}            
+	}).fail(function(){alert('网页出错了!')}); 
+}
+</script>
+</head>
+<body>
+<div id="header"><img src="__STATIC__/plugins/eggs/banner1.png"></div>
+<div id="main" class="noclick">
+   <div class="egg"><span></span><em></em></div>
+   <div class="showmsg"><span></span></div>
+   <div class="hammer"></div>   
+   <div id="startbtn"></div>
+</div>
+<div id="footer">
+    <div class="butters"><span onClick="SharShowMessage()">邀请好友一起玩</span></div>
+	<div class="contents">
+		<dl class="base">
+			<dt>奖品设置：</dt>
+			<dd>
+				<ul>
+					<li>一等奖：{$webdb.poundmoney1} 个霸币</li>
+					<li>二等奖：{$webdb.poundmoney2} 个霸币</li>
+					<li>三等奖：{$webdb.poundmoney3} 个霸币</li>
+					<li>鼓励奖：{$webdb.poundmoney4} 个霸币</li>
+                   <li>每次抽将消耗霸币 <span style='color:yellow;'>{$webdb.paymoney_pound}</span> 个</li>
+				</ul>
+			</dd>
+		</dl>
+		<dl class="more">
+			<dt>游戏说明：</dt>
+			<dd>
+				1、这里的奖品仅仅是霸币!<br>
+				2、你当前可用霸币 {$userdb.money} 个
+			</dd>
+		</dl> 
+ 
+		<div class="tags"><span>最新中奖榜</span></div>
+		<ul class="lists listh">
+			<li>用户</li>
+			<li>奖项</li>
+			 
+		</ul>
+{qb:tag name="eggs001" rows="10" class="plugins\eggs\model\Member@get_label"}
+		<ul class="lists listl">
+			<li>
+				<dl>
+					<dt><a href="{:get_url('user',$rs.uid)}"><img src="{$rs.user_icon}" onerror="this.src='__STATIC__/images/noface.png'"/></a></dt>
+					<dd>
+						<div>{$rs.username}</div>
+						<div><span>{$rs.create_time|format_time="y-m-d H:i:s"}</span></div>
+					</dd>
+				</dl>				
+			</li>
+			<li>{:get_status($rs.typesize,['','一等','二等','三等','鼓励'])}奖</li>
+			
+		</ul>
+{/qb:tag}
+	</div>
+</div>
+
+<script type="text/javascript">
+var page=1,loading=1;
+$(window).scroll(function(){
+	// 当滚动到最底部以上100像素时， 加载新内容
+	if (loading==1 &&  (400 + $(window).scrollTop())>($(document).height() - $(window).height())){
+		page++;
+		loading=0;
+		var urls="{qb:url name='eggs001'}"+page;
+		$.get(urls+"&"+Math.random(),function(res){
+			if(res.code==0){
+				if(res.data==''){					
+					layer.msg("已经显示完了！",{time:500});
+				}else{
+					$('.contents').append(res.data);
+					loading = 1;
+				}
+			}else{
+				layer.msg(res.msg,{time:2500});
+			}
+		});
+	}	
+});
+</script>
+
+ 
+<div class="Share_Message" onClick="SharHiddenMessage();"></div>
+ 
+ 
+<script type="text/javascript">
+function SharShowMessage(){
+	var t = $(document).height();
+	$('.Share_Message').html('<div></div>');
+	$('.Share_Message').height(t).fadeIn();
+}
+function SharHiddenMessage() {
+	$('.Share_Message').fadeOut();
+}
+</script>
+<div class="footSpac"></div>
+<footer class="footer">
+	<ul>
+		<li><a href="javascript:;history.back()">返回</a></li>
+		<li><a href="/">首页</a></li>
+		<li><a href="{:get_url('member')}">会员中心</a></li>
+	</ul>
+</footer>
+</body>
+</html>

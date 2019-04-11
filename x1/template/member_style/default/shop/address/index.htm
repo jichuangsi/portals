@@ -1,0 +1,15 @@
+{extend name="$member_style_layout" /}
+
+{block name="title"} {$tab_ext.page_title} {/block}
+
+{block name="content"}
+	{include file="member@common/menu" /}
+	{include file="member@common/table02" /}
+	{$pages}
+	<script>
+		$(function(){
+			$('.goback a').remove();
+			$('.goback').append('<a href="/index.php/giftshop/"  class="fa fa-reply"> 返回</a>');
+		});
+	</script>
+{/block}

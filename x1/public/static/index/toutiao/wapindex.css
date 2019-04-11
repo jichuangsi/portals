@@ -1,0 +1,134 @@
+.MainContainerBox{
+	position:relative;
+	top:48px;
+}
+.MainSlideBox{
+	clear:both;
+	min-height:50px;
+}
+.ListConts{
+	padding:10px;
+	margin-bottom:30px;
+}
+.ListMorpic{
+	margin-bottom:10px;
+	border-top:#DDD solid 1px;
+}
+.ListMorpic .title,.pic_word li .title{
+	padding-top:8px;
+	line-height:25px;
+	font-size:20px;
+}
+.ListMorpic ul:after{
+	content:'';
+	display:block;
+	clear:both;
+}
+.ListMorpic ul li{
+	width:33%;
+	overflow:hidden;
+	position:relative;
+	float:left;
+	margin-top:10px;
+}
+.ListMorpic ul li:before{
+	content:'';
+	display:block;
+	padding-top:63%;
+}
+.ListMorpic ul li span{
+	display:block;
+	width:98%;
+	height:100%;
+	position:absolute;
+	right:0;
+	top:0;
+	overflow:hidden;
+}
+.ListMorpic ul li span img{
+	width:100%;
+}
+dl.moreinfo{
+	height:25px;
+	line-height:25px;
+	overflow:hidden;
+	color:#888;
+	margin-top:8px;
+}
+dl.moreinfo dt{
+	float:left;
+}
+dl.moreinfo dd{
+	float:right;
+}
+.pic_word{
+	display:table;
+	width:100%;
+	border-top:#DDD solid 1px;
+	margin-bottom:10px;
+}
+.pic_word ol,.pic_word li{
+	display:table-cell;
+	vertical-align:top;
+}
+.pic_word li p{font-size:15px;}
+.pic_word ol{
+	width:33%;
+	padding:10px 10px 10px 0;
+	vertical-align:middle;
+}
+.pic_word ol a{
+	display:block;
+	width:100%;
+	overflow:hidden;
+	position:relative;
+}
+.pic_word ol a:before{
+	content:'';
+	display:block;
+	padding-top:63%;
+}
+.pic_word ol a span{
+	display:block;
+	width:100%;
+	height:100%;
+	overflow:hidden;
+	position:absolute;
+	left:0;
+	top:0;
+}
+.pic_word ol a span img{
+	width:100%;
+}
+
+.MiddleAdBox{
+	width:100%;
+	overflow:hidden;
+	margin-bottom:10px;
+}
+.MiddleAdBox img{
+	width:100%;
+}
+@media (max-width: 500px) and (min-width:401px) {
+	.ListMorpic .title,.pic_word li .title{
+		line-height:20px;
+		font-size:18px;
+	}
+	dl.moreinfo{
+		height:20px;
+		line-height:20px;
+		font-size:12px;
+	}
+}
+@media (max-width: 400px) and (min-width:301px) { 
+	.ListMorpic .title,.pic_word li .title{
+		line-height:18px;
+		font-size:16px;
+	}
+	dl.moreinfo{
+		height:18px;
+		line-height:18px;
+		font-size:12px;
+		margin-top:8px;
+	}	
+}

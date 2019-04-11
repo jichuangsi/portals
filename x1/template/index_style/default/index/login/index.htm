@@ -1,0 +1,296 @@
+{extend name="$index_style_layout" /}
+{block name="head_title"}{$info.title}{/block}
+ 
+{block name="body_content"}
+<link rel="stylesheet" href="__STATIC__/css/base.css">
+<style>
+	input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0px 1000px transparent  inset !important;
+    background-color:#EFEFEF;
+    background-image: none;
+     transition: background-color 50000s ease-in-out 0s; //背景色透明  生效时长  过渡效果  启用时延迟的时间
+}
+input {
+	 background-color:transparent;
+}
+	body{
+		  overflow: hidden;
+	}
+.mui-btn{
+	margin-top:20px;
+}
+.LogoContainer{
+	margin-top: 10px;
+	max-width:640px;
+	height: 190px;
+	/*margin-bottom: -39px;*/
+	/*margin:auto;*/
+	position:relative;
+}
+/*.LogoContainer:before{
+	content:'';
+	display:block;
+	padding-top:50%;
+}*/
+.LogoContainer ul{
+	width:30%;
+	position:absolute;
+	left:50%;
+	top: 50%;
+  -webkit-transform: translate3D(-50%, -50%, 0);
+      -ms-transform: translate3D(-50%, -50%, 0);
+          transform: translate3D(-50%, -50%, 0);
+}
+.LogoContainer ul ol img{
+	width:69%;
+	margin: auto;
+}
+.LogoContainer ul li{
+	text-align:center;
+	padding-top:5%;
+	color:#D43B1B;
+}
+.FormContainer{
+	padding:0 20px;
+}
+.FormContainer ul{
+	display:table;
+	width:100%;
+	border-bottom:#DDD solid 1px;
+}
+.FormContainer ul ol,.FormContainer ul li{
+	display:table-cell;
+	vertical-align:middle;
+	height:40px;	
+}
+.FormContainer ul ol{
+	width:30px;
+	font-size:20px;
+}
+.FormContainer ul li input{
+	width:99%;
+	border:0;
+	text-indent:5px;
+	outline:none;
+	background:none;
+}
+.FormContainer dl{
+	display:table;
+	width:100%;
+	margin-top:20px;
+}
+.FormContainer dl dt,.FormContainer dl dd{
+	display:table-cell;
+	vertical-align:middle;
+	height:30px;
+	width:50%;
+}
+.FormContainer dl dd{
+	text-align:right;
+}
+.OtherLogin .h{
+	line-height:30px;
+	margin-top:15px;
+	position:relative;
+	color:#888;
+	text-align:center;
+}
+.OtherLogin .h:before{
+	content:'';
+	display:block;
+	position:absolute;
+	width:100%;
+	height:1px;
+	background:#DDD;
+	left:0;
+	top:14px;
+}
+.OtherLogin .h span{
+	display:inline-block;
+	position:relative;
+	/*background:#FFF;*/
+	padding:0 20px;
+}
+.OtherLogin .c{
+	text-align:center;
+	padding:15px 0;
+}
+.OtherLogin .c a{
+	display:inline-block;
+	background:#333BDD;
+	padding:8px;
+	margin:0 20px;
+	color:#FFF;
+	font-size:20px;
+	border-radius:5px;
+}
+.OtherLogin .c a.wx{
+	background:#41BD16;
+}	
+@media (max-width: 2000px) and (min-width:601px) {
+	.LogoContainer ul li{
+		font-size:26px;
+	}	
+	.FormContainer .subimt input{
+		line-height:60px;
+		font-size:24px;
+	}
+}
+@media (max-width: 600px) and (min-width:501px) { /* <- 3-2  hexagons per row */
+    .LogoContainer ul li{
+		font-size:22px;
+	}
+	.FormContainer .subimt input{
+		line-height:50px;
+		font-size:20px;
+	}	
+}
+@media (max-width: 500px) and (min-width:401px) { /* <- 3-2  hexagons per row */
+    .LogoContainer ul li{
+		font-size:20px;
+	}	
+	.FormContainer .subimt input{
+		line-height:45px;
+		font-size:18px;
+	}
+}
+@media (max-width: 400px) { /* <- 2-1  hexagons per row */
+    .LogoContainer ul li{
+		font-size:18px;
+	}
+	.FormContainer .subimt input{
+		line-height:40px;
+		font-size:16px;
+	}
+}
+.mui-btn,button,input[type=button],input[type=reset],input[type=submit] {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.42;
+	position: relative;
+	display: inline-block;
+	margin-bottom: 0;
+	padding: 6px 12px;
+	cursor: pointer;
+	-webkit-transition: all;
+	transition: all;
+	-webkit-transition-timing-function: linear;
+	transition-timing-function: linear;
+	-webkit-transition-duration: .2s;
+	transition-duration: .2s;
+	text-align: center;
+	vertical-align: top;
+	white-space: nowrap;
+	color: #333;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	background-color: #fff;
+	background-clip: padding-box
+}
+.mui-btn-danger,.mui-btn-negative,.mui-btn-red {
+	color: #fff;
+	border: 1px solid #FFDD33;
+	background-color: #ffdd33;
+}
+.mui-btn-block {
+	font-size: 18px;
+	display: block;
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 15px 0;
+	border-radius: 50px;
+}
+</style>
+<script>
+	$(function(){
+		$("input").attr("disabled",false);
+			$("input").attr("readOnly",false);
+	});
+</script>
+<div class="LogoContainer">	
+	<ul>
+		<ol style="text-align: center;"><img src="__STATIC__/member/default/base/logo.png"/></ol>
+		<!--<li>{$webdb.webname}</li>-->
+	</ul>
+</div>
+<div class="FormContainer">
+<form class="mui-input-group" action="{:urls('login/index')}" method="post">
+	<ul><ol><i class="fa fa-fw fa-user-o"></i></ol><li><input type="text"  name="username" minlength="2" maxlength="20" placeholder="请输入帐号" /></li></ul>
+	<ul><ol><i class="si si-lock"></i></ol><li><input type="password"   name="password" minlength="3" maxlength="30" placeholder="请输入密码" /></li></ul>
+	<input type="hidden" name="fromurl" value="{$fromurl}">
+	<button type="submit" class="mui-btn mui-btn-danger mui-btn-block">进入新闻</button>
+	<p style="text-align: center;">登录即表示你同意 <a style="color: #406599;" href="{:urls('login/agreement')}">&nbsp;用户协议&nbsp;</a>和 <a style="color: #406599;" href="{:urls('login/privacypolicy')}" onclick="ShowPrivacy()">&nbsp;隐私条款&nbsp;</a></p>
+	<dl>
+		<dt><a href="{:urls('getpassword/index')}">忘记密码</a></dt>
+		<dd><a href="{:urls('reg/index')}">注册帐号</a></dd>
+	</dl>
+	<div class="OtherLogin">
+		<div class="h"><span>其他登录方式</span></div>
+		<div class="c">
+			<a href="{:purl('login/qq/index')}?fromurl={$fromurl}"><i class="fa fa-fw fa-qq"></i></a>
+			{if (in_weixin()||in_wxapp())}<a href="{:purl('weixin/login/index')}?fromurl={$fromurl}" class="wx"><i class="fa fa-fw fa-weixin"></i></a>{/if}
+			<a class="phone" style="background: #f30;" href="{:urls('index/login/phone')}?fromurl={$fromurl}"><i class="fa fa-fw fa-mobile-phone"></i></a>
+		</div>
+	</div>
+</form>
+</div>
+<script>
+	function ShowAgreement(){
+		$('#Agreement').fadeIn(500);
+	}
+	function HideAgreement(){
+		$('#Agreement').fadeOut();
+	}
+	function ShowPrivacy(){
+		$('#Privacy').fadeIn();
+	}
+	function HidePrivacy(){
+		$('#Privacy').fadeOut();
+	}
+</script>
+<style>
+	.Agreement{
+		width: 100%;
+		height: 100%;
+		z-index: 9999999;
+		background: #efefef;
+		position: fixed;
+		top: 0;
+		overflow: scroll;
+	}
+	.Agreement_header{
+		position: fixed;
+		top: 0;
+		text-align: center;
+		color: #000000;
+		width: 100%;
+		height: 51px;
+		line-height: 51px;
+		font-size: 21px;
+		background-color: #fff;
+	}
+	.Agreement_header a{
+		position: absolute;
+		left: 15px;
+		padding: 0px 5px;
+		color: #000000;
+	}
+	.Agreement_info{
+		margin-top: 55px;
+		line-height: 30px;
+		padding: 15px;
+		overflow: scroll;
+	}
+	.Agreement_info h1,.Agreement_info h4,.Agreement_info p{
+		margin: 15px 0px;
+		
+	}
+	.Agreement_info p{
+		text-indent: 20px;
+	}
+</style>
+{/block}
