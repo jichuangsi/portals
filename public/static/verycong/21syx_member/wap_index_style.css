@@ -277,7 +277,7 @@ a {
 
 
 .aui-head-bg {
-    /*background-image: url("head-bj.png");*/
+    background-image: url("head-bj.png");
     height: 11rem;
     background-size: 100%;
     background-repeat: no-repeat;
