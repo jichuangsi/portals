@@ -536,7 +536,11 @@
 
 .qb_wap_header{
 	padding:8px;
-	background:#FFDD33;
+	/*background:#FFDD33;*/
+	background: -webkit-linear-gradient(#07EBC8, #357BF5);
+    background: -o-linear-gradient(#07EBC8, #357BF5);
+    background: -moz-linear-gradient(#07EBC8, #357BF5);
+    background: linear-gradient(#07EBC8, #357BF5);
 	color:#000000;
 	height:26px;
 }

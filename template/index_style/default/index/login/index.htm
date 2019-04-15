@@ -211,19 +211,19 @@ input {
 			$("input").attr("readOnly",false);
 	});
 </script>
-<div class="LogoContainer">	
+<div class="LogoContainer" style="display: none;">	
 	<ul>
 		<ol style="text-align: center;"><img src="__STATIC__/member/default/base/logo.png"/></ol>
 		<!--<li>{$webdb.webname}</li>-->
 	</ul>
 </div>
-<div class="FormContainer">
+<div class="FormContainer"style="margin-top: 150px;" >
 <form class="mui-input-group" action="{:urls('login/index')}" method="post">
 	<ul><ol><i class="fa fa-fw fa-user-o"></i></ol><li><input type="text"  name="username" minlength="2" maxlength="20" placeholder="请输入帐号" /></li></ul>
 	<ul><ol><i class="si si-lock"></i></ol><li><input type="password"   name="password" minlength="3" maxlength="30" placeholder="请输入密码" /></li></ul>
 	<input type="hidden" name="fromurl" value="{$fromurl}">
-	<button type="submit" class="mui-btn mui-btn-danger mui-btn-block">进入新闻</button>
-	<p style="text-align: center;">登录即表示你同意 <a style="color: #406599;" href="{:urls('login/agreement')}">&nbsp;用户协议&nbsp;</a>和 <a style="color: #406599;" href="{:urls('login/privacypolicy')}" onclick="ShowPrivacy()">&nbsp;隐私条款&nbsp;</a></p>
+	<button type="submit" class="mui-btn mui-btn-danger mui-btn-block">登录</button>
+	<p style="text-align: center;display: none;">登录即表示你同意 <a style="color: #406599;" href="{:urls('login/agreement')}">&nbsp;用户协议&nbsp;</a>和 <a style="color: #406599;" href="{:urls('login/privacypolicy')}" onclick="ShowPrivacy()">&nbsp;隐私条款&nbsp;</a></p>
 	<dl>
 		<dt><a href="{:urls('getpassword/index')}">忘记密码</a></dt>
 		<dd><a href="{:urls('reg/index')}">注册帐号</a></dd>

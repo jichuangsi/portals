@@ -441,7 +441,7 @@
 
     <div class="copyright">
 	
-	<a title="齐博官方网站" href="http://www.php168.com/">Powered by qibosoft Code © 2003-2018</a> 
+	<a style="display: none;" title="齐博官方网站" href="http://www.php168.com/">Powered by qibosoft Code © 2003-2018</a> 
 	<br><br>
         <a title="TP官方网站" href="http://www.thinkphp.cn">ThinkPHP</a> 
         <span>V<?php echo THINK_VERSION; ?></span>          

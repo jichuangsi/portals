@@ -70,8 +70,8 @@ class Order extends _Order
             
             if ($jifen>0) {
                 add_jifen($uid, abs($jifen),'销售商品:'.$rs['title']);
-                add_jifen($this->user['uid'], -abs($jifen),'兑换霸币商城商品:'.$rs['title']);
-                send_msg($uid,'有人兑换商品了',$this->user['username']." 在霸币商城兑换了商品:".$rs['title']);
+                add_jifen($this->user['uid'], -abs($jifen),'兑换商城商品:'.$rs['title']);
+                send_msg($uid,'有人兑换商品了',$this->user['username']." 在商城兑换了商品:".$rs['title']);
             }
         }
         

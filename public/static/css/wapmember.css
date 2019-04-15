@@ -58,7 +58,11 @@ body{
 /*header*/
 .qb_header{
 	display: table;
-	background: #ffdd33;
+	/*background: #ffdd33;*/
+	background: -webkit-linear-gradient(#07EBC8, #357BF5);
+    background: -o-linear-gradient(#07EBC8, #357BF5);
+    background: -moz-linear-gradient(#07EBC8, #357BF5);
+    background: linear-gradient(#07EBC8, #357BF5);
 	border-bottom: #DDD solid 1px;
 	width: 100%;
 }
