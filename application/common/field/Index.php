@@ -15,7 +15,7 @@ class Index extends Base
      * @param string $pagetype 参数主要是show 或 list 哪个页面使用,主要是针对显示的时候,用在列表页或者是内容页 , 内容页会完全转义,列表页的话,可能只转义部分,或者干脆不转义
      * @return string[]|unknown[]|mixed[]
      */
-    public static function get_field($field=[],&$info=[],$pagetype='list'){        
+    public static function get_field($field=[],&$info=[],$pagetype='list'){      
         return parent::format_field($field,$info,$pagetype);        
     }
     

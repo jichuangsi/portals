@@ -41,8 +41,9 @@ class Tzr{
         }else{
             $area = "['500px','430px']";
         }
-//      $share_url = get_url('location');
-         $share_url ='http://192.168.31.122';
+        $share_url = get_url('location');
+        $this->error($share_url);
+//       $share_url ='http://192.168.31.122';
         if (!strstr($share_url,'p_uid=')) {
             if(strstr($share_url,'?')){
                 $share_url .= '&';

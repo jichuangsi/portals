@@ -36,7 +36,6 @@ class Form extends Base
      * @return string[]|unknown[]|mixed[]
      */
     public static function get_field($field=[],$info=[]){
-        
         // 是否为必填选项
         if ($field['mustfill'] == '1') {
             $mustfill = '(<font color=red>*</font>)';

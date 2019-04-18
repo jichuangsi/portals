@@ -72,17 +72,16 @@ abstract class C extends IndexBase
         
         $data_list = [];
         //获取列表数据
-        //         $data_list = $this->getListData($fid ? ['fid'=>$fid] : ['mid'=>$mid]);
+//                 $data_list = $this->getListData($fid ? ['fid'=>$fid] : ['mid'=>$mid]);
         
         $s_info = $fid ? $this->sortInfo($fid) : [];
-        
         //如果某个模型有个性模板的话，就不调用母模板
         $template = $this->get_tpl('list',$mid,$s_info);
         
         $GLOBALS['fid'] = $fid;     //标签有时会用到
         
         //列表显示哪些自定义字段
-        //$tab_list = $this->getEasyIndexItems($field_array);
+//        $tab_list = $this->getEasyIndexItems($field_array);
         
         //模板里要用到的变量值
         $vars = [
@@ -94,7 +93,6 @@ abstract class C extends IndexBase
                 'info'=>$s_info,
                 'm_info'=>$m_info,
         ];
-        
         return $this->fetch($template,$vars);
     }
     
@@ -271,6 +269,7 @@ abstract class C extends IndexBase
            $map['fid'] = $fids ? ['in',$fids] : $fid;
         }
         $order = $order ? filtrate($order) : 'list';
+       
 //         if (!in_array($order, ['id','create_time','list','rand()','view'])) {
 //             if(empty($order) || table_field($this->model->getTableByMid($mid),$order)==false){
 //                 $order = 'list';
@@ -383,7 +382,6 @@ abstract class C extends IndexBase
             //cache('qb_tag_'.$tag_name,$tag_array,$tag_array['cache_time']);
             trim($tag_array['view_tpl']) && $view_tpl = $tag_array['view_tpl'];
         }
-         
         if(empty($view_tpl)){
             return $this->err_js('not_tpl');
             //die('tpl not exists !');
@@ -417,6 +415,7 @@ abstract class C extends IndexBase
 //             }
 //         }
         
+        
         $data_list = $this->label_get_list_data($fid,$mid,$rows,$order,$by,$map);
         $array = getArray($data_list);
         $__LIST__ = $array['data'];
@@ -434,7 +433,6 @@ abstract class C extends IndexBase
             $content = ob_get_contents();
             ob_end_clean();
         }
-
         $array['data'] = $content;
         return $this->ok_js($array);
     }

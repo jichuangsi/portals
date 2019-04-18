@@ -185,7 +185,7 @@
 	position:relative;
 	margin-right:40px;
 	height:45px;
-	overflow:hidden;
+	/*overflow:hidden;*/
 }
 /*.BigsortBox .BoxIn ul ol div{
 	width:1000%;

@@ -51,7 +51,15 @@ abstract class C extends AdminBase
      */
     public function add($fid=0,$mid=0)
     {
+    	$urls=get_url('location');
+    	
         $data = $this->request->post();
+        
+         if(strpos($data['picurl'],'uploads') !== false){
+         	$dataurl=substr($urls,0,strpos($urls,'/admin'))."/public/";
+         	$data['picurl']=$dataurl.$data['picurl'];
+         }
+       
         isset($data['fid']) && $fid = $data['fid'];
         
         if($fid && !$mid){

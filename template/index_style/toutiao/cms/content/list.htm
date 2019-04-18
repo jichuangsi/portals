@@ -18,7 +18,7 @@
 				<a href="{:urls('content/index',['fid'=>$key])}" {if ($key==$fid)}class="ck"{/if}>{$vo}</a>
 			{/volist}
 			</span></div></ol>
-			<li  onclick="navMenuHideShow()"><span>更多</span></li>
+			<li style="display: none;"  onclick="navMenuHideShow()"><span>更多</span></li>
 		</ul>
 	</div>
 </div>
@@ -29,6 +29,7 @@
 }
 .pic_word ol{
 	width: 100% !important;
+	max-width: 170px;
 }
 .pic_word ol a{
 	height: 100% !important;
@@ -201,17 +202,17 @@
 //		$('.body_Hearcont').html('<div onclick="window.location.href=\'/index.php/search/\'" style="display: flex;"> <button style="opacity: 0.8 ;margin: auto;width: 80%;padding: 4px 0px;border-radius: 8px;border: none;outline: none;text-indent: 16px;text-align: center;">点击搜索</button> </div>')
 		var divwid =$('.BoxIn ul ol div').width();
 		$('.BoxIn ul ol div').width((divwid+100));
-		$('.BoxIn ul ol div span').prepend('<a href="/index.php/cms/">推荐</a>');
-		var binALength=$('.BoxIn ul ol div span a').length;
-		for(var i=0;i<binALength;i++){
-			if($('.BoxIn ul ol div span a').eq(i).hasClass('ck')){
-				if(i>2){
-					 var $one_li =$(".BoxIn ul ol div span a:eq("+i+")");   
-					 var $two_li = $(".BoxIn ul ol div span a:eq(2)");    
-					 $one_li.insertAfter($two_li);   
-				}
-			}
-		}
+//		$('.BoxIn ul ol div span').prepend('<a href="/index.php/cms/">推荐</a>');
+//		var binALength=$('.BoxIn ul ol div span a').length;
+//		for(var i=0;i<binALength;i++){
+//			if($('.BoxIn ul ol div span a').eq(i).hasClass('ck')){
+//				if(i>2){
+//					 var $one_li =$(".BoxIn ul ol div span a:eq("+i+")");   
+//					 var $two_li = $(".BoxIn ul ol div span a:eq(2)");    
+//					 $one_li.insertAfter($two_li);   
+//				}
+//			}
+//		}
 	});
 </script>
 <script type="text/javascript">

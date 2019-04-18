@@ -2645,6 +2645,7 @@ if (!function_exists('get_field')) {
             $list_f = cache($dirname.'__field');
             if (empty($list_f)) {
                 $array = get_model_class($dirname,'field')->getFields([]);
+               
                 foreach($array AS $rs){
                     $list_f[$rs['mid']][$rs['name']] = $rs;
                 }

@@ -582,9 +582,11 @@ abstract class C extends Model
         if($format){
             static::$m_name = self::$model_key;  //防止 format_data里边重新实例化其它类 导致 $model_key 发生变化
             $data_list->each(function($rs,$key){
+//          	echo "console.log('".$rs['picurl']."')";
                 return static::format_data($rs);
             });
         }
+        
         return $data_list;
     }
     
@@ -609,7 +611,7 @@ abstract class C extends Model
         }
         
 //         static $field_db = [];
-//         if(empty($field_db[$dirname])){
+//         if(empty($field_db[$dirname])){ 
 //             $field_db[$dirname] = get_field($info['mid'],$dirname);
 //         }
 //         //字段转义
@@ -649,8 +651,8 @@ abstract class C extends Model
 //         }
         $sort_array = sort_config($dirname);    //获取栏目数据
         
-        $info = fun('field@format',$info,'','list',$dirname);     //对原始数据进行转义前台显示
-        
+//      $info = fun('field@format',$info,'','list',$dirname);     //对原始数据进行转义前台显示
+
         if($info['pics']){    //CMS图库模型特别处理
         //if(empty($info['picurl']) && $info['pics']){    //CMS图库模型特别处理
 //             $_picarray = [];
@@ -668,6 +670,7 @@ abstract class C extends Model
 //             foreach($detail AS $value){
 //                 $value && $info['picurls'][] = tempdir($value);
 //             }
+			 
             if(is_array($info['picurl'])){
                 $value = $info['picurl'];
                 unset($info['picurl']);
