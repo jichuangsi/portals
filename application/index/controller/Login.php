@@ -5,7 +5,8 @@ use app\common\model\User AS UserModel;
 use app\common\controller\IndexBase;
 use QCloud_WeApp_SDK\Auth\LoginService;
 use QCloud_WeApp_SDK\Constants as Constants;
-
+include  './config.inc.php';
+include  './uc_client/client.php';
 class Login extends IndexBase
 {
     //小程序检查是否已登录过
@@ -69,7 +70,21 @@ class Login extends IndexBase
             $data= get_post('post');
             if(empty($data['cookietime'])){
                 $data['cookietime'] = $this->webdb['login_time']?:3600*24*30;
-            } 
+            }
+            list($uid, $username, $password, $email) = uc_user_login($data['username'], $data['password']);
+			if($uid > 0) {
+				echo "登录成功";
+				$ucsynlogin=uc_user_synlogin($uid);
+				$res=urlencode($ucsynlogin);
+				$ress=urldecode($res);
+				echo $ress;
+			} elseif($uid == -1) {
+				 $this->error("用户不存在,或者被删除");
+			} elseif($uid == -2) {
+				$this->error("密码错误");
+			} else {
+				$this->error("未定义");
+			}
             $result = UserModel::login($data['username'],$data['password'],$data['cookietime']);
             if($result==0){
                 $this->error("当前用户不存在,请重新输入");

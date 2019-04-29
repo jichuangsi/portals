@@ -4,6 +4,8 @@ namespace app\index\controller;
 use app\common\model\User AS UserModel;
 use app\common\controller\IndexBase;
 use think\Controller;
+include  './config.inc.php';
+include  './uc_client/client.php';
 
 class Reg extends IndexBase
 {
@@ -110,9 +112,8 @@ class Reg extends IndexBase
             }
             $data['money'] = $this->webdb['regmoney'];
         }
-        
         hook_listen('reg_by_hand_begin',$data);
-        
+        	
         if(IS_POST){
             
             //邮箱注册码与手机注册码,不建议同时启用,所以这里只判断只中一种
@@ -140,7 +141,30 @@ class Reg extends IndexBase
             $uid = UserModel::register_user($data); //注册帐号
             if ($uid<2) {
                 $this->error($uid);
-            }
+            } 
+				$uids=uc_user_register($data['username'],$data['password'],$data['email']);
+		        if($uids <= 0) {
+					if($uids == -1) {
+						$this->error('用户名不合法！');
+					} elseif($uids == -2) {
+						$this->error('包含要允许注册的词语！');
+					} elseif($uids == -3) {
+						$this->error('用户名已经存在！');
+					} elseif($uids == -4) {
+						$this->error('Email 格式有误！');
+					} elseif($uids == -5) {
+						$this->error('Email 不允许注册！');
+					} elseif($uids == -6) {
+						$this->error('该 Email 已经被注册！');
+					} else {
+						$this->error('未定义！');
+					} 
+				} else {
+					$ucsynlogin = uc_user_synlogin($uids);
+					$res=urlencode($ucsynlogin);
+					$ress=urldecode($res);
+					echo $ress;
+				}
             
             hook_listen('reg_by_hand_end',$uid,$data);
             

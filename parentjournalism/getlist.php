@@ -23,7 +23,7 @@
 	if(isset($_GET['pagesize'])){
 		$pagesize=$_GET['pagesize'];
 	} 
-	$sql="select id,fid,mid,title,view,agree,create_time,picurl,content,case when replynum >= 0 then '0' else replynum end as replynum  from qb_cms_content1 where 1=1 ";
+	$sql="select id,fid,mid,title,view,agree,create_time,picurl,case when replynum >= 0 then '0' else replynum end as replynum  from qb_cms_content1 where 1=1 ";
    	if($status != null){
    		if($status==1){
    			$sql=$sql." and fid!=9 ";

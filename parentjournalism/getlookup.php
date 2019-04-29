@@ -20,7 +20,7 @@
 		$pagesize=$_GET['pagesize'];
 	}
 	$page=$pageindex*$pagesize;
-	$sql="select id,fid,mid,title,view,agree,create_time,picurl,content,case when replynum >= 0 then '0' else replynum end as replynum,case when fid = 9 then '2' else 1 end as status from qb_cms_content1 where title like '%$title%' limit $page,$pagesize";
+	$sql="select id,fid,mid,title,view,agree,create_time,picurl,case when replynum >= 0 then '0' else replynum end as replynum,case when fid = 9 then '2' else 1 end as status from qb_cms_content1 where title like '%$title%' limit $page,$pagesize";
 	$result=$conn->query($sql);
 	$jarr = array();
 	while ($rows=mysqli_fetch_array($result,MYSQL_ASSOC)){
