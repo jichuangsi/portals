@@ -8,10 +8,13 @@
 	header('Access-Control-Allow-Headers:x-requested-with,content-type,test-token,test-sessid');//注意头部自定义参数不要用下划线
 	$conn = new MySQLi("127.0.0.1","root","root","education");
 	$infoid=null;
+	$r;
 	if(isset($_GET['infoid'])){
 		$infoid=$_GET['infoid'];
 	}else{
-		echo '请输入infoid参数';
+		$r['errorCode']='0';
+		$r['errorstatus']='缺少infoid参数！';
+		echo $str=json_encode($r);
 		exit();
 	}
 	$id=$infoid;
@@ -20,10 +23,6 @@
 		$sql=$sql." where id='$infoid' ";
 	}
 	$result=$conn->query($sql);
-//	$rs=mysqli_fetch_array($result);
-//	$res=json_encode($rs);
-//	$jarr = array();
-//	echo $res;
 	$jarr = array();
 	while ($rows=mysqli_fetch_array($result,MYSQL_ASSOC)){
 	    $count=count($rows);//不能在循环语句中，由于每次删除 row数组长度都减小  
@@ -32,5 +31,10 @@
 	    }
 	    array_push($jarr,$rows);
 	}
-	echo $str=json_encode($jarr);
+	$r['errorCode']='1';
+	if($r['errorCode']=='1'){
+			$r['data']=$jarr;
+	} 
+	
+	echo $str=json_encode($r);
 ?>

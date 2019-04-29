@@ -11,10 +11,13 @@
 	$status=null;  //分类
 	$pageindex=0;  //页数
 	$pagesize=10;  //条数
+	$r;
 	if(isset($_GET['status'])){
 		$status=$_GET['status'];
 	}else{
-		 echo '请输入status参数';;
+		 $r['errorCode']='0';
+		 $r['errorstatus']='缺少status参数！';
+		echo $str=json_encode($r);
 		exit();
 	}
 	if(isset($_GET['pageindex'])){
@@ -43,7 +46,10 @@
 	    }
 	    array_push($jarr,$rows);
 	}
-	echo $str=json_encode($jarr);
+	$r['errorCode']='1';
+		if($r['errorCode']=='1'){
+				$r['data']=$jarr;
+		} 
 	
- 
+	echo $str=json_encode($r);
 ?>

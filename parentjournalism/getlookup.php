@@ -30,5 +30,10 @@
 	    }
 	    array_push($jarr,$rows);
 	}
-	echo $str=json_encode($jarr);
+	$r;
+	$r['errorCode']='1';
+	if($r['errorCode']=='1'){
+			$r['data']=$jarr;
+	} 
+	echo $str=json_encode($r);
 ?>
