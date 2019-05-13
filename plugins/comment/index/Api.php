@@ -172,7 +172,7 @@ class Api extends IndexBase
         $info = fun('content@info',$aid,$sysid);    //主题信息
         $id = $aid;
         
-//      $view_tpl = self::get_tpl($name,$pagename);        
+        $view_tpl = self::get_tpl($name,$pagename);        
         
 ////      if(empty($view_tpl)){
 ////          return $this->err_js('not_tpl');
