@@ -7,11 +7,11 @@ define('UC_DBNAME', 'ucenter');
 define('UC_DBCHARSET', 'utf8');
 define('UC_DBTABLEPRE', '`ucenter`.uc_');
 define('UC_DBCONNECT', '0');
-define('UC_KEY', 'c5a8tANGHyW0nYEEztIb5dRv5L7yx52+LRcI3N4');
-define('UC_API', 'http://192.168.31.123:84');
+define('UC_KEY', 'be40nwc5iNWgySpm6HIE/7Xx9r7CnDTE5eFarCk');
+define('UC_API', 'http://ucenter.jichuangsi.com');
 define('UC_CHARSET', 'utf-8');
 define('UC_IP', '');
-define('UC_APPID', '2');
+define('UC_APPID', '5');
 define('UC_PPP', '20');
 //define('UC_CONNECT', 'mysql');				// 连接 UCenter 的方式: mysql/NULL, 默认为空时为 fscoketopen()
 							// mysql 是直接连接的数据库, 为了效率, 建议采用 mysql
