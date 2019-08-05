@@ -22,9 +22,7 @@ define('API_UPDATECREDITSETTINGS', 1);	//note 更新应用积分设置 开关
 define('API_RETURN_SUCCEED', '1');
 define('API_RETURN_FAILED', '-1');
 define('API_RETURN_FORBIDDEN', '-2');
-
 define('DISCUZ_ROOT', '../');
-echo "<script>alert(2333221)</script>";
 //note 普通的 http 通知方式
 if(!defined('IN_UC')) {
 	error_reporting(0);
@@ -79,7 +77,6 @@ class uc_note {
 	var $db = '';
 	var $tablepre = '';
 	var $appdir = '';
-
 	function _serialize($arr, $htmlon = 0) {
 		if(!function_exists('xml_serialize')) {
 			include_once DISCUZ_ROOT.'./uc_client/lib/xml.class.php';
@@ -135,7 +132,37 @@ class uc_note {
 
 		header('P3P: CP="CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR"');
 		_setcookie('Example_auth', _authcode($uid."\t".$username, 'ENCODE'));
+		
+		require_once DISCUZ_ROOT.'./uc_client/lib/db.class.php';
+		require_once DISCUZ_ROOT.'./application/common.php';
+//		$toxconfig = require_once DISCUZ_ROOT.'./parentjournalism/parentfunction.php';
+		$db = new ucclient_db;
+		$dbs = new ucclient_db;
+        $db->connect('localhost', 'root', 'root', 'education', UC_DBCONNECT, true, 'utf8');
+        $user =  $db->fetch_first("SELECT * FROM qb_memberdata WHERE username='{$username}'");
+//		echo $get['password']."~~".$get['username'];
+		if($user==null||$user==""){
+			$dbs->connect('localhost', 'root', 'root', 'ucenter', UC_DBCONNECT, true, 'utf8');
+			 $ucuser =  $dbs->fetch_first("SELECT * FROM uc_members WHERE username='{$username}'");
+//			echo $ucuser['password']."~~".$ucuser['salt']."~~".$ucuser['email']."~~".$ucuser['username']."~~".time()."~~".get_ip();
+			$db->connect('localhost', 'root', 'root', 'education', UC_DBCONNECT, true, 'utf8');
+			$times=time();
+			$ips=get_ip();
+			$intoresult=$db->fetch_first("insert into qb_memberdata(password,password_rand,username,nickname,groupid,yz,lastvist,lastip,regdate,regip,email) values('{$ucuser['password']}','{$ucuser['salt']}','{$username}','{$username}',8,1,'{$times}','{$ips}','{$times}','{$ips}','{$ucuser['email']}')");
+			$users=$db->fetch_first("SELECT * FROM qb_memberdata WHERE username='{$username}'");
+			_setcookie("passport","{$users['uid']}"."\t"."{$users['username']}\t".mymd5($users['password'],'EN'));
+		}else{
+			$uids=$user['uid'];
+//			set_cookie("passport","{$rs['uid']}\t$username\t".mymd5($rs['password'],'EN'),$cookietime);
+//			setcookie("passport", "{$user['uid']}"."\t"."{$user['username']}\t{$user['password']}");
+//			setcookie("_passport", "{$user['uid']}"."\t"."{$user['username']}\t{$user['password']}");
+//			_setcookie("passport","{$user['uid']}"."\t"."{$user['username']}\tB18GVFNbAQEHXwADBwwDVlIFAAYADQJXVlIEAAQAUQYQIBOEDD098fa50bf5");
+			_setcookie("passport","{$user['uid']}"."\t"."{$user['username']}\t".mymd5($user['password'],'EN'));
+//			 echo $user['password'];
+		}
+		
 	}
+	
 
 	function synlogout($get, $post) {
 		if(!API_SYNLOGOUT) {

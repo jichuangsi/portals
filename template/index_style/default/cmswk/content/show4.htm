@@ -1,0 +1,124 @@
+{extend name="$index_style_layout" /}
+
+<!--SEO相关-->
+{block name="head_title"}{$info.title}{/block}
+{block name="head_keword"}{$info.keywords?:$info.title}  {$s_info.name} {/block}
+{block name="head_description"}{:get_word(del_html($info['content']),300)}{/block}
+
+{block name="body_content"}
+<link rel="stylesheet" href="__STATIC__/index/default/article.css">
+<style>
+.view_btn{
+	background: #1E9FFF;
+	padding: 5px 12px;
+	border-radius: 5px;
+	color: #fff;
+}
+.download_tip{font-size:18px;text-align:center;margin-top:10px;}
+.c_h{color:#ED7000;}
+.download_btn{font-size:20px;}
+</style>
+<div class="ArticleContBox">
+	<div class="MainInfos">
+		<div class="title">{$info.title}</div>
+		<div class="infos">
+			<span><i class="glyphicon glyphicon-time"></i> {:date("Y-m-d H:i:s",$info.create_time)}</span>
+			<span><i class="si si-eye"></i> {$info.view}</span> 
+			<span><i class='fa fa-fw fa-download'></i>{$info.download_sum}</span>
+		</div>
+		{php}
+			$file_arr = explode('.',$info['file_url']);
+			$doc_type = strtolower(array_pop($file_arr));
+			$office_types = ['doc','docx','xls','xlsx','ppt'];
+			if($doc_type=='pdf'){
+				$fileurl=urls('viewer').'?file='.$info['file_url'];
+			}else if(in_array($doc_type,$office_types)){
+				//在线文档测试，并且文档在 Internet 上必须是可公开访问的
+				$fileurl="https://view.officeapps.live.com/op/view.aspx?src=".'http://www.diqiuyicun.com/doc/51.doc';
+				$fileurl="https://view.officeapps.live.com/op/view.aspx?src=".$info['file_url'];
+				
+			}else{
+				$fileurl=$info['file_url'];
+			} 
+			$doc_type=$doc_type?$doc_type:'no';
+		{/php}
+		<div class="ShowContent">
+			{$info.content}
+			
+			<div class='wk_con'>
+				{if in_array($doc_type,$office_types)}
+				<a href="{$fileurl}" class='view_btn'>点击预览</a>
+				{else /}
+				<iframe src="{$fileurl}" width="100%" height="400px" frameborder="0" scrolling="no"></iframe>
+				{/if}
+			</div>
+
+			<div class='download_tip'>
+				下载该文件需要<span class='c_h'>{$info['money']}{$webdb['MoneyName']}</span>
+				<a href="javascript:;" onclick="download_file({$info['id']})" title='点击下载' class='download_btn'><i class='glyphicon glyphicon-download-alt'></i></a>
+			</div>
+
+		</div>
+	</div>
+<!--显示自定义字段内容 field="picurl,title,content,keywords" 就是过滤掉不在里边重复显示的字段-->
+<style type="text/css">.OtherInfos .SideBox{clear:both;}.OtherInfos img{height:100px;float:left;margin:3px;}</style>
+  	<div class="OtherInfos">
+{qb:showpage field="picurl,title,content,keywords,mv_url,myfid,if_private,money,file_url"}
+		<div class="SideBox">
+		{if in_array($rs['type'],['images','images2','image','file','files','files2'])}
+			<!-- 组图及多文件的显示方法\template\index_style\default\index\common\field.htm,其实不建议放在这里,影响布局,更多请查阅 http://help.php168.com/665693/  -->
+			<div class="tag"><span>{$rs.title}</span></div>
+			{include file="index@common/field" /}
+		{else /}
+			<div class="tag"><span>{$rs.title}</span></div>
+			<div class="cont">{$rs.value}</div>
+		{/if}
+		</div>
+{/qb:showpage}
+	</div>
+
+
+	<!--引用评论-->
+	{qb:comment name="commentwap01" rows='5'}
+		{include file="content/comment" /}
+	{/qb:comment}
+	
+</div>
+<script>
+// 文档下载
+function download_file(id){
+	console.log(id);
+	if(check_login()){
+		var url =" {:urls('download_file')}"+'?id='+id;
+		window.location.href=url;
+	}
+}
+// 下载前相关检测
+function check_login(){
+	if("{$userdb.uid}"==""){
+		layer.confirm('你还没登录,登陆后才可以进行下载相关操作,你要登录吗？', {
+			btn : [ '登录', '取消' ]
+			}, function(index) {
+				window.location.href = "{:get_url('login')}";
+		}); 
+		return false;
+	}
+	if("{$userdb.uid}"!="{$info.uid}"&&{$userdb.money}<{$info.money}){
+		layer.confirm("你的{$webdb['MoneyName']}不足，请充值后再进行下载操作，是否前往充值？", {
+			btn : [ '充值', '取消' ]
+			}, function(index) {
+				cz_url ="{:purl('marketing/jifen/add','','member')}";
+				window.location.href = cz_url;
+		}); 
+		return false;
+	}
+	return true;
+}
+</script>
+
+<!-- 微动态自动收录用户感兴趣的主题,时间60代表用户停留60秒将自动收藏 -->
+{:fun('sns@fav',$info,60,'系统帮你订阅了本主题,下次本主题有回复,将会通知你')}
+
+<!-- 微信分享 -->
+{include file="index@share"/}
+{/block}

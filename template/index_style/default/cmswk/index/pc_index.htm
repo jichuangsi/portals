@@ -1,0 +1,69 @@
+{extend name="$index_style_layout" /}
+
+<!--SEO相关-->
+{block name="head_title"}{$webdb.mseo_title?:$webdb.seo_title}{/block}
+{block name="head_keword"}{$webdb.mseo_keyword?:$webdb.seo_keyword}{/block}
+{block name="head_description"}{$webdb.mseo_description?:$webdb.seo_description}{/block}
+
+{block name="body_AllScorllSlide"}
+<!--通栏横幅图片__STATIC__/css/qb_ui.css中控制图片宽度百分百高度行内样式设置，如不设置不小于100px---->
+{qb:tag name="cmsindex_001" type="image"}
+<div class="qb_ui_AllscrollBanner" style="height:300px;">
+	<a href="#1"><img src="__STATIC__/images/s0.jpg"></a>
+</div>
+{/qb:tag}
+{/block}
+{block name="body_content"}
+<link rel="stylesheet" href="__STATIC__/index/default/pclist.css">
+<link rel="stylesheet" href="__STATIC__/cmswk/default/pcindex.css">
+<style>
+.ArticlMainContainer{margin-top:0;}
+</style>
+<div class="ArticlMainContainer">
+
+<div class='container clearfix'>
+	<!-- 栏目列表 -->
+	{include file="scroll_sort" /}
+	<section class='wenku_w910'>
+		
+
+		{qb:tag name="cmswk_pcindex_page_listdata001" type="cmswk" mid="4" where="status>0" rows="10" order="list"}
+		<div class="wenku_item clearfix">
+			<a href="{$rs.url}">
+				<div class="wenku_item_img"><img src="{$rs.picurl}" onError="this.src='__STATIC__/images/nopic.png'"></div>
+				<div>
+					<div class="wt">
+						{$rs.title}
+						{php}
+						$file_arr = explode('.',$rs['file_url']);
+						$doc_type = strtolower(array_pop($file_arr));
+						$doc_type=$doc_type?$doc_type:'no';
+						{/php}          
+						<img src="__STATIC__/cmswk/default/{$doc_type}.gif">
+					</div>
+					<div class="wc">积分值：<span>{$rs.money}</span><em>{:date("Y-m-d",$rs.create_time)}</em></div>
+					<div class="wd">{$rs.content|get_word=200}</div>
+				</div>
+			</a>
+		</div>
+		{/qb:tag}
+	
+
+
+	</section>
+
+	<section class="wenku_hot">
+		<h1>{qb:tag name="cmswk_pcindex_hot_head" type="text"}热门文档{/qb:tag}</h1>
+		<div class="wenku_hot_list">
+			<ul>
+				{qb:tag name="cmswk_pcindex_hot_listdata001" type="cmswk" mid="4" where="status>0" rows="10" order="view"}
+				<li><a href="{$rs.url}">{:get_word($rs.title,100)}</a></li>
+				{/qb:tag}
+			</ul>
+		</div>
+	</section>
+</div>
+
+
+</div>
+{/block}

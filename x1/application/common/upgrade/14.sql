@@ -1,1 +1,0 @@
-ALTER TABLE `qb_area` ADD INDEX (  `list` );

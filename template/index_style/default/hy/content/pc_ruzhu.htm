@@ -1,0 +1,56 @@
+{extend name="$index_style_layout" /}
+
+<!--SEO相关-->
+{block name="head_title"}{$info.title}{/block}
+{block name="head_keword"}{$info.keywords?:$info.title}  {$s_info.name} {/block}
+{block name="head_description"}{:get_word(del_html($info['content']),300)}{/block}
+
+{block name="body_content"}
+<link rel="stylesheet" href="__STATIC__/group/show.css">	
+<link rel="stylesheet" href="__STATIC__/hy/assets/style/details.css">
+    <link rel='stylesheet' href='__STATIC__/hy/assets/style/reset_android.css'>
+    <script src="__STATIC__/hy/assets/js/reset.js"></script>
+    <script src="__STATIC__/hy/assets/js/qrcode.js"></script>
+    <style>
+    	.body_Hearcont{
+    		display: none !important;
+    	}
+    	.body_Footcont{
+    		display: none !important;
+    	}
+    </style>
+    <div class="top">
+        <div class="state clearfix">
+            <div class="fl" onclick="window.history.back(-1);">
+                <img src="__STATIC__/hy/assets/images/return.png" alt="">
+            </div>
+            <div class="fr">
+                <img src="__STATIC__/hy/assets/images/share.png" alt="">
+            </div>
+            <div class="fr">
+                <img src="__STATIC__/hy/assets/images/xin.png" alt="">
+            </div>
+        </div>
+        <div class="title">
+           {$info.title}
+            <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
+            <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
+            <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
+            <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
+            <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
+        </div>
+        <div class="Diagram">
+            <div class="left">
+
+            </div>
+            <div class="right">
+
+            </div>
+        </div>
+        <div class="text">{$userdb.uid}电话：{$info.telphone}</div>
+        <div class="text">地址：{$info.address}</div>
+        <div class="text">位于家信商sssssssss业中心2层</div>
+    </div>
+   
+{include file="index@share"/}
+{/block}

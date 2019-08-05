@@ -1,0 +1,53 @@
+{extend name="$index_style_layout" /}
+
+<!--SEO相关-->
+{block name="head_title"}{$info.title}{/block}
+{block name="head_keword"}{$info.keywords?:$info.title}  {$s_info.name} {/block}
+{block name="head_description"}{:get_word(del_html($info['content']),300)}{/block}
+
+{block name="body_content"}
+<link rel="stylesheet" href="__STATIC__/hy/assets/style/login.css">
+    <link rel='stylesheet' href='__STATIC__/hy/assets/style/reset_android.css'>
+    <script src="__STATIC__/hy/assets/js/reset.js"></script>
+    <script src="__STATIC__/hy/assets/js/qrcode.js"></script>
+    <style>
+    	.body_Hearcont{
+    		display: none !important;
+    	}
+    	.body_Footcont{
+    		display: none !important;
+    	}
+    </style>
+    <div class="top" style="background-image: url(__STATIC__/hy/assets/images/loginback.png);border-bottom-left-radius: 2rem;border-bottom-right-radius: 2rem;">
+        <div class="leftret" onclick="javascript:history.back(-1);"><i class="fa fa-angle-left" ></i></div>
+        <div class="logo"></div>
+    </div>
+    <div class="center">
+        <div class="title">
+            登录
+           
+        </div>
+       <form action="/index.php/index/login/index.html" method="post">
+       	
+       
+        <div class="ipt">
+            <em style="background-image: url(__STATIC__/hy/assets/images/zhanghao.png);background-size: 0.27rem;"></em><input type="text"  name="username" placeholder="请输入您的账号">
+        </div>
+        <div class="ipt">
+            <em style="background-image: url(__STATIC__/hy/assets/images/pwd.png);background-size: 0.27rem;background-repeat-y: no-repeat;"></em><input type="password" name="password" placeholder="请输入您的密码">
+        </div>
+        <input type="hidden" name="isModular" value="1" />
+        <button type="submit" class="btn">登录</button>
+        <div class="text clearfix">
+            <span class="fl" onclick="window.location.href='/index.php/hy/content/lyregister'">注册账号</span>
+            <span class="fr">忘记密码？</span>
+        </div>
+        <div class="san">
+            <span></span>
+            <div class="san_text">社交账号登录</div>
+            <span></span>
+        </div>
+       </form>
+    </div>
+{include file="index@share"/}
+{/block}

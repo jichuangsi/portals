@@ -71,13 +71,10 @@ class Login extends IndexBase
             if(empty($data['cookietime'])){
                 $data['cookietime'] = $this->webdb['login_time']?:3600*24*30;
             }
+            
             list($uid, $username, $password, $email) = uc_user_login($data['username'], $data['password']);
 			if($uid > 0) {
-				echo "登录成功";
-				$ucsynlogin=uc_user_synlogin($uid);
-				$res=urlencode($ucsynlogin);
-				$ress=urldecode($res);
-				echo $ress;
+				
 			} elseif($uid == -1) {
 				 $this->error("用户不存在,或者被删除");
 			} elseif($uid == -2) {
@@ -85,7 +82,29 @@ class Login extends IndexBase
 			} else {
 				$this->error("未定义");
 			}
+
             $result = UserModel::login($data['username'],$data['password'],$data['cookietime']);
+            
+            if($result==0&&$uid > 0){
+            	$data['email']=$email;
+				$uids = UserModel::register_user($data); //注册帐号
+				if($uids>0){
+					$ucsynlogin=uc_user_synlogin($uid);
+					$res=urlencode($ucsynlogin);
+					$ress=urldecode($res);
+					echo $ress;
+					$result = UserModel::login($data['username'],$data['password'],$data['cookietime']);
+				}else{
+					 $this->error("创建用户失败");
+				}
+    		}else if($result==-1&&$uid>0){
+    				$ucsynlogin=uc_user_synlogin($uid);
+					$res=urlencode($ucsynlogin);
+					$ress=urldecode($res);
+					echo $ress;
+            		$result = UserModel::login($data['username'],$data['password'],$data['cookietime'],true);
+            }
+            
             if($result==0){
                 $this->error("当前用户不存在,请重新输入");
             }elseif($result==-1){
@@ -94,7 +113,11 @@ class Login extends IndexBase
                 if($type=='iframe'){
                     return $this->fetch('ok');
                 }
+                
                 $jump = $fromurl ? urldecode($fromurl) : iurl('index/index/index');
+                if($data['isModular']==1){
+                	$jump=iurl('/hy/index/index');
+                }
                 $this->success('登录成功',$jump);
             }
         }
@@ -106,6 +129,7 @@ class Login extends IndexBase
         }
         $this->assign('fromurl',urlencode($fromurl?:$this->fromurl));
         $this->assign('type',$type);
+        
         return $this->fetch($type=='iframe'?'iframe':'index');
     }
     

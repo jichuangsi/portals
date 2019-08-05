@@ -1,1 +1,0 @@
-ALTER TABLE  `qb_hook_plugin` ADD  `version` VARCHAR( 60 ) NOT NULL ,ADD  `version_id` INT( 7 ) NOT NULL;

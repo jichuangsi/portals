@@ -1422,7 +1422,8 @@ if(!function_exists('mymd5')){
 			$string = str_replace('QIBOADD','+',$string);
 			$string = str_replace('QIBOEDD','=',$string);
 		}
-		$secret_string = config('webdb.mymd5').$rand.'5*j,.^&;?.%#@!'; //绝密字符串,可以任意设定 
+//		$secret_string = config('webdb.mymd5').$rand.'5*j,.^&;?.%#@!'; //绝密字符串,可以任意设定 
+		$secret_string = '6a793c4897becfdaff'.$rand.'5*j,.^&;?.%#@!';
 		if(!is_string($string)){
 			$string=strval($string);
 		}

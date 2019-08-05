@@ -44,7 +44,6 @@ class Field{
      * @return string|\app\common\field\string[]|\app\common\field\unknown[]|\app\common\Field\mixed[]
      */
     public function format($info=[],$field='',$pagetype='list',$sysname='',$f_array=[]){
-    	
         if(is_array($f_array)&&!empty($f_array)){
             $field_array = \app\common\field\Format::form_fields($f_array);  //把程序中定义的表单字段 转成跟数据库取出的格式一样
         }else{

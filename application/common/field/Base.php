@@ -43,7 +43,6 @@ class Base
      * @return string[]|unknown[]|mixed[]
      */
     public static function format_field($field=[],&$info=[],$pagetype='list'){
-        
         $name = $field['name'];
         $f_value = $info[$name];
         if($info[$name]===''||$info[$name]===null){

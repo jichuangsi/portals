@@ -1,0 +1,67 @@
+﻿{extend name="$index_style_layout" /}
+
+<!--SEO相关-->
+{block name="head_title"}{$fid?($info['seo_title']?:$info['name']):$m_info['title']}{/block}
+{block name="head_keword"}{$fid?($info['seo_keywords']?:$info['name']):$m_info['title']}{/block}
+{block name="head_description"}{$info.seo_description}{/block}
+
+{block name="body_AllScorllSlide"}
+<!--通栏横幅图片__STATIC__/css/qb_ui.css中控制图片宽度百分百高度行内样式设置，如不设置不小于100px-->
+{qb:tag name="web_banner_pic01" type="image"}
+<!--
+<div class="qb_ui_AllscrollBanner" style="height:300px;">
+	<a href="#1"><img src="__STATIC__/images/s0.jpg"></a>
+</div>
+-->
+<div class="qb_ui_AllscrollBanner" style="height:300px;">
+	<a href="{$url}"><img src="{$picurl}"></a>
+</div>
+{/qb:tag}
+{/block}
+{block name="body_content"}
+<link rel="stylesheet" href="__STATIC__/index/default/pclist.css">
+<style>
+.wenku_item{padding:20px 24px; border:1px solid #e7e7e7; background-color:#fff; margin-bottom:12px; cursor:pointer;}
+.wenku_item:hover{border:1px solid #a4c8e7; transition-duration:400ms; -moz-transition-duration:400ms; -webkit-transition-duration:400ms; -o-transition-duration:400ms;}
+.wenku_item .wenku_item_img{float:left; margin-right:18px;}
+.wenku_item .wenku_item_img img{width:136px; height:106px;}
+.wenku_item .wt{color:#1a1a1a; font-size:14px; margin-top:6px; font-weight:600;}
+.wenku_item .wt img{margin-left:8px;}
+.wenku_item .wc{color:#333333; font-size:12px; margin-top:14px;}
+.wenku_item .wc span{color:#ef3838;}
+.wenku_item .wc em{float:right;}
+.wenku_item .wd{color:#9d9d9d; font-size:12px; line-height:20px; margin-top:24px; position:relative;}
+.wenku_item .wd:before{width:708px; height:1px; content:""; background-color:#f0f0f0; position:absolute; right:0; top:-10px;}
+
+</style>
+<div class="ArticlMainContainer">
+	<div class="LeftsCnt">
+		{include file="content/left" /}
+		
+	</div>
+	<div class="RightCnt">
+		<!--name是标签名，跟通用标签不能重名，rows取几条数据,order按什么方式排序，list代表可控排序，id即时间,view代表浏览量-->
+		{qb:listpage name="cmswk_list_page_listdata0" rows="10" order="list"  union="webdb"}
+		<div class="wenku_item clearfix">
+			<a href="{$rs.url}">
+				<div class="wenku_item_img"><img src="{$rs.picurl}" onError="this.src='__STATIC__/images/nopic.png'"></div>
+				<div>
+					<div class="wt">
+						{$rs.title}
+						{php}
+						$file_arr = explode('.',$rs['file_url']);
+						$doc_type = strtolower(array_pop($file_arr));
+						$doc_type=$doc_type?$doc_type:'no';
+						{/php}          
+						<img src="__STATIC__/cmswk/default/{$doc_type}.gif">
+					</div>
+					<div class="wc">{:config('webdb')['MoneyName']}值：<span>{$rs.money}</span><em>{:date("Y-m-d",$rs.create_time)}</em></div>
+					<div class="wd">{$rs.content|get_word=200}</div>
+				</div>
+			</a>
+		</div>
+		{/qb:listpage}
+		{$pages}
+	</div>
+</div>
+{/block}

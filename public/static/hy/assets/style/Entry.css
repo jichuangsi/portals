@@ -1,0 +1,342 @@
+.top {
+    width: 100%;
+    height: 0.9rem;
+    line-height: 0.9rem;
+    border-bottom: 0.04rem solid #C7C7C7;
+}
+.top .fl {
+    padding: 0px 0.2rem;
+}
+.top .fl img {
+    width: 0.25rem;
+    height: 0.38rem;
+    margin-bottom: 0.18rem;
+    margin: auto;
+}
+.top .title {
+    width: 100%;
+    text-align: center;
+    font-size: 0.4rem;
+    color: #666666;
+    font-weight: 600;
+}
+.center {
+    width: 100%;
+    /* height: 49.56rem; */
+    overflow: hidden;
+    /* background: url('../images/微信图片_20190719112700.png'); */
+    /* background-size: 100%;
+    background-position-y: -10rem; */
+}
+.center .one {
+    width: 100%;
+    height: 9rem;
+    background: url('../images/bj.png');
+    background-size: 100%;
+    background-position-y: -10rem;
+    overflow: hidden;
+    position: relative;
+}
+.center .one .q1 {
+    width: 6.21rem;
+    height: 7.06rem;
+    border: 0.02rem dashed #FFD891;
+    border-radius: 0.1rem;
+    margin: 0.63rem auto;
+}
+.center .one .q2 {
+    width:5.81rem;
+    height:6.27rem;
+    border-radius: 0.1rem;
+    margin: 0.2rem auto;
+    background-color: #fff;
+    position: relative;
+}
+.center .one .img {
+    width: 2.76rem;
+    height: 2.6rem;
+    background: url('../images/img.png') no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    bottom: 1.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
+.center .one .q3 {
+    width: 150%;
+    height:6.27rem;
+    background-color: #1E1F1A;
+    position: absolute;
+    left: -50%;
+    bottom: -20%;
+    transform: rotate(25deg);
+}
+.center .one .q4 {
+    width: 150%;
+    height:6.27rem;
+    background-color: #1E1F1A;
+    position: absolute;
+    right: -50%;
+    bottom: -20%;
+    transform: rotate(-25deg);
+}
+.center .one .q5 {
+    width: 100%;
+    height: 100%;
+    border: 0.02rem dashed #FFD891;
+    margin-top: 0.2rem;
+}
+.center .one .q6 {
+    width:  50%;
+    height: 100%;
+    border: 0.02rem dashed #FFD891;
+    margin-top: 0.2rem;
+    float: right;
+    border-left-color: transparent;
+}
+.center .one .q7 {
+    width:  6.38rem;
+    height: 2.56rem;
+    border: 0.02rem solid #FFD891;
+    border-top-color: transparent;
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #151610;
+    z-index: 10;
+}
+.center .one .q8 {
+    width:  5.82rem;
+    height: 2.34rem;
+    line-height: 2.34rem;
+    text-align: center;
+    font-size: 0.6rem;
+    color: #D69547;
+    border: 0.02rem solid #675F55;
+    border-top-color: transparent;
+    position: absolute;
+    bottom: 0.23rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+.center .one .q9 {
+    width: 3rem;
+    height: 4rem;
+    border: 0.02rem solid #FFD891;
+    border-color: #FFD891 transparent transparent transparent;
+    position: absolute;
+    bottom: -0.38rem;
+    left: 1rem;
+    transform: rotate(-43deg) translateX(0.7rem);
+    background-color: #151610;
+}
+.center .one .q11 {
+    width:  3rem;
+    height: 4rem;
+    border: 0.02rem solid #675F55;
+    border-color:#675F55 transparent transparent transparent;
+    margin-top: 0.16rem;
+}
+
+.center .one .q10 {
+    width: 3rem;
+    height: 4rem;
+    border: 0.02rem solid #FFD891;
+    border-color: #FFD891 transparent transparent transparent;
+    position: absolute;
+    bottom: -0.38rem;
+    right: 1rem;
+    transform: rotate(43deg) translateX(-0.7rem);
+    background-color: #151610;
+}
+.center .one .q12 {
+    width:  3rem;
+    height: 4rem;
+    border: 0.02rem solid #675F55;
+    border-color:#675F55 transparent transparent transparent;
+    margin-top: 0.16rem;
+}
+.q15 {
+    width: 1px;
+    height: 100%;
+    margin: 0 auto;
+    background-color: red;
+}
+.two {
+    width: 100%;
+    height: 44rem;
+    background: url('../images/bj.png') no-repeat;
+    background-size: 100% 100%;
+    overflow: hidden;
+    position: relative;
+}
+.two .text_box {
+    width: 6.38rem;
+    /* height: 7.12rem; */
+    padding: 0.14rem;
+    margin: 1rem auto;
+    border-radius: 0.1rem;
+    background-color: #fff;
+}
+.two .text_box:first-child{
+    margin-top: 1.75rem;
+}
+.two .text_box .box{
+    width: 100%;
+    height: 100%;
+    padding: 0.87rem 0.57rem 1.05rem 0.65rem;
+    background: url('../images/textbj.png') no-repeat;
+    background-size: 100% 100%;
+}
+.two .text_box .box .title{
+    font-size: 0.4rem;
+    color: #D69547;
+    line-height: 0.8rem;
+    text-align: center;
+    font-weight:700;
+    margin-bottom: 0.4rem;
+}
+.two .text_box .box .text{
+    font-size: 0.22rem;
+    color: #D69547;
+    line-height: 0.38rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+}
+.two .text_box .box .text:last-child{
+    margin-bottom: 0rem;
+}
+.two .text_box .box p{
+    font-size: 0.22rem;
+    color: #D69547;
+    line-height: 0.38rem;
+    font-weight: 500;
+}
+.two .text_box .box .ipt {
+    width: 4.92rem;
+    height: 0.6rem;
+    position: relative;
+}
+.two .text_box .box input{
+    width: 100%;
+    display: inline-block;
+    font-size: 0.22rem;
+    color: #D69547;
+    line-height: 0.38rem;
+    font-weight: 500;
+    border-radius: 0.1rem;
+    border-color: transparent;
+    outline: none;
+    background-color: #F3F3F3;
+    text-indent: 0.2rem;
+    position: absolute;
+    left: 0px;
+    top: 0.1rem;
+}
+.two .text_box .box .slt{
+    width: 100%;
+    font-size: 0.24rem;
+    color: #D69547;
+    margin-bottom: 0.2rem;
+}
+.two .text_box .box select{
+    width: 4.16rem;
+    height: 0.6rem;
+    font-size: 0.24rem;
+    color: #D69547;
+    border-color: transparent;
+    outline: none;
+    background-color: #F3F3F3;
+    border-radius: 0.1rem;
+    text-indent: 0.2rem;
+}
+.two .text_box .box button{
+    width: 100%;
+    height: 0.8rem;
+    border-radius: 0.1rem;
+    background-color: #D69547;
+    color: #fff;
+    font-size: 0.28rem;
+    border-color: transparent;
+    outline: none;
+}
+.two .a1 {
+    width: 100%;
+    height: 2.07rem;
+    background: url('../images/bottom.png') no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    z-index: 1;
+}
+.two .a2 {
+    width: 100%;
+    height: 2.07rem;
+    background: url('../images/bottom.png') no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    bottom: 0.6rem;
+    left: -50%;
+}
+.two .a3 {
+    width: 100%;
+    height: 2.07rem;
+    background: url('../images/bottom.png') no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    bottom: 0.6rem;
+    right: -50%;
+}
+.two .z1 {
+    width: 2.03rem;
+    height: 0.58rem;
+    background: url('../images/tu.png') no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    left: -0.3rem;
+    top: 0.63rem;
+}
+.two .z3 {
+    width: 1.19rem;
+    height: 0.58rem;
+    background: url('../images/yun.png') no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    right: 0.17rem;
+    top: 0.99rem;
+}
+.two .z4 {
+    width: 1.19rem;
+    height: 0.58rem;
+    background: url('../images/yun.png') no-repeat;
+    background-size: 100% 100%;
+    margin-top: -0.8rem;
+}
+.two .z6 {
+    width: 2.03rem;
+    height: 0.58rem;
+    background: url('../images/tu.png') no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    left: -1.5rem;
+    top: 15.02rem;
+}
+.two .z7 {
+    width: 1.87rem;
+    height: 0.58rem;
+    background: url('../images/tu.png') no-repeat;
+    background-size: 100% 100%;
+    margin-top: -0.8rem;
+    transform: translateX(0.5rem)
+}
+.two .z8 {
+    width: 1.2rem;
+    height: 0.34rem;
+    background: url('../images/tu.png') no-repeat;
+    background-size: 100% 100%;
+    margin-top: -0.6rem;
+}

@@ -20,6 +20,7 @@ abstract class C extends IndexBase
     public function delete(){
         die('出错了!');
     }
+    
     protected function _initialize()
     {
         parent::_initialize();
@@ -29,6 +30,55 @@ abstract class C extends IndexBase
         $this->s_model     = get_model_class($dirname,'sort');
         $this->m_model   = get_model_class($dirname,'module');
         $this->f_model     = get_model_class($dirname,'field');
+    }
+	/*
+	 * $d 机构域名，$k 课程id，$u 用户id，$g 机构id
+	 */
+    public function shareurl($d=null,$k=null,$u=null,$g=null){
+//  	$this->error($domainname.'~~'.$kcid.'~~'.$u.'~~'.$gid);
+		$urls='http://'.$d.'/index.php?s=/live/index/detail/id/'.$k.'/u/'.$u;
+		$rs=query("select gid from qb_memberdata where uid=$u");
+		if($rs[0]['gid']==0){
+			$rss=query("update qb_memberdata set gid=$g where uid=$u");
+		}
+    	header("Location: $urls"); 
+    }
+    /*
+     * 检查账号是否存在
+     */
+    public function inspectuser($usernumber=null){
+    	if($usernumber!=null&&$usernumber!=""){
+    		$rs=query("select count(uid) as usercount from qb_memberdata where username='$usernumber'");
+    		return $rs[0]['usercount'];
+    	}
+    	return 0;
+    }
+    
+    public function ruzhu(){
+    	$data = get_post('post');
+    	if($data['truename']==null || $data['truename']==""){
+    		$this->error("请输入您的姓名信息");
+    	}
+    	if($data['username']==null || $data['username']==""){
+    		$this->error("请输入已注册的账号");
+    	}
+    	if($data['phone']==null || $data['phone']==""){
+    		$this->error("请输入您的手机号码");
+    	}
+    	if($data['companyname']==null || $data['companyname']==""){
+    		$this->error("请输入贵公司的名称");
+    	}
+    	$truename=$data['truename'];
+    	$username=$data['username'];
+    	$phone=$data['phone'];
+    	$companyname=$data['companyname'];
+    	$rs=query("update qb_memberdata set truename='$truename',mobphone='$phone',companyname='$companyname' where username='$username' ");
+    	if($rs>=1){
+    		$this->success("提交成功，请耐心等待，稍后会有人工客服和您联系");
+    	}else{
+    		$this->error("提交失败，请稍后重试");
+    	}
+    	return 0;
     }
     
     /**
@@ -138,10 +188,9 @@ abstract class C extends IndexBase
 //                 $value && $info['picurls'][$key]['picurl'] = tempdir($value);
 //             }
 //         }
-
+		
         $info['field_array'] = $this->get_field_fullurl($info);     //这行必须放在 format_field 的前面,这里要用到原始数据
         $info = fun('field@format',$info,'','show');
-        
         //下面代码主要是避免 format_field 函数里边强行把picurl输出<img 这样的内容,导致无法对图片做个性显示
         if($info['field_array']['pics']['value']){  //CMS图库特别处理
             $info['picurls'] = $info['field_array']['pics']['value'];
@@ -584,9 +633,10 @@ abstract class C extends IndexBase
      */
     protected function get_field_fullurl(&$info=[]){
         $_field_array = get_field($info['mid']);
+       
         foreach ($_field_array AS $name=>$rs){
             $type = $rs['type'];
-            $value = $info[$name];            
+            $value = $info[$name]; 
 //             if($type == 'images'||$type == 'files'){
 //                 $detail = explode(',',$value);
 //                 $value = []; 
@@ -608,8 +658,9 @@ abstract class C extends IndexBase
 //             }
 
             if(in_array($type,['images','files','image','file','jcrop','images2'])){                
-                $value = \app\common\field\Show::format_url($rs,$info);                
+                $value = \app\common\field\Show::format_url($rs,$info);    
             }else{
+            	
                 //$value = \app\common\field\Show::get_field($rs,$info);   
             }
             

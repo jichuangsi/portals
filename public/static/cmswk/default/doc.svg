@@ -1,0 +1,32 @@
+<svg id="Word" xmlns="http://www.w3.org/2000/svg" width="84.5" height="100.5" viewBox="0 0 84.5 100.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #add7f3;
+        stroke-linejoin: round;
+        stroke-width: 1px;
+      }
+
+      .cls-2 {
+        fill: #add7f3;
+      }
+
+      .cls-2, .cls-4 {
+        fill-rule: evenodd;
+      }
+
+      .cls-3 {
+        fill: #339ee6;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <rect id="圆角矩形_92" data-name="圆角矩形 92" class="cls-1" x="0.5" y="0.5" width="80" height="95" rx="4" ry="4"/>
+  <path id="形状_7_拷贝_15" data-name="形状 7 拷贝 15" class="cls-2" d="M12,90V89H72v1H12Zm0,8V97H72v1H12Zm0,8v-1H72v1H12Zm0,14v-1H72v1H12Zm0,8v-1H72v1H12Zm0,15v-1H41v1H12Zm0,8v-1H41v1H12Z" transform="translate(-1.5 -71.5)"/>
+  <rect id="圆角矩形_89" data-name="圆角矩形 89" class="cls-3" x="54.5" y="70.5" width="30" height="30" rx="4" ry="4"/>
+  <path id="W" class="cls-4" d="M60.18,149.089l4.865,16.934h1.709l4.153-14.894h0.071l4.153,14.894h1.709L81.7,149.089H80.066l-4.058,14.989H75.937l-4.153-14.989H70.1l-4.153,14.989H65.875l-4.058-14.989H60.18Z" transform="translate(-1.5 -71.5)"/>
+</svg>

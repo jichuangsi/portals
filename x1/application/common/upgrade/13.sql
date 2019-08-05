@@ -1,1 +1,0 @@
-ALTER TABLE  `qb_bbs_reply` ADD  `mvurl` VARCHAR( 255 ) NOT NULL AFTER  `picurl`;

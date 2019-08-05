@@ -1,0 +1,120 @@
+.top {
+    width: 100%;
+    height: 4.86rem;
+    position: relative;
+}
+.top .logo {
+    width: 1.62rem;
+    height: 1.62rem;
+    border-radius: 0.2rem;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%,-50%);
+}
+.leftret{
+    width: 1rem;
+    height: 0.8rem;
+    font-size: 0.6rem;
+    margin-left: 0.4rem;
+    padding-top: 0.1rem;
+    color: #fff;
+}
+.center {
+    width:6.19rem;
+    height:8.27rem;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 0.1rem 0.4rem 0px rgba(223,223,223,0.91);
+    border-radius:0.4rem;
+    margin: -1.5rem auto;
+    position: relative;
+    z-index: 1;
+    padding: 0px 0.38rem;
+    overflow: hidden;
+    margin-bottom: 1.64rem;
+}
+.center .title {
+    color: #888888;
+    font-size: 0.45rem;
+    text-align: center;
+    margin-bottom: 0.48rem;
+    margin-top: 0.31rem;
+}
+.center .ipt {
+    width: 100%;
+    height: 0.91rem;
+    background-color: #F5F5F5;
+    border-radius: 0.2rem;
+    padding: 0.27rem 0.36rem;
+    margin-bottom: 0.29rem;
+    display: flex;
+}
+.center .ipt em {
+    width: 0.27rem;
+    height: 0.36rem;
+    display: block;
+}
+.center .ipt input {
+    flex: 1;
+    font-size: 0.26rem;
+    height: 0.36rem;
+    text-indent: 0.33rem;
+    /*background-color: blue;*/
+}
+.center .ipt_left .ipt input {
+    width: 1rem;
+}
+.center .ipt_box {
+    display: flex;
+}
+.center .ipt_left {
+    width: 2.96rem;
+    margin-right: 0.2rem;
+}
+.center .ipt_right {
+    flex: 1;
+    height: 0.91rem;
+    line-height: 0.91rem;
+    text-align: center;
+    font-size: 0.26rem;
+    color: #D9D9D9;
+    background-color: #F5F5F5;
+    border-radius: 0.2rem;
+}
+.center .btn {
+    width: 100%;
+    height: 0.9rem;
+    line-height: 0.9rem;
+    font-size: 0.3rem;
+    background-color: #FFA520;
+    color: #fff;
+    text-align: center;
+    margin-top: 0.4rem;
+    border-radius: 0.45rem;
+}
+.center .text {
+    width: 100%;
+    font-size: 0.22rem;
+    color: #666666;
+    padding: 0 0.39rem;
+    margin-top: 0.72rem;
+    margin-bottom: 0.63rem;
+}
+.center .san {
+    width: 100%;
+    padding: 0 0.39rem;
+    color: #999999;
+    font-size: 0.22rem;
+    display: flex;
+    align-items: center;
+}
+.center .san .san_text {
+    width: 1.78rem;
+    text-align: center;
+}
+.center .san span {
+    flex: 1;
+    height: 0.01rem;
+    background-color: #999999;
+}

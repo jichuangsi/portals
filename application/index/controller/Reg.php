@@ -100,6 +100,7 @@ class Reg extends IndexBase
         }
         
         $data = get_post('post');
+         $isModular=$data['isModular'];
         if(!empty($data)){
             $array = explode(',','username,password,password2,email,mobphone,captcha,email_code,phone_code,weixin_code');  //允许注册的字段
             foreach($data AS $key=>$value){
@@ -138,11 +139,8 @@ class Reg extends IndexBase
             $result = $this->validate($data, 'Reg');
             if(true !== $result) $this->error($result);
             
-            $uid = UserModel::register_user($data); //注册帐号
-            if ($uid<2) {
-                $this->error($uid);
-            } 
-				$uids=uc_user_register($data['username'],$data['password'],$data['email']);
+            
+            $uids=uc_user_register($data['username'],$data['password'],$data['email']);
 		        if($uids <= 0) {
 					if($uids == -1) {
 						$this->error('用户名不合法！');
@@ -165,12 +163,21 @@ class Reg extends IndexBase
 					$ress=urldecode($res);
 					echo $ress;
 				}
+				
+            $uid = UserModel::register_user($data); //注册帐号
+            if ($uid<2) {
+                $this->error($uid);
+            } 
             
             hook_listen('reg_by_hand_end',$uid,$data);
-            
+           
             $result = UserModel::login($data['username'],$data['password'],$data['cookietime']);   //帐号同时实现登录
             if(is_array($result)){
-                $this->success('注册成功','index/index');
+            	if($isModular==1){
+            		$this->success('注册成功',iurl('/hy/index/index'));
+            	}else{
+            		 $this->success('注册成功','index/index');
+            	}
             }else{
                 $this->error('注册失败！');
             }

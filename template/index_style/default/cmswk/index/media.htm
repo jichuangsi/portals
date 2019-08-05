@@ -1,0 +1,46 @@
+{extend name="$index_style_layout" /}
+
+<!--SEO相关-->
+{block name="head_title"}{$webdb.mseo_title?:$webdb.seo_title}{/block}
+{block name="head_keword"}{$webdb.mseo_keyword?:$webdb.seo_keyword}{/block}
+{block name="head_description"}{$webdb.mseo_description?:$webdb.seo_description}{/block}
+
+
+{block name="body_content"}
+<link rel="stylesheet" href="__STATIC__/index/default/pclist.css">
+<script src="__STATIC__/preview/jquery.media.js"></script>
+
+<div class="ArticlMainContainer">
+
+<!-- demo1  html-->
+<a class="media" href="__STATIC__/preview/Web项目开发规范文档.pdf">PDF File</a>
+<a class="media {type: 'html'}" href="__STATIC__/preview/448.pdf">HTML File</a>
+
+
+</div>
+
+
+
+
+
+
+<script type="text/javascript">  
+/*$(function() {  
+	var pdfurl = "__STATIC__/preview/448.pdf";
+    $('.pdf1').media(width:450, height:350,autoplay: true,src=pdfurl);  
+});  
+*/
+
+// demo1 JS
+$('a.media').media({width:'100%', height:500});
+
+
+
+
+
+
+
+</script>
+
+
+{/block}

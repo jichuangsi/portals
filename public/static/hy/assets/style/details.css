@@ -1,0 +1,306 @@
+body {
+    background-color: #F4F6F8;
+}
+.top {
+    width: 100%;
+    background-color: #fff;
+    padding-bottom: 0.6rem;
+    border-bottom-left-radius: 0.8rem;
+    border-bottom-right-radius: 0.8rem;
+}
+.top .state{
+    width: 100%;
+    height: 0.9rem;
+    line-height: 0.9rem;
+}
+.top .state .fl {
+    padding: 0px 0.2rem;
+}
+.top .state .fl img {
+    width: 0.25rem;
+    height: 0.38rem;
+    /*margin-bottom: 0.18rem;*/
+}
+.top .state .fr {
+    padding: 0px 0.2rem;
+}
+.top .state .fr img {
+    width: 0.43rem;
+    height: 0.38rem;
+    /*margin-bottom: 0.18rem;*/
+}
+.top .title {
+    font-size: 0.3rem;
+    color: #666;
+    text-indent: 0.4rem;
+    margin-bottom: 0.5rem;
+}
+.top .title span img {
+    width: 0.2rem;
+    height: 0.2rem;
+    margin-left: 0.05rem;
+}
+.top .Diagram {
+    width: 100%;
+    margin-bottom: 0.2rem;
+}
+.top .Diagram .left {
+    width: 3.8rem;
+    height: 1.94rem;
+    margin-left: 0.4rem;
+    display: inline-block;
+}
+.top .Diagram .right {
+    width: 3.12rem;
+    height: 1.94rem;
+    background-color: tomato;
+    float: right;
+}
+.top .text {
+    padding-left: 0.4rem;
+    color: #666;
+    font-size: 0.18rem;
+    line-height: 0.36rem;
+    margin-bottom: 0.1rem;
+}
+.button {
+    width: 100%;
+    height: 0.75rem;
+    line-height: 0.75rem;
+    font-size: 0.24rem;
+    text-align: center;
+    border-top: 1px solid #888888;
+}
+.center .curriculum {
+    width: 100%;
+    padding: 0.43rem;
+    padding-bottom: 0.6rem;
+    padding-left: 0.75rem;
+    background-color: #fff;
+    margin-top: 0.2rem;
+    border-radius: 0.23rem;
+    position: relative;
+    box-shadow:0px 4px 25px 2px rgba(74,74,74,0.09);
+}
+.center .curriculum .ListBox {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.center .curriculum .ListBox .box {
+    margin-bottom: 0.49rem;
+    width: 100%;
+    height: 2rem;
+    border-radius: 9px;
+    position: relative;
+}
+.center .curriculum .ListBox .box .listtop{
+    position: absolute;
+    top: 0rem;
+    left: -0.3rem;
+    width: 1.8rem;
+    height: 1.94rem;
+    /*background-color: #FF8522;*/
+    border-radius: 0.18rem;
+}
+.center .curriculum .ListBox .box .listtop img{
+	width: 100%;
+    height: auto;
+    margin: auto;
+    border-radius: 11px;
+}
+.center .curriculum .ListBox .box .listbottom{
+    position: absolute;
+    top: 0px;
+    left: 1.6rem;
+    width: 4.28rem;
+    height: 83px;
+    padding: 0.2rem 0.2rem;
+}
+.center .curriculum .ListBox .box .listbottom .title{
+    font-size:0.3rem;
+    color: #666666;
+    width: 3rem;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+    overflow: hidden;
+}
+.center .curriculum .ListBox .box .listbottom .text{
+    font-size: 0.24rem;
+    color: #7B7B7B;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+    overflow: hidden;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+}
+.center .curriculum .ListBox .box .listbottom .star{
+    height: 0.25rem;
+    display: flex;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+}
+.center .curriculum .ListBox .box .listbottom .star img{
+    width: 0.25rem;
+    height: 0.25rem;
+    margin-right: 0.1rem;
+}
+.center .curriculum .ListBox .box .listbottom .money{
+    font-size: 0.3rem;
+    color: #FB9220;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+    overflow: hidden;
+}
+.center .curriculum .ListBox .box .listbottom .more{
+    display: inline-block;
+    font-size: 0.3rem;
+    color: #fff;
+    padding: 0.1rem 0.15rem;
+    background-color: #FF8522;
+    border-radius: 0.3rem;
+    position: absolute;
+    bottom: 0.2rem;
+}
+.center .curriculum .ListBox .box .Sold{
+    position: absolute;
+    right: 0.3rem;
+    top: 0.2rem;
+    color: #7B7B7B;
+    font-size: 0.2rem;
+}  
+
+.nav {
+    width: 100%;
+    height: 0.7rem;
+    line-height: 0.7rem;
+     /*background-color: #FB9220;*/ 
+    position: relative;
+    overflow-x: auto;
+}
+.nav .nav_box {
+    width: 10rem;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+
+}
+.nav .nav_box div{
+    float: left;
+    font-size: 0.3rem;
+    margin: 0 0.37rem;
+    height: 0.66rem;
+
+}
+.nav .nav_box .nav_check{
+    color: #FF8522;
+    border-bottom: 0.04rem solid #FF8522;
+}
+
+
+.center .curriculum .ListBox .box .go{
+    position: absolute;
+    right: -0.2rem;
+    top: 0.8rem;
+    width: 0.42rem;
+    height: 0.42rem;
+    background-color: #FB9220;
+    border-radius: 0.06rem;
+}   
+.center .curriculum .ListBox .box .img{
+    position: absolute;
+    right: 1rem;
+    /*top: 0.8rem;
+    width: 0.8rem;*/
+    height: 0.8rem;
+    background-color: #0094ff;
+    border-radius: 0.06rem;
+}
+.center .comment {
+    width: 100%;
+    background-color: #fff;
+    margin-top: 0.2rem;
+    border-radius: 0.23rem;
+    position: relative;
+    box-shadow:0px 4px 25px 2px rgba(74,74,74,0.09);
+}
+.center .comment .comment_top {
+    width: 100%;
+    height: 0.77rem;
+    line-height: 0.77rem;
+    font-size: 0.3rem;
+    color: #666;
+    border-bottom: 1px solid #888888;
+}
+.center .comment .comment_top .fl{
+    margin-left: 0.37rem;
+}
+.center .comment .comment_top .fr{
+    margin-right: 0.4rem;
+}
+.center .comment .comment_top .fr span img {
+    width: 0.2rem;
+    height: 0.2rem;
+    margin-left: 0.05rem;
+}
+.center .comment .comment_bottom{
+    width: 100%;
+    padding: 0.3rem;
+    overflow: hidden;
+}
+.center .comment .comment_bottom .user{
+    width: 100%;
+}
+.center .comment .comment_bottom .userimg{
+    width: 0.72rem;
+    height: 0.72rem;
+    background-color: #666;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.1rem;
+}
+.center .comment .comment_bottom .username{
+    font-size: 0.28rem;
+    color: #666;
+    margin-bottom: 0.1rem;
+}
+.center .comment .comment_bottom .fen{
+    font-size: 0.24rem;
+    color: #666;
+}
+.center .comment .comment_bottom .fen span img{
+    width: 0.2rem;
+    height: 0.2rem;
+}
+.center .comment .comment_bottom .time{
+    font-size: 0.18rem;
+    color: #888;
+    text-align: right;
+    margin-bottom: 0.1rem;
+}
+.center .comment .comment_bottom .role{
+    font-size: 0.18rem;
+    color: #888;
+}
+.center .comment .comment_bottom .text{
+    margin-top: 1rem;
+    margin-left: 0.8rem;
+    font-size: 0.18rem;
+    color: #666666;
+    line-height: 0.38rem;
+}
+.center .comment .comment_bottom .img{
+    width: 100%;
+    margin-left: 0.8rem;
+    margin-top: 0.2rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+.center .comment .comment_bottom .img div{
+    width: 1rem;
+    height: 1rem;
+    background-color: #666;
+    margin-right: 0.5rem;
+    margin-bottom: 0.2rem;
+}

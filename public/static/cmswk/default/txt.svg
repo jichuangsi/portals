@@ -1,0 +1,32 @@
+<svg id="txt" xmlns="http://www.w3.org/2000/svg" width="85.5" height="100.5" viewBox="0 0 85.5 100.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #cec6f0;
+        stroke-linejoin: round;
+        stroke-width: 1px;
+      }
+
+      .cls-2 {
+        fill: #cec6f0;
+      }
+
+      .cls-2, .cls-4 {
+        fill-rule: evenodd;
+      }
+
+      .cls-3 {
+        fill: #6c8bfe;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <rect id="圆角矩形_92" data-name="圆角矩形 92" class="cls-1" x="0.5" y="0.5" width="80" height="95" rx="4" ry="4"/>
+  <path id="形状_7_拷贝_6" data-name="形状 7 拷贝 6" class="cls-2" d="M12,111v-1H41v1H12Zm0,8v-1H41v1H12Zm0,8v-1H41v1H12Zm0,14v-1H41v1H12Zm0,8v-1H41v1H12Zm36-38v-1H72v1H48Zm0,8v-1H72v1H48Zm0,8v-1H72v1H48Zm0,14v-1H72v1H48Zm0,8v-1H72v1H48ZM12,164v-1H41v1H12Zm0,8v-1H41v1H12Z" transform="translate(-1.5 -92.5)"/>
+  <rect id="圆角矩形_89_拷贝_6" data-name="圆角矩形 89 拷贝 6" class="cls-3" x="55.5" y="70.5" width="30" height="30" rx="4" ry="4"/>
+  <path id="T" class="cls-4" d="M70.537,186.365h2.088V172.134h4.889v-1.755H65.672v1.755h4.865v14.231Z" transform="translate(-1.5 -92.5)"/>
+</svg>

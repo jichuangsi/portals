@@ -1,0 +1,53 @@
+{extend name="$index_style_layout" /}
+
+<!--SEO相关-->
+{block name="head_title"}{$webdb.mseo_title?:$webdb.seo_title}{/block}
+{block name="head_keword"}{$webdb.mseo_keyword?:$webdb.seo_keyword}{/block}
+{block name="head_description"}{$webdb.mseo_description?:$webdb.seo_description}{/block}
+
+
+{block name="body_content"}
+<link rel="stylesheet" href="__STATIC__/index/default/pclist.css">
+<script src="__STATIC__/preview/jquery.media.js"></script>
+
+<div class="ArticlMainContainer">
+
+<script>
+	
+mui.openWindow({
+                    url: 'file:///C:/Users/Administrator/Desktop/448.pdf', 
+                          // 本地PDF文件url示例：'_www/pdfjs/index.html?file:///storage/emulated/0/tbs.pdf'
+                          // 网络PDF文件url示例：'_www/pdfjs/index.html?http://cdn.mozilla.net/pdfjs/tracemonkey.pdf'
+                    id: 'pdf3',
+                    show: {
+                        duration: 300
+                    }
+                })
+</script>
+</div>
+
+
+
+
+
+
+<script type="text/javascript">  
+/*$(function() {  
+	var pdfurl = "__STATIC__/preview/448.pdf";
+    $('.pdf1').media(width:450, height:350,autoplay: true,src=pdfurl);  
+});  
+*/
+
+// demo1 JS
+$('a.media').media({width:'100%', height:500});
+
+
+
+
+
+
+
+</script>
+
+
+{/block}

@@ -1,0 +1,90 @@
+﻿{extend name="$index_style_layout" /}
+
+<!--SEO相关-->
+{block name="head_title"}{$fid?($info['seo_title']?:$info['name']):$m_info['title']}{/block}
+{block name="head_keword"}{$fid?($info['seo_keywords']?:$info['name']):$m_info['title']}{/block}
+{block name="head_description"}{$info.seo_description}{/block}
+
+{block name="body_content"}
+<link rel="stylesheet" href="__STATIC__/index/default/list.css">
+<script src='__STATIC__/js/iscroll.js'></script>
+<link rel="stylesheet" href="__STATIC__/cmswk/default/waplist4.css">
+<div class="ListMainCont">
+
+	<div class="SortBoxCont">
+		<ul>
+			{volist name="$fid|get_sort=###,'other'" id="vo"}
+			<li {eq name="$key" value="$fid"}class='ck'{/eq}><a href="{:urls('index',['fid'=>$key])}">{$vo}</a></li>
+			{/volist}
+		</ul>
+	</div>
+	<div class="ListArticles">
+<!--name是标签名，跟通用标签不能重名，rows取几条数据,order按什么方式排序，list代表可控排序，id即时间,view代表浏览量-->
+<div class='dl-list doc-list'>
+{qb:listpage name="cmswk_waplist_page_listdata" rows="10" order="list"}
+
+<div class="item clearfix">
+	<a href="{$rs.url}">
+		<div class="dl-list-pic doc-list-pic"> 
+		{php}
+			$file_arr = explode('.',$rs['file_url']);
+			$doc_type = strtolower(array_pop($file_arr));
+		{/php}
+		{switch name="$doc_type" }
+			{case value="pdf" }<img src="__STATIC__/cmswk/default/pdf-icon.png">{/case}
+			{case value="doc|docx"}<img src="__STATIC__/cmswk/default/doc.svg">{/case}
+			<!-- {case value="xls|xlsx"}<img src="__STATIC__/cmswk/default/pdf-icon.png">{/case} -->
+			{case value="ppt"}<img src="__STATIC__/cmswk/default/ppt.svg">{/case}
+			{case value="txt"}<img src="__STATIC__/cmswk/default/txt.svg">{/case}
+			{default /}
+		{/switch}
+		</div>
+		<div class="dl-list-title">{$rs.title|get_word=60}</div>
+		<div class="dl-list-comment doc-list-comment"> {$rs.view}人阅读  |   {$rs.create_time|date="Y-m-d",###}</div>
+	</a>
+</div>
+
+{/qb:listpage} 
+</div>
+	</div>
+	<div class="ShowMoreInfos"><button type="butter" onclick="ShowMoreInfo()">查看更多</button></div>
+</div>
+<!--{$pages}-----显示分页的代码---->
+<script type="text/javascript">
+var morepage=1;
+function ShowMoreInfo(){	
+	morepage++;
+	$.get('{qb:list_url name="cmswk_waplist_page_listdata" /}'+morepage+'&'+Math.random(),function(res){
+		if(res.code==0){
+			if(res.data==''){
+				layer.msg("已经显示完了！",{time:500});
+				$('.ShowMoreInfos button').attr('onclick','');
+				$('.ShowMoreInfos button').html('显示完了');
+				$('.ShowMoreInfos button').css({'background':'#CCC'});
+			}else{
+				//res.data = "<span class='pages" + morepage + "'>" + res.data + "</span>";			
+				$('.dl-list').append(res.data);
+				$('.dl-list .pages'+morepage).hide();
+				$('.dl-list .pages'+morepage).show(500);
+			}			
+		}else{
+			layer.msg(res.msg,{time:2500});
+		}
+	});
+}
+function thisimg_over(imgobjs){
+	imgobjs.animate({"max-width":"150%","max-height":"150%"},300);
+}
+function thisimg_out(imgobjs){
+	imgobjs.animate({"max-width":"100%","max-height":"100%"},300);
+}
+//统计总宽度
+var mysortBoxW=0;
+$('.SortBoxCont ul li').each(function(){
+	mysortBoxW+=$(this).width();
+});
+$('.SortBoxCont ul').width(mysortBoxW+10);
+var myScroll; 
+myScroll = new IScroll('.SortBoxCont', { scrollX: true, scrollY: false, mouseWheel: true,preventDefault: false,preventDefaultException: { tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT|LI)$/ } });
+</script>
+{/block}

@@ -1,0 +1,2 @@
+ALTER TABLE  `qb_cmswk_content4` CHANGE  `file_url`  `file_url` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT  '上传文档';
+UPDATE  `qb_cmswk_field` SET  `field_type` =  'varchar(255) NOT NULL' WHERE  `name` ='file_url';

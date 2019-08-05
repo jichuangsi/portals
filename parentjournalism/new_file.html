@@ -12,14 +12,15 @@
 		function ss(){
 			$.ajax({
 				type:"get",
-				url:"http://www.jichuangsi.com/parentjournalism/getinfo.php",
-				data:{infoid:97},
+				url:"http://192.168.31.123:82/parentjournalism/getconfig.php",
+				data:{'domainname':'192.168.31.108:92'},
 				dataType:'json',
 				success:function(data){
-					alert(data);
+					console.log(data);
+//					console.log(JSON.parse(data));
 				},
 				error:function(res){
-					alert(res);
+					alert(11);
 				}
 			});
 		}

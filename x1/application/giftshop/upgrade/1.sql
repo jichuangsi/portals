@@ -1,5 +1,0 @@
-ALTER TABLE  `qb_giftshop_field` ADD  `script` TEXT NOT NULL COMMENT  'JS脚本',ADD  `trigger` VARCHAR( 255 ) NOT NULL COMMENT  '选择某一项后,联动触发显示其它字段';
-ALTER TABLE  `qb_giftshop_content1` ADD  `num` MEDIUMINT( 6 ) NOT NULL DEFAULT  '20' COMMENT  '库存量';
-delete from `qb_giftshop_field` where name='num';
-INSERT INTO `qb_giftshop_field` (`id`, `name`, `title`, `type`, `field_type`, `value`, `options`, `about`, `show`, `mid`, `ajax_url`, `next_items`, `param`, `format`, `table`, `level`, `key`, `option`, `pid`, `list`, `listshow`, `ifsearch`, `ifmust`, `nav`, `input_width`, `input_height`, `unit`, `match`, `css`, `script`, `trigger`) VALUES(0, 'num', '库存量', 'number', 'int(6) NOT NULL DEFAULT ''0''', '', '', '', 1, 1, '', '', '', '', '', 2, '', '', '', 95, 0, 0, 0, '', '', '', '', '', '', '', '');
-update `qb_giftshop_content1` set `num`=20;
