@@ -135,17 +135,18 @@ class uc_note {
 		
 		require_once DISCUZ_ROOT.'./uc_client/lib/db.class.php';
 		require_once DISCUZ_ROOT.'./application/common.php';
-//		$toxconfig = require_once DISCUZ_ROOT.'./parentjournalism/parentfunction.php';
+		require_once DISCUZ_ROOT.'./uc_client/client.php';
+		$toxconfig = require_once DISCUZ_ROOT.'./application/database.php';
+//		require_once DISCUZ_ROOT.'./config.inc.php';
 		$db = new ucclient_db;
 		$dbs = new ucclient_db;
-        $db->connect('localhost', 'root', 'root', 'education', UC_DBCONNECT, true, 'utf8');
+        $db->connect('localhost', $toxconfig['username'], $toxconfig['password'], $toxconfig['database'], UC_DBCONNECT, true, 'utf8');
         $user =  $db->fetch_first("SELECT * FROM qb_memberdata WHERE username='{$username}'");
-//		echo $get['password']."~~".$get['username'];
 		if($user==null||$user==""){
-			$dbs->connect('localhost', 'root', 'root', 'ucenter', UC_DBCONNECT, true, 'utf8');
-			 $ucuser =  $dbs->fetch_first("SELECT * FROM uc_members WHERE username='{$username}'");
-//			echo $ucuser['password']."~~".$ucuser['salt']."~~".$ucuser['email']."~~".$ucuser['username']."~~".time()."~~".get_ip();
-			$db->connect('localhost', 'root', 'root', 'education', UC_DBCONNECT, true, 'utf8');
+			$dbs->connect('localhost', UC_DBUSER, UC_DBPW, 'ucenter', UC_DBCONNECT, true, 'utf8');
+			$ucuser = $dbs->fetch_first("SELECT * FROM uc_members WHERE username='{$username}'");
+			
+			$db->connect('localhost', $toxconfig['username'], $toxconfig['password'], $toxconfig['database'], UC_DBCONNECT, true, 'utf8');
 			$times=time();
 			$ips=get_ip();
 			$intoresult=$db->fetch_first("insert into qb_memberdata(password,password_rand,username,nickname,groupid,yz,lastvist,lastip,regdate,regip,email) values('{$ucuser['password']}','{$ucuser['salt']}','{$username}','{$username}',8,1,'{$times}','{$ips}','{$times}','{$ips}','{$ucuser['email']}')");
@@ -153,12 +154,7 @@ class uc_note {
 			_setcookie("passport","{$users['uid']}"."\t"."{$users['username']}\t".mymd5($users['password'],'EN'));
 		}else{
 			$uids=$user['uid'];
-//			set_cookie("passport","{$rs['uid']}\t$username\t".mymd5($rs['password'],'EN'),$cookietime);
-//			setcookie("passport", "{$user['uid']}"."\t"."{$user['username']}\t{$user['password']}");
-//			setcookie("_passport", "{$user['uid']}"."\t"."{$user['username']}\t{$user['password']}");
-//			_setcookie("passport","{$user['uid']}"."\t"."{$user['username']}\tB18GVFNbAQEHXwADBwwDVlIFAAYADQJXVlIEAAQAUQYQIBOEDD098fa50bf5");
 			_setcookie("passport","{$user['uid']}"."\t"."{$user['username']}\t".mymd5($user['password'],'EN'));
-//			 echo $user['password'];
 		}
 		
 	}
@@ -172,6 +168,8 @@ class uc_note {
 		//note 同步登出 API 接口
 		header('P3P: CP="CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR"');
 		_setcookie('Example_auth', '', -86400 * 365);
+		_setcookie('passport', '', -86400 * 365);
+		_setcookie('_passport', '', -86400 * 365);
 	}
 
 	function updatepw($get, $post) {

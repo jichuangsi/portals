@@ -137,7 +137,6 @@ class usermodel {
 		$uid = $this->db->insert_id();
 		$this->db->query("INSERT INTO ".UC_DBTABLEPRE."memberfields SET uid='$uid'");
 		
-		$this->db->query("INSERT INTO `docshare`.t_member SET `mtype`='个人',`userid`='$username',`pwd`='$password',`uname`='$username',`sex`='男' ,`rank`='10',`money`='0', `email`='$email', `scores`='0', `matt`='0', `face`='',`safequestion`='0',`safeanswer`='', `jointime`='$datatime',`joinip`='',`logintime`='$datatime',`loginip`='';");
 		return $uid;
 	}
 

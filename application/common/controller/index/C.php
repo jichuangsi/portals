@@ -99,7 +99,7 @@ abstract class C extends IndexBase
      * @param number $mid 模型ID,不能为空
      * @return mixed|string
      */
-    public function index($fid=0,$mid=0)
+    public function index($fid=0,$mid=0,$hytitle=null)
     {
         if(!$mid && !$fid){
             //$this->error('参数不存在！');
@@ -143,6 +143,11 @@ abstract class C extends IndexBase
                 'info'=>$s_info,
                 'm_info'=>$m_info,
         ];
+        if($hytitle!=null){
+        	$this->assign('hytitle',$hytitle);
+        }
+        
+		
         return $this->fetch($template,$vars);
     }
     
@@ -227,6 +232,23 @@ abstract class C extends IndexBase
                 's_info'=>$s_info,
         ];
         return $this->fetch($template,$vars);
+    }
+    
+    /**
+     * 内容页
+     * @param number $id 内容ID
+     * @return mixed|string
+     */
+    public function hycmsshow($id=0)
+    {
+        $this->mid = $this->model->getMidById($id);
+        
+        if(empty($id)){
+            $this->error('id不能为空');
+        }
+        $rs=query("select * from qb_cms_content1 where id=$id");
+        $this->assign("cmsinfo",$rs[0]);
+        return $this->fetch();
     }
     
     /**

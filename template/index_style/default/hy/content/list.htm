@@ -1,11 +1,4 @@
-﻿{extend name="$index_style_layout" /}
-
-<!--SEO相关-->
-{block name="head_title"}{$fid?($info['seo_title']?:$info['name']):$m_info['title']}{/block}
-{block name="head_keword"}{$fid?($info['seo_keywords']?:$info['name']):$m_info['title']}{/block}
-{block name="head_description"}{$info.seo_description}{/block}
-
-{block name="body_content"}
+﻿{include file="common/heads" /}
 	<link rel="stylesheet" href="__STATIC__/hy/assets/style/mechanism.css">
     <link rel='stylesheet' href='__STATIC__/hy/assets/style/reset_android.css'>
 	<link rel="stylesheet" href="__STATIC__/hy/assets/style/sort.css">
@@ -29,11 +22,11 @@
     	}
     </style>
     <div class="top">
-        <div class="fl" onclick="javascript:history.back(-1);">
+        <div class="fl" onclick="window.location.href='/index.php/hy'">
             <img src="__STATIC__/hy/assets/images/return.png" alt="">
         </div>
         <div style="float: right;padding: 0px 0.2rem;" onclick="showsort()">
-           		 分类
+           		分类
         </div>
         <div class="title" onclick="ssrr()">机构列表</div>
         
@@ -52,7 +45,7 @@
 				{/volist}
             </div>
         </div>
-        {qb:tag name="hy_waplist_001" union="order,by,mid,fid,status" order="view" by="desc" type="hy" rows="10"}
+        {qb:listpage name="hy_waplist_001" where="status>0&title*$hytitle" rows="10" }
             <div class="curriculum">
                     <div class="ListBox" onclick="window.location.href='{$rs.url}'">
                         <div class="box">
@@ -134,7 +127,7 @@
                     {/if}
                    
                 </div>
-        {/qb:tag}
+        {/qb:listpage}
     </div>
     <script>
         function nav_click(e){
@@ -212,7 +205,7 @@
     </script>
 
 <script type="text/javascript">
-
+console.log('{qb:url name="hy_waplist_001"/}2222');
 var ajax_url_db = ['&order=view&by=desc&','&order=id&by=desc&','&status=2,order=id&by=asc&'];
 var choose_i = 0; //选中第几项
 var haveshowpage = []; //每一项,作个标志,已经已显示到第几页
@@ -288,4 +281,5 @@ function joinGroup(id){
 }
 </script>
 
-{/block}
+	</body>
+</html>

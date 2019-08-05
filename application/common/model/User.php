@@ -374,7 +374,7 @@ class User extends Model
 		set_cookie('_passport',null);
 		cache('user_'.$uid,null);
 		set_cookie('token_secret',null);
-//		setcookie('adminID',null);	//同步后台退出
+		setcookie('adminID',null);	//同步后台退出
 		hook_listen('user_quit_end',$uid);
 	}
 	

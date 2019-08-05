@@ -1,11 +1,4 @@
-{extend name="$index_style_layout" /}
-
-<!--SEO相关-->
-{block name="head_title"}{$info.title}{/block}
-{block name="head_keword"}{$info.keywords?:$info.title}  {$s_info.name} {/block}
-{block name="head_description"}{:get_word(del_html($info['content']),300)}{/block}
-
-{block name="body_content"}
+{include file="common/heads" /}
 <link rel="stylesheet" href="__STATIC__/hy/assets/style/details.css">
 <link rel="stylesheet" href="__STATIC__/hy/assets/style/Entry.css">
     <link rel='stylesheet' href='__STATIC__/hy/assets/style/reset_android.css'>
@@ -179,4 +172,5 @@
    	}
    </script>
 {include file="index@share"/}
-{/block}
+</body>
+</html>

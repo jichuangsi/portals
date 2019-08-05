@@ -41,8 +41,8 @@ class Content extends C
 	 * {@inheritDoc}
 	 * @see \app\common\controller\index\C::index()
 	 */
-	public function index($fid=0,$mid=0){
-	    return parent::index($fid,$mid);
+	public function index($fid=0,$mid=0,$hytitle=null){
+	    return parent::index($fid,$mid,$hytitle);
 	}
 	
 	/**
@@ -53,6 +53,9 @@ class Content extends C
 	public function show($id){
 	    $this->assign('gid', $this->get_user_group($id) );
 	    return parent::show($id);
+	}
+	public function hycmsshow($id){
+		 return parent::hycmsshow($id);
 	}
 	public function ruzhu(){
 		return $this->fetch();

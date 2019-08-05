@@ -41,14 +41,16 @@ class Login extends IndexBase
         }
     }
     
-    public function quit($quiturl)
+    public function quit()
     {
 //  	$this->error($quiturl);
         if (empty($this->user)) {
             $this->error('你还没登录！','index/login/index');
         }
         UserModel::quit($this->user['uid']);
-        $this->success('成功退出',$quiturl);
+        $logoout=uc_user_synlogout();
+        echo $logoout;
+        $this->success('成功退出',iurl('/hy/index/index'));
     }
     
 
