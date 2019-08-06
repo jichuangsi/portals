@@ -49,6 +49,16 @@
    	var curriculumlisturl=null;
    	var listpages=2;
    	
+   	function xs(e,id){
+        if($(e).next().css('display') == 'none'){
+            $(e).next().css('display','block');
+            if(!$(e).next().attr("title")) qrcodes(id);
+        }else{
+            $(e).next().css('display','none')
+        }
+        
+    }
+   	
    	function qrcodes(qrid){
    		var qrcode = new QRCode(document.getElementById("qr"+qrid), {
 				width : 100,
@@ -56,7 +66,12 @@
 			});
 			var domurl=domainname.substring(7,domainname.length);
 			console.log(domurl);
-			qrcode.makeCode("http://192.168.31.123:82/index.php/cms/content/shareurl/d/"+domurl+"/k/"+qrid+"/u/{$userdb.uid}/g/{$info.id}");
+			var protocol = window.location.protocol;
+			var host = window.location.host;
+			var port = window.location.port;
+			if(!host) return;
+			domain = (protocol?protocol+'//':'')+host;
+			qrcode.makeCode(domain+"/index.php/cms/content/shareurl/d/"+domurl+"/k/"+qrid+"/u/{$userdb.uid}/g/{$info.id}");
    	}
    	function errorImg(imgs){
         		imgs.src = "__STATIC__/images/nopic.png"; imgs.onerror = null; 
@@ -85,10 +100,17 @@
 			        	retest+='</div>';
 			        	retest+='<div class="Sold">已售'+listdata[i]['sold']+'</div>';
 			        	retest+=' <a target="_blank" href="'+domainname+'/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'" class="go" style="display:flex;"><i style="margin:auto;color:#fff" class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
+			        	<?php
+			        		if($userdb){ 
+			        	?>
+			        	retest+='<div class="xs" onclick="xs(this,'+listdata[i]['id']+')">享客码</div>';
 			        	retest+=' <div class="img" id="qr'+listdata[i]['id']+'"></div>';
+			        	<?php
+			        		}
+			        	?>
 			        	retest+=' </div> </div>';
 			        	$('.curriculum').append(retest);
-			    	   	qrcodes(listdata[i]['id']);
+			    	   	//qrcodes(listdata[i]['id']);
 			    	  }
 			    }
 			});	
@@ -114,10 +136,17 @@
 			        	retest+='</div>';
 			        	retest+='<div class="Sold">已售'+listdata[i]['sold']+'</div>';
 			        	retest+=' <div class="go" style="display:flex;"><i style="margin:auto;color:#fff" class="fa fa-long-arrow-right" aria-hidden="true"></i></div>';
-			        	retest+=' <div class="img" id="qr'+listdata[i]['id']+'"></div>';
+			        	<?php
+						if($userdb){ 
+						?>
+				        	retest+='<div class="xs" onclick="xs(this,'+listdata[i]['id']+')">享客码</div>';
+				        	retest+=' <div class="img" id="qr'+listdata[i]['id']+'"></div>';
+						<?php
+						}
+						?>
 			        	retest+=' </div> </div>';
 			        	 $('.curriculum').append(retest);
-			        	qrcodes(listdata[i]['id']);
+			        	//qrcodes(listdata[i]['id']);
 			    	  }
 			    	 
 			    }

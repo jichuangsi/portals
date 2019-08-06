@@ -36,12 +36,12 @@ abstract class C extends IndexBase
 	 */
     public function shareurl($d=null,$k=null,$u=null,$g=null){
 //  	$this->error($domainname.'~~'.$kcid.'~~'.$u.'~~'.$gid);
-		$urls='http://'.$d.'/index.php?s=/live/index/detail/id/'.$k.'/u/'.$u;
-		$rs=query("select gid from qb_memberdata where uid=$u");
+        $urls='http://'.$d.'/index.php?s=/live/index/detail/id/'.$k.'/u/'.$u;
+        $rs=query("select gid from qb_memberdata where uid=$u");
 		if($rs[0]['gid']==0){
 			$rss=query("update qb_memberdata set gid=$g where uid=$u");
 		}
-    	header("Location: $urls"); 
+    	header("Location:$urls");exit; 
     }
     /*
      * 检查账号是否存在
