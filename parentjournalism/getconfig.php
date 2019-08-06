@@ -11,7 +11,7 @@
 		exit();
 	}
 	$domainnames='http://'.$domainname;
-	$sql="select * from qb_config where c_key='wap_ali_id' or c_key='wap_ali_partner' or c_key='wap_ali_public_keys' or c_key='wap_ali_private_keys' or c_key='wxapp_appid' or c_key='wxapp_paykey' or c_key='wxapp_payid'";
+	$sql="select * from qb_config where c_key='wap_ali_id' or c_key='wap_ali_partner' or c_key='wap_ali_public_keys' or c_key='wap_ali_private_keys' or c_key='wxapp_appid' or c_key='wxapp_paykey' or c_key='wxapp_payid' or c_key='weixin_appid' or c_key='weixin_appsecret' or c_key='weixin_token' or c_key='weixin_payid' or c_key='weixin_paykey'";
 	$result=$conn->query($sql);
 	$sqls="select * from qb_hy_content1 where domainname='$domainnames'";
 	$results=$conn->query($sqls);
