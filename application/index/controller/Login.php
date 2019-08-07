@@ -27,18 +27,18 @@ class Login extends IndexBase
     
     //小程序登录
     public function wxapp_login(){
-        $result = LoginService::login();        
-        if ($result['loginState'] === Constants::S_AUTH) {
-            return json([
-                    'code' => 0,
-                    'data' => $result['userinfo']
-            ]);
-        } else {
-            return json([
-                    'code' => -1,
-                    'error' => $result['error']
-            ]);
-        }
+//      $result = LoginService::login();        
+//      if ($result['loginState'] === Constants::S_AUTH) {
+//          return json([
+//                  'code' => 0,
+//                  'data' => $result['userinfo']
+//          ]);
+//      } else {
+//          return json([
+//                  'code' => -1,
+//                  'error' => $result['error']
+//          ]);
+//      }
     }
     
     public function quit()
@@ -105,8 +105,14 @@ class Login extends IndexBase
 					$ress=urldecode($res);
 					echo $ress;
             		$result = UserModel::login($data['username'],$data['password'],$data['cookietime'],true);
-            }
-            
+	      	}else if($result!=-1&&$result!=0&&$uid>0){
+	      			$ucsynlogin=uc_user_synlogin($uid);
+					$res=urlencode($ucsynlogin);
+					$ress=urldecode($res);
+					echo $ress;
+            		$result = UserModel::login($data['username'],$data['password'],$data['cookietime'],true);
+	      	}
+	            
             if($result==0){
                 $this->error("当前用户不存在,请重新输入");
             }elseif($result==-1){
@@ -115,7 +121,6 @@ class Login extends IndexBase
                 if($type=='iframe'){
                     return $this->fetch('ok');
                 }
-                
                 $jump = $fromurl ? urldecode($fromurl) : iurl('index/index/index');
                 if($data['isModular']==1){
                 	$jump=iurl('/hy/index/index');

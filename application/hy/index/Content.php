@@ -57,18 +57,41 @@ class Content extends C
 	public function hycmsshow($id){
 		 return parent::hycmsshow($id);
 	}
+	/*
+	 * 机构入驻
+	 */
 	public function ruzhu(){
 		return $this->fetch();
 	}
+	/*
+	 * 登陆
+	 */
+	
 	public function lylogin(){
 		return $this->fetch();
 	}
+	/*
+	 * 个人中心
+	 */
 	public function personal(){
 		if(!$this->user){
 	        return $this->success('你还没登录',url('/hy/content/lylogin'));
 	    }
 		return $this->fetch();
 	}
+	
+	public function hycomment(){
+		return $this->fetch();
+	}
+	/*
+	 * 精品课程列表
+	 */
+	public function boutique(){
+		return $this->fetch();
+	}
+	/*
+	 * 注册
+	 */
 	public function lyregister(){
 		return $this->fetch();
 	}

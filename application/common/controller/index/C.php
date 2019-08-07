@@ -81,6 +81,12 @@ abstract class C extends IndexBase
     	return 0;
     }
     
+    public function boutiquelist($rows=2,$pages=1){
+    	$limits=($pages-1)*$rows;
+    	$rs=query("select * from qb_hy_content1 where status=2 limit $limits,$rows ");
+    	return $rs;
+    }
+    
     /**
      * 访问权限检查
      * @param array $info
@@ -166,9 +172,9 @@ abstract class C extends IndexBase
      */
     public function show($id=0)
     {
-        if ( empty($this->user) && in_weixin() && config('webdb.weixin_type')==3  ) {  //在微信端,就强制自动登录!
-            weixin_login();
-        }
+//      if ( empty($this->user) && in_weixin() && config('webdb.weixin_type')==3  ) {  //在微信端,就强制自动登录!
+//          weixin_login();
+//      }
         
         $this->mid = $this->model->getMidById($id);
         
