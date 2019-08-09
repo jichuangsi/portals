@@ -1,6 +1,6 @@
 {include file="common/heads" /}
-<link rel="stylesheet" href="__STATIC__/group/show.css">	
 <link rel="stylesheet" href="__STATIC__/hy/assets/style/details.css">
+<link rel="stylesheet" href="__STATIC__/hy/assets/style/comment.css">
     <link rel='stylesheet' href='__STATIC__/hy/assets/style/reset_android.css'>
     <script src="__STATIC__/hy/assets/js/reset.js"></script>
     <script src="__STATIC__/hy/assets/js/qrcode.js"></script>
@@ -24,13 +24,8 @@
                 <img src="__STATIC__/hy/assets/images/xin.png" alt="">
             </div>
         </div>
-        <div class="title">
+        <div class="title gradexin">
            {$info.title}
-            <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-            <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-            <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-            <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-            <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
         </div>
         <div class="Diagram">
             <div class="left" style="margin-left: 2rem;">
@@ -76,6 +71,9 @@
    	function errorImg(imgs){
         		imgs.src = "__STATIC__/images/nopic.png"; imgs.onerror = null; 
      }
+   	function iconerror(imgs){
+   		imgs.src = "__STATIC__/images/nobody.gif"; imgs.onerror = null;
+   	}
    	function curriculumlist(clid){
    		curriculumlisturl=domainname+"/index.php/api/course/courseQuery/r/10/y/"+clid;
    		listpages=2;
@@ -214,18 +212,13 @@
                     </div>
             <div class="comment">
                 <div class="comment_top">
-                    <div class="fl">用户评价（199）</div>
-                    <div onclick="window.location.href='/index.php/hy/content/hycomment'" class="fr" style="padding: 0 0.2rem;background-color: #FB9220;color: #333;">评论</div>
+                    <div class="fl" >用户评价（{:fun('comment@total',$info['id'],'hy')}）</div>
+                    <div onclick="commshow()" class="fr" style="padding: 0 0.2rem;background-color: #FB9220;color: #333;">评论</div>
                 </div>
-                <div style="padding: 0.2rem;float: right;">
+                <div class="gradexin" style="padding: 0.2rem;float: right;">
                         	综合评分
-                        <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                        <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                        <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                        <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                        <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
                 </div>
-                <div class="comment_bottom">
+                <div class="comment_bottom" style="display: none;">
                     <div class="user">
                         <div class="userimg fl"><img style="width: 100%;border-radius: 50%;" src="__STATIC__/hy/assets/img/t1.jpg" /></div>
                         <div class="fl">
@@ -256,139 +249,216 @@
                         <div><img style="width: 100%;" src="__STATIC__/hy/assets/img/s3.jpg" /> </div>
                     </div>
                 </div>
-                <div class="comment_bottom">
-                    <div class="user">
-                        <div class="userimg fl"><img style="width: 100%;border-radius: 50%;" src="__STATIC__/hy/assets/img/t2.jpg" /></div>
-                        <div class="fl">
-                            <div class="username">爱学习的小诗诗</div>
-                            <div class="fen">
-                                打分
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                            </div>
-                        </div>
-                        <div class="fr">
-                            <div class="time">
-                                6月25日
-                            </div>
-                            <div class="role">
-                                乐享课网友
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text">
-                        在这里学习很开心，老师很贴心，学生学的很舒心
-                    </div>
-                    <div class="img">
-                        <div> <img style="width: 100%;" src="__STATIC__/hy/assets/img/s1.jpg" /> </div>
-                    </div>
-                </div>
-                <div class="comment_bottom">
-                    <div class="user">
-                        <div class="userimg fl"><img style="width: 100%;border-radius: 50%;" src="__STATIC__/hy/assets/img/t3.jpg" /></div>
-                        <div class="fl">
-                            <div class="username">杰</div>
-                            <div class="fen">
-                                打分
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                            </div>
-                        </div>
-                        <div class="fr">
-                            <div class="time">
-                                6月25日
-                            </div>
-                            <div class="role">
-                                乐享课网友
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text">
-                       老师非常专业，而且很有耐心，讲课的方式也很新鲜，简单易学易懂
-                    </div>
-                    <div class="img">
-                        <div><img style="width: 100%;" src="__STATIC__/hy/assets/img/s4.jpg" /> </div>
-                        <div><img style="width: 100%;" src="__STATIC__/hy/assets/img/s5.jpg" /> </div>
-                    </div>
-                </div>
-                
-                 <div class="comment_bottom">
-                    <div class="user">
-                        <div class="userimg fl"><img style="width: 100%;border-radius: 50%;" src="__STATIC__/hy/assets/img/t4.jpg" /></div>
-                        <div class="fl">
-                            <div class="username">sukioxu</div>
-                            <div class="fen">
-                                打分
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                            </div>
-                        </div>
-                        <div class="fr">
-                            <div class="time">
-                                7月01日
-                            </div>
-                            <div class="role">
-                                乐享课网友
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text">
-                       美女老师很有耐心，讲得很仔细，还帮我做了课堂笔记，很感谢。
-                    </div>
-                    <div class="img">
-                        <div><img style="width: 100%;" src="__STATIC__/hy/assets/img/s6.jpg" /> </div>
-                        <div><img style="width: 100%;" src="__STATIC__/hy/assets/img/s7.jpg" /> </div>
-                    </div>
-                </div>
-                 <div class="comment_bottom">
-                    <div class="user">
-                        <div class="userimg fl"><img style="width: 100%;border-radius: 50%;" src="__STATIC__/hy/assets/img/t5.jpg" /></div>
-                        <div class="fl">
-                            <div class="username">sssnow</div>
-                            <div class="fen">
-                                打分
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                                <span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>
-                            </div>
-                        </div>
-                        <div class="fr">
-                            <div class="time">
-                                7月05日
-                            </div>
-                            <div class="role">
-                                乐享课网友
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text">
-                       已经是第二次来这里学习啦，感觉很满意，老师都很好，十分推荐喔
-                    </div>
-                    <div class="img">
-                        <div><img style="width: 100%;" src="__STATIC__/hy/assets/img/s8.jpg" /> </div>
-                    </div>
-                </div>
             </div>
+             <div onclick="getcomment()" style="width: 100%;height: 0.6rem;line-height: 0.6rem;margin-bottom: 0.3rem;text-align: center;background: #fff;">更多评论</div>
     </div>
     <script>
     	 function nav_click(e){
             $(e).addClass('nav_check').siblings().removeClass('nav_check')
         }
+    	 
+    	 function commshow(){
+    	 	$('.mycomment').fadeIn(500);
+    	 }
+    	 function commhide(){
+    	 	$('.mycomment').fadeOut(500);
+    	 }
     </script>
     
     
+   <!--评论模块--> 
+<style>
+	.mycomment{
+		position: fixed;
+	    top: 0;
+	    width: 100%;
+	    height: 100%;
+	    background-color: #fff;
+	    display: none;
+	}
+</style>
+<div class="mycomment">
+	<div class="tops">
+        <div class="fl" onclick="commhide()" style="width: 10%;padding: 0.1rem;">
+            <img style="margin-bottom: 0;" src="__STATIC__/hy/assets/images/return.png" alt="">
+        </div>
+        <div class="title">我的评论</div>
+    </div>
+    <div class="center">
+        <div class="xing">
+            <span><img src="__STATIC__/hy/assets/images/Stars.png" alt="" data-src="1"></span>
+            <span><img src="__STATIC__/hy/assets/images/Stars.png" alt="" data-src="1"></span>
+            <span><img src="__STATIC__/hy/assets/images/Stars.png" alt="" data-src="1"></span>
+            <span><img src="__STATIC__/hy/assets/images/huix.png" alt=""></span>
+            <span><img src="__STATIC__/hy/assets/images/huix.png" alt=""></span>
+            点击评星
+        </div>
+        <textarea name="" id="" cols="30" rows="10" placeholder="请输入您的评论" class="comminfo"></textarea>
+        <div class="imgbox" style="display:none">
+            <div class="xsimg">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="add">
+                +
+            </div>
+        </div>
+        <div class="btn" onclick="commsub()">提交</div>
+    </div>
     
+    <script>
+    	var xinnum={:fun('xiangke@getcommgradexin',$info['id'])};
+    	console.log(xinnum+"~fun");
+    	getcommgradexin({$info['id']});
+    	function getcommgradexin(infoid){
+    		if(infoid!=null&&infoid!=""){
+    			$.ajax({
+    				type:"get",
+    				url:"/index.php/hy/content/getcommgradexin/infoid/"+infoid,
+    				async:true,
+    				success:function(data){
+    					console.log(data);
+    					if(data>=0){
+    						xinnum=data;
+    					}
+    				}
+    			});
+    		}
+    	}
+    	//b遍历综合评分的星星
+    	function gradenum(){
+    		if(xinnum>0){
+    			var xintext="";
+    			$('.gradexin').html('');
+    			for(var i=1;i<=5;i++){
+    				if(i<=xinnum){
+    					xintext+='<span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>';
+    				}else{
+    					xintext+='<span><img src="__STATIC__/hy/assets/images/huix.png" alt=""></span>';
+    				}
+    				
+    			}
+    			$('.gradexin').append(xintext);
+    		}
+    	}
+    	gradenum();
+    	console.log(xinnum);
+    	var commpages=1;
+    	function getcomment(){
+    		$.ajax({
+    			type:"get",
+    			url:"/index.php/hy/content/getcomment/infoid/{$info.id}/rows/5/pages/"+commpages,
+    			async:true,
+    			success:function(data){
+    				commtext="";
+    				if(data!=null&&data!=""){
+	    				for(var i in data){
+	    					commtext+='<div class="comment_bottom">';
+	    					commtext+='<div class="user">';
+	    					commtext+='<div class="userimg fl"><img style="width: 100%;border-radius: 50%;" src="/public/'+data[i]['icon']+'" onerror="iconerror(this)"/></div>';
+	    					commtext+='<div class="fl">';
+	    					commtext+='<div class="username">'+data[i]['nickname']+'</div>';
+	    					commtext+='<div class="fen">';
+	    					commtext+='打分';
+							for(var j=0;j<data[i]['gradexin'];j++){
+								commtext+='<span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>';
+							}
+							commtext+='</div>';
+	    					commtext+='</div>';
+	    					commtext+='<div class="fr">';
+	    					commtext+='<div class="time">'+new Date(data[i]['create_time']*1000).Format('yy-MM-dd')+'</div>';
+	    					commtext+=' <div class="role"> 乐享课网友 </div>';
+	    					commtext+=' </div>';
+	    					commtext+='</div>';
+	    					commtext+=' <div class="text">'+data[i]['content']+'</div>';
+	    					commtext+=' </div>';
+	    				}
+	    				commpages++;
+	    				$('.comment').append(commtext);
+    				}else{
+    					layer.msg("没有更多评论了");
+    				}
+    			}
+    		});
+    		
+    	}
+    	getcomment();
+    	function commsub(){
+    		<?php
+				if($userdb){ 
+			?>
+    			submitcomm();
+    		<?php
+				}else{
+			?>
+    			layer.msg('请登陆后再发表评论');
+    		<?php }?>
+    	}
+    	function submitcomm(){
+    		var xinnum=0;
+    		for(var i=0;i<=$('.xing img').length;i++){
+    			if($($('.xing img')[i]).attr('data-src')==1){
+    				xinnum++;
+    			}
+    		}
+    		var comminfo=$('.comminfo').val();
+    		if(comminfo!=null&&comminfo!=""){
+    			console.log(comminfo);
+    		}else{
+    			layer.msg("内容不能为空");
+    			return;
+    		}
+    		$.ajax({
+    			type:"get",
+    			url:"/index.php/hy/content/addcomment/infoid/{$info.id}/comminfo/"+comminfo+"/gradexin/"+xinnum,
+    			async:true,
+    			success:function(data){
+    				console.log(data);
+    				if(data==1){
+    					layer.msg("发表成功");
+    					$('.comminfo').val("");
+    					$('.comment .comment_bottom').remove();
+    					commpages=1;
+    					getcommgradexin({$info['id']});
+    					gradenum();
+    					getcomment();
+    					
+    				}else{
+    					layer.msg("发表失败");
+    				}
+    				commhide();
+    			}
+    		});
+    	}
+    	//转换时间
+    	Date.prototype.Format = function (fmt) {
+		    var o = {
+		            "M+": this.getMonth() + 1, // 月份
+		            "d+": this.getDate(), // 日
+		            "h+": this.getHours(), // 小时
+		            "m+": this.getMinutes(), // 分
+		            "s+": this.getSeconds(), // 秒
+		            "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+		            "S": this.getMilliseconds() // 毫秒
+		    };
+		    if (/(y+)/.test(fmt))
+		        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + ""));
+		    for (var k in o)
+		        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+		    return fmt;
+		}
+    	$('.xing>span').click(function(){
+            console.log(this);
+            $(this).prevAll().find('img').attr('src','__STATIC__/hy/assets/images/Stars.png').attr("data-src",1);
+            $(this).find('img').attr('src','__STATIC__/hy/assets/images/Stars.png').attr("data-src",1);
+            $(this).nextAll().find('img').attr('src','__STATIC__/hy/assets/images/huix.png');
+        })
+    </script>
+</div>    
+   <!--评论模块-->   
 <div class="MainContainer" style="display: none;">
 	<div class="ListBox">
 		<div class="list">

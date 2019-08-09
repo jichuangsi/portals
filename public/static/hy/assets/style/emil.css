@@ -1,0 +1,56 @@
+body {
+    background-color: #F7F7F7;
+}
+.top {
+    width: 100%;
+    height: 0.9rem;
+    line-height: 0.9rem;
+    background-color: #F5A532;
+    border-bottom: 0.04rem solid #F5A532;
+}
+.top .fl {
+    padding: 0px 0.2rem;
+}
+.top .fl img {
+    width: 0.25rem;
+    height: 0.38rem;
+    /*margin-bottom: 0.18rem;*/
+}
+.top .title {
+    width: 100%;
+    text-align: center;
+    font-size: 0.4rem;
+    color: #fff;
+    font-weight: 600;
+}
+.center {
+    width: 100%;
+}
+.center .center_box {
+    width: 100%;
+    margin-top: 0.3rem;
+    background-color: #fff;
+    padding: 0 0.41rem;
+}
+.center .center_box .box {
+    width: 100%;
+    height: 1.06rem;
+    display: flex;
+    align-items: center;
+}
+.center .center_box .box input {
+    border: none;
+    outline: none;
+}
+.btn {
+    width: 80%;
+    height: 1.06rem;
+    line-height: 1.06rem;
+    text-align: center;
+    color: #fff;
+    margin: 0 auto;
+    background-color: #F5A532;
+    border-radius: 0.05rem;
+    margin-top: 0.94rem;
+    font-size: 0.3rem;
+}

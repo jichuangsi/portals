@@ -12,22 +12,21 @@
     	}
     </style>
     <div class="myhead">
+    	<div onclick="window.location.href='/index.php/hy/content/lyset'" style="position: absolute;right: 0;width: 0.8rem;height: 0.8rem;display: flex;"><img style="width: 0.5rem;height: 0.5rem;margin: auto;" src="__STATIC__/hy/assets/images/set.png" /> </div>
     	<div class="myuserinfo">
     		<div class="userinfo_left">
-    			<div style="width: 1rem;height: 1rem;background-color: #a0499e;border-radius: 50%;margin: auto;">
-    				<img src="{$userdb.icon}" />
-    			</div>
+    			<img style="width: 1rem;height: 1rem;background-color: #a0499e;border-radius: 50%;margin: auto;" src="/public/{$lyuser.icon}" onerror="this.src='__STATIC__/images/nobody.gif'" />
     		</div>
     		<div class="userinfo_right">
     			<div style="line-height: 0.6rem;">{$userdb.username}</div>
-    			<div>电话：123456789</div>
+    			<div>邮箱：{$lyuser.email}</div>
     		</div>
     	</div>
     </div>
     <div class="myinfo">
     	<div class="myinfo_div" style="display: flex;">
     		<div class="d1"><div class="d11">1231</div><div>粉丝</div></div>
-    		<div class="d1"><div class="d11">1231</div><div>粉丝</div></div>
+    		<div class="d1"><div class="d11">{$lyuser.money}</div><div>积分</div></div>
     		<div class="d1"><div class="d11">1231</div><div>粉丝</div></div>
     	</div>
     </div>

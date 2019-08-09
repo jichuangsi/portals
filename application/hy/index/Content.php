@@ -3,6 +3,9 @@ namespace app\hy\index;
 
 use app\common\controller\index\C; 
 use app\hy\model\Member AS QMember;
+use app\common\model\User AS UserModel;
+include  './config.inc.php';
+include  './uc_client/client.php';
 
 //内容页与列表页
 class Content extends C
@@ -45,6 +48,10 @@ class Content extends C
 	    return parent::index($fid,$mid,$hytitle);
 	}
 	
+	public function getcommgradexin($infoid=1){
+		 $rs=query("select avg(gradexin) from qb_comment_content  where sysid=11 and status=1 and aid=$infoid");
+		 return round($rs);
+	}
 	/**
 	 * 内容详情页
 	 * {@inheritDoc}
@@ -77,16 +84,47 @@ class Content extends C
 		if(!$this->user){
 	        return $this->success('你还没登录',url('/hy/content/lylogin'));
 	    }
+	    $uid=$this->user['uid'];
+		$lyuser=query("select * from qb_memberdata where uid='$uid'");
+		$this->assign("lyuser",$lyuser[0]);
 		return $this->fetch();
+	}
+	/*
+	 * 机构评论
+	 */
+	public function hycomment($infoid=0){
+		if($infoid==0){
+			return $this->error("无法获取评论的内容");
+		}
+		$this->assign("infoid",$infoid);
+		return $this->fetch();
+	}
+	/*
+	 * 发表评论
+	 */
+	public function addcomment($infoid=0,$comminfo=null,$gradexin=3){
+		if (empty($this->user)) {
+	        $this->error('你还没登录!');
+	    }		
+	    $uid=$this->user['uid'];
+	    $time=time();
+		$rs=query("insert into qb_comment_content(pid,sysid,aid,uid,disagree,status,create_time,content,gradexin) values(0,11,$infoid,$uid,0,1,'$time','$comminfo','$gradexin')");
+		return $rs;
+	}
+	/*
+	 * 获取评论
+	 */
+	public function getcomment($infoid=0,$rows=5,$pages=0){
+		$limits=($pages-1)*$rows;
+		$rs=query("select comm.*,mem.nickname,mem.icon from qb_comment_content comm inner join qb_memberdata mem on comm.uid=mem.uid  where sysid=11 and status=1 and aid='$infoid' order by create_time desc limit $limits,$rows");
+		return $rs;
 	}
 	
-	public function hycomment(){
-		return $this->fetch();
-	}
 	/*
 	 * 精品课程列表
 	 */
 	public function boutique(){
+		
 		return $this->fetch();
 	}
 	/*
@@ -95,6 +133,111 @@ class Content extends C
 	public function lyregister(){
 		return $this->fetch();
 	}
+	/*
+	 * 修改邮箱
+	 */
+	public function lyemail(){
+		$uid=$this->user['uid'];
+		$lyuser=query("select * from qb_memberdata where uid='$uid'");
+		$this->assign("lyuser",$lyuser[0]);
+		return $this->fetch();
+	}
+	public function uplyemail($mail=null,$pwd=null){
+		$userid=$this->user['uid'];
+		if($pwd!=null){
+			list($uid, $username, $password, $email) = uc_user_login($this->user['username'], $pwd);
+			if($uid > 0) {
+			} elseif($uid == -1) {
+				 return $this->error("用户不存在,或者被删除");
+			} elseif($uid == -2) {
+				return $this->error("密码错误");
+			} else {
+				return $this->error("未定义");
+			}
+		}else{
+			return $this->error("请输入密码");
+		}
+		if($mail!=null){
+			if( UserModel::get_info($mail,'email') ){
+				return $this->error("该邮箱已存在");
+            }else{
+//          	 list($uid, $username, $password, $email) = uc_user_login($data['username'], "test125");
+            	$uids=uc_user_edit($this->user['username'],$pwd,$pwd,$mail);
+//				return $this->error($uids);
+				if($uids>=1){
+					$rs=query("update qb_memberdata set email='$mail' where uid='$userid'");
+					if($rs>=1){
+						return $this->success($rs);
+					}
+				}else{
+					return $this->error("失败");
+				}
+				return $this->error("失败");
+            }
+		}
+	}
+	/*
+	 * 修改号码
+	 */
+	public function lyphone(){
+		return $this->fetch();
+	}
+	/*
+	 * 修改密码
+	 */
+	public function lypwd(){
+		if (empty($this->user)) {
+	        $this->error('你还没登录!');
+	    }
+		return $this->fetch();
+	}
+	public function uplypwd($oldpwd=null,$newpwd=null){
+		$useruid=$this->user['uid'];
+		if($oldpwd==null||$newpwd==null){
+			 $this->error('密码不能为空');
+		}
+		list($uid, $username, $password, $email) = uc_user_login($this->user['username'], $oldpwd);
+			if($uid > 0) {
+			} elseif($uid == -1) {
+				  $this->error("用户不存在,或者被删除");
+			} elseif($uid == -2) {
+				 $this->error("密码错误");
+			} else {
+				 $this->error("未定义");
+			}
+			$uids=uc_user_edit($this->user['username'],$oldpwd,$newpwd,$this->user['email']);
+			if($uids>=1){
+				UserModel::quit($this->user['uid']);
+		        $logoout=uc_user_synlogout();
+		        echo $logoout;
+				$this->success("修改密码需要重新登录","hy/content/personal");
+			}
+			 $this->error("失败");
+	}
+	/*
+	 * 设置
+	 */
+	public function lyset(){
+		$uid=$this->user['uid'];
+		$lyuser=query("select * from qb_memberdata where uid='$uid'");
+		$this->assign("lyuser",$lyuser[0]);
+		return $this->fetch();
+	}
+	/*
+	 * 修改头像
+	 */
+	public function upicon($iconurl=null){
+		if(!$this->user){
+	        return $this->error('你还没登录');
+	    }
+	    if($iconurl==null){
+	    	return $this->error('请选择文件');	
+	    }
+	    $uid=$this->user['uid'];
+	    $rs=query("update qb_memberdata set icon='$iconurl' where uid='$uid'");
+	    return $rs;
+	}
+	
 	public function add($mid=1){
 	    if(!$this->user){
 	        return $this->error('你还没登录');

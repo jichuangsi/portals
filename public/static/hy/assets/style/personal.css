@@ -8,7 +8,6 @@ body {
 	position: relative;
 }
 .myuserinfo{
-	background: red;
 	position: absolute;
 	height:1.5rem;
 	top: 1rem;
@@ -18,13 +17,11 @@ body {
 .userinfo_left{
 	width: 2.1rem;
 	height: 1.5rem;
-	background-color: #23A3C9;
 	display: flex;
 }
 .userinfo_right{
 	width: 5.7rem;
 	height: 1.5rem;
-	background-color: #0055AA;
 	color: #fff;
 	padding: 0.1rem;
 }

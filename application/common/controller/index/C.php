@@ -83,7 +83,7 @@ abstract class C extends IndexBase
     
     public function boutiquelist($rows=2,$pages=1){
     	$limits=($pages-1)*$rows;
-    	$rs=query("select * from qb_hy_content1 where status=2 limit $limits,$rows ");
+    	$rs=query("select * from qb_hy_content1 where status=2 and domainname is not null limit $limits,$rows ");
     	return $rs;
     }
     

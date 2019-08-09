@@ -1,0 +1,70 @@
+{include file="common/heads" /}
+
+<link rel="stylesheet" href="__STATIC__/hy/assets/style/emil.css">
+    <link rel='stylesheet' href='__STATIC__/hy/assets/style/reset_android.css'>
+    <script src="__STATIC__/hy/assets/js/reset.js"></script>
+    <div class="top">
+        <div class="fl" onclick="window.history.back(-1);">
+            <img src="__STATIC__/hy/assets/images/return1.png" alt="">
+        </div>
+        <div class="title">设置邮箱</div>
+    </div>
+    <div class="center">
+        <div class="center_box">
+            <div class="box">
+                <input type="text" class="mail" style="width: 85%;" value="{$lyuser.email}" placeholder="请输入邮箱">
+            </div>
+            <div class="box">
+                <input type="password" style="width: 85%;" class="password" placeholder="修改邮箱需要验证登录密码">
+            </div>
+        </div>
+        <div class="btn" onclick="upmail()">发送</div>
+        <script>
+        	function upmail(){
+        		var mail=trim($('.mail').val());
+        		var pwd=$('.password').val();
+        		if(mail==null||mail==""){
+        			layer.msg("邮箱不能设置为空");
+        			return false;
+        		}
+        		if(pwd==null||pwd==""){
+        			layer.msg("请输入登录 密码");
+        			return false;
+        		}
+        			var myReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+        			if(!myReg.test(mail)){
+        				layer.msg("邮箱格式不正确");
+        				return false;
+        			}
+        			var usermail='{$lyuser.email}';
+	        		console.log(usermail);
+	        		if(usermail==mail){
+	        			layer.msg('和以前邮箱一致无需设置');
+	        		}else{
+	        			$.ajax({
+		        			type:"get",
+		        			url:"/index.php/hy/content/uplyemail/mail/"+mail+"/pwd/"+pwd,
+		        			async:true,
+		        			success:function(data){
+		        				console.log(data);
+		        				if(data.code==0){
+		        					layer.msg(data.msg);
+		        				}else if(data.code==1){
+		        					layer.msg("设置成功");
+		        					window.location.href="/index.php/hy/content/lyset";
+		        				}
+		        			}
+		        		});
+	        		}
+        	}
+        	
+		function trim(str){
+		 
+		return str.replace(/(^\s*)|(\s*$)/g, "");
+		 
+		}
+        </script>
+    </div>
+{include file="index@share"/}
+	</body>
+</html>

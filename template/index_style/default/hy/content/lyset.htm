@@ -1,0 +1,99 @@
+{include file="common/heads" /}
+
+<link rel="stylesheet" href="__STATIC__/hy/assets/style/set.css">
+    <link rel='stylesheet' href='__STATIC__/hy/assets/style/reset_android.css'>
+    <script src="__STATIC__/hy/assets/js/reset.js"></script>
+    <script src="__STATIC__/hy/assets/js/qrcode.js"></script>
+    <div class="top">
+        <div class="fl" onclick="window.location.href='/index.php/hy/content/personal'">
+            <img src="__STATIC__/hy/assets/images/return1.png" alt="">
+        </div>
+        <div class="title">安全设置</div>
+    </div>
+    <div class="center">
+        <div class="center_top">
+            <img src="/public/{$lyuser.icon}" alt="" onclick="iconbtn()">
+            <div>修改头像</div>
+            <from action="" enctype="multipart/form-data" method="post" >
+		        <input type="file" id="fileUp" accept="image/png,image/jpeg" style="display: none;">
+			</from>
+        </div>
+        <div class="center_bottom">
+            <div class="center_bottom_box" onclick="window.location.href='/index.php/hy/content/lyphone'" style="display: none;">
+                <div class="one">
+                    <span>设置手机号码</span>
+                    <span class="hui">138****8804</span>
+                </div>
+                <div class="two"><em></em>已绑定</div>
+            </div>
+            <div class="center_bottom_box" onclick="window.location.href='/index.php/hy/content/lypwd'">
+                <div class="one">
+                    <span>设置登录密码</span>
+                </div>
+                <div class="two"><em></em>已绑定</div>
+            </div>
+            <div class="center_bottom_box" onclick="window.location.href='/index.php/hy/content/lyemail'">
+                <div class="one">
+                    <span>设置邮箱</span>
+                    <span class="hui">{$lyuser.email}</span>
+                </div>
+                <div class="two"><em></em>已绑定</div>
+            </div>
+        </div>
+        <div class="btn" onclick="window.location.href='/index.php/index/login/quit.html'">退出登录</div>
+    </div>
+    <script>
+    	function iconbtn(){
+    		$("#fileUp").click();
+    	}
+    		var fileM=document.querySelector("#fileUp");
+			$("#fileUp").on("change",function() {
+				
+			    //获取文件对象，files是文件选取控件的属性，存储的是文件选取控件选取的文件对象，类型是一个数组
+			    var fileObj = fileM.files[0];
+			    //创建formdata对象，formData用来存储表单的数据，表单数据时以键值对形式存储的。
+			    var formData = new FormData();
+			    formData.append('file', fileObj);
+			    console.log(formData);
+//			    /index.php/index/attachment/upload/dir/images/from/base64/module/member.html
+			    $.ajax({
+			        url: "/index.php/index/attachment/upload/dir/images/from/formData/module/member.html",
+			        type: "post",
+			        dataType: "json",
+			        data: formData,
+			        async: false,
+			        cache: false,
+			        contentType: false,
+			        processData: false,
+			        success: function (data) {
+			        	console.log(data);
+			        	console.log(data['class']);
+			        	if(data['class']=="success"){
+			        		upicon(data['id']);
+			        	}
+			        },
+			    });
+			});
+		function upicon(iconurl){
+			if(iconurl!=null&&iconurl!=""){
+				console.log(iconurl);
+				$.ajax({
+					type:"get",
+					url:"/index.php/hy/content/upicon",
+					dataType: "json",
+					data:{'iconurl':iconurl},
+					async:true,
+					success:function(data){
+						if(data==1){
+							location.reload();
+						}
+						console.log(data);
+					}
+				});
+			}
+		}
+			
+    </script>
+{include file="index@share"/}
+	</body>
+</html>

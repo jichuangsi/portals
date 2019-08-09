@@ -1,44 +1,44 @@
-.top {
+.mycomment .tops {
     width: 100%;
     height: 0.9rem;
     line-height: 0.9rem;
     border-bottom: 0.04rem solid #C7C7C7;
 }
-.top .fl {
+.mycomment .tops .fl {
     padding: 0px 0.2rem;
 }
-.top .fl img {
+.mycomment .tops .fl img {
     width: 0.25rem;
     height: 0.38rem;
     margin-bottom: 0.18rem;
 }
-.top .title {
+.mycomment .tops .title {
     width: 100%;
     text-align: center;
     font-size: 0.4rem;
     color: #666666;
     font-weight: 600;
 }
-.center {
+.mycomment .center {
     width: 100%;
     padding: 0.3rem 0.4rem;
 }
-.center .xing {
+.mycomment .center .xing {
     font-size: 0.36rem;
     color: #666666;
     display: flex;
     align-items: center;
 }
-.center .xing span {
+.mycomment .center .xing span {
     margin-right: 0.1rem;
 }
-.center textarea {
+.mycomment .center textarea {
     width: 100%;
     outline: none;
     margin-top: 0.2rem;
     font-size: 0.36rem;
 }
-.center .btn {
+.mycomment .center .btn {
     width: 100%;
     height: 0.8rem;
     line-height: 0.8rem;
@@ -51,13 +51,13 @@
     left: 0px;
     background-color: #FB9220;
 }
-.center .imgbox {
+.mycomment .center .imgbox {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     margin-top: 0.2rem;
 }
-.center .imgbox .add {
+.mycomment .center .imgbox .add {
     width: 1.2rem;
     height: 1.2rem;
     line-height: 1.2rem;
@@ -68,10 +68,10 @@
     color: #666666;
     font-size: 1.2rem;
 }
-.center .imgbox .xsimg {
+.mycomment .center .imgbox .xsimg {
     display: flex;
 }
-.center .imgbox .xsimg div{
+.mycomment .center .imgbox .xsimg div{
     width: 1.2rem;
     height: 1.2rem;
     margin-right: 0.1rem;

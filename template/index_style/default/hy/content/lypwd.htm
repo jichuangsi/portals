@@ -1,0 +1,76 @@
+{include file="common/heads" /}
+
+<link rel="stylesheet" href="__STATIC__/hy/assets/style/emil.css">
+    <link rel='stylesheet' href='__STATIC__/hy/assets/style/reset_android.css'>
+    <script src="__STATIC__/hy/assets/js/reset.js"></script>
+    <div class="top">
+        <div class="fl" onclick="window.history.back(-1);">
+            <img src="__STATIC__/hy/assets/images/return1.png" alt="">
+        </div>
+        <div class="title">修改登录密码</div>
+    </div>
+    <div class="center">
+        <div class="center_box">
+            <div class="box">
+                <div>请输入当前密码：</div> <input class="oldpwd"  type="password" placeholder="请输入当前密码">
+            </div>
+            <div class="box">
+                <div>请输入新密码：</div> <input class="newpwd" type="password" placeholder="请输入新密码">
+            </div>
+            <div class="box">
+                <div>请确认新密码：</div> <input class="newpwd2" type="password" placeholder="请确认新密码">
+            </div>
+            <div class="fr">忘记密码？</div>
+        </div>
+        <div class="btn" onclick="uppwd()">确认</div>
+        <script>
+        	function uppwd(){
+        		var oldpwd=$('.oldpwd').val();
+        		var newpwd=$('.newpwd').val();
+        		var newpwd2=$('.newpwd2').val();
+        		if(oldpwd==null||oldpwd==""){
+        			layer.msg("请输入当前密码");
+        			return false;
+        		}
+        		if(newpwd==null||newpwd==""){
+        			layer.msg("请输入新密码");
+        			return false;
+        		}
+        		if(newpwd==oldpwd){
+        			layer.msg("新密码不能和当前密码一致");
+        			return false;
+        		}
+        		if(newpwd2==null||newpwd2==""){
+        			layer.msg("请输入确认新密码");
+        			return false;
+        		}
+        		
+        		if(newpwd.length<6){
+        			layer.msg("密码长度不能小于六位");
+        			return false;
+        		}
+        		if(newpwd2!=newpwd){
+        			layer.msg("两次新密码输入不一致");
+        			return false;
+        		}
+        		window.location.href="/index.php/hy/content/uplypwd/oldpwd/"+oldpwd+"/newpwd/"+newpwd;
+//      		$.ajax({
+//      			type:"post",
+//      			url:"/index.php/hy/content/uplypwd/oldpwd/"+oldpwd+"/newpwd/"+newpwd,
+//      			async:true,
+//      			success:function(data){
+//      				console.log(data);
+//      				if(data.code==0){
+//      					layer.msg(data.msg);
+//      				}else if(data.code==1){
+//      					layer.msg("修改密码需要重新登录");
+//      					window.location.href="/index.php/hy/content/lylogin";
+//      				}
+//      			}
+//      		});
+        	}
+        </script>
+    </div>
+{include file="index@share"/}
+	</body>
+</html>
