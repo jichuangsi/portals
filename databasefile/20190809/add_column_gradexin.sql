@@ -1,0 +1,1 @@
+alter table qb_comment_content add `gradexin` varchar(255) NOT NULL DEFAULT '4' COMMENT '机构星星评级';
