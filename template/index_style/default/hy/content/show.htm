@@ -44,20 +44,31 @@
    	var curriculumlisturl=null;
    	var listpages=2;
    	
+   	
+   	
    	function xs(e,id){
-        if($(e).next().css('display') == 'none'){
+        /* if($(e).next().css('display') == 'none'){
             $(e).next().css('display','block');
             if(!$(e).next().attr("title")) qrcodes(id);
         }else{
             $(e).next().css('display','none')
+        } */
+        if($(e).next().attr("title")) {
+            $('.mask>.img>img').attr('src',$(e).next().find('img').attr('src'));
+            $('.mask').css('display','block'); 
+        }else{
+        	$('.mask').css('display','block'); 
         }
-        
+    }
+   	
+   	function hide(){
+        $('.mask').css('display','none');
     }
    	
    	function qrcodes(qrid){
    		var qrcode = new QRCode(document.getElementById("qr"+qrid), {
 				width : 100,
-				height : 100
+				height : 100,
 			});
 			var domurl=domainname.substring(7,domainname.length);
 			console.log(domurl);
@@ -67,6 +78,7 @@
 			if(!host) return;
 			domain = (protocol?protocol+'//':'')+host;
 			qrcode.makeCode(domain+"/index.php/cms/content/shareurl/d/"+domurl+"/k/"+qrid+"/u/{$userdb.uid}/g/{$info.id}");
+			
    	}
    	function errorImg(imgs){
         		imgs.src = "__STATIC__/images/nopic.png"; imgs.onerror = null; 
@@ -108,7 +120,7 @@
 			        	?>
 			        	retest+=' </div> </div>';
 			        	$('.curriculum').append(retest);
-			    	   	//qrcodes(listdata[i]['id']);
+			        	qrcodes(listdata[i]['id']);
 			    	  }
 			    }
 			});	
@@ -144,7 +156,7 @@
 						?>
 			        	retest+=' </div> </div>';
 			        	 $('.curriculum').append(retest);
-			        	//qrcodes(listdata[i]['id']);
+			        	 qrcodes(listdata[i]['id']);
 			    	  }
 			    	 
 			    }
@@ -252,6 +264,13 @@
             </div>
              <div onclick="getcomment()" style="width: 100%;height: 0.6rem;line-height: 0.6rem;margin-bottom: 0.3rem;text-align: center;background: #fff;">更多评论</div>
     </div>
+    <!-- 改 -->
+    <div class="mask" onclick="hide()">
+        <div class="img">
+            <img src="" alt="">
+        </div>
+    </div>
+    <!-- 改 -->
     <script>
     	 function nav_click(e){
             $(e).addClass('nav_check').siblings().removeClass('nav_check')

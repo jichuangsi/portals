@@ -323,3 +323,27 @@ body {
     margin-right: 0.5rem;
     margin-bottom: 0.2rem;
 }
+/* 改 */
+.mask {
+    width: 100%;
+    height: 100%;
+    padding: 0 0.2rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: none;
+    text-align: center;
+}
+.mask .img{
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.mask .img img{
+    width: 50%;
+    height: auto;
+}
+/*  */
