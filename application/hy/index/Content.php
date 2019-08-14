@@ -49,8 +49,8 @@ class Content extends C
 	}
 	
 	public function getcommgradexin($infoid=1){
-		 $rs=query("select avg(gradexin) from qb_comment_content  where sysid=11 and status=1 and aid=$infoid");
-		 return round($rs);
+		 $rs=query("select avg(gradexin) as gradexin from qb_comment_content  where sysid=11 and status=1 and aid=$infoid");		 
+		 return round($rs['0']['gradexin']);
 	}
 	/**
 	 * 内容详情页

@@ -26,8 +26,8 @@
                 <img src="__STATIC__/hy/assets/images/xin.png" alt="">
             </div>
         </div>
-        <div class="title gradexin">
-           {$info.title}
+        <div class="title">
+           <span>{$info.title}</span><span class="gradexin"></span>
         </div>
         <div class="Diagram">
             <div class="left" style="margin-left: 2rem;">
@@ -39,7 +39,7 @@
         </div>
         <div class="text">电话：{$info.telphone}</div>
         <div class="text">地址：{$info.address}</div>
-        <!--<div class="text">位于家信商业中心2层</div>-->
+        <div class="text">简介：{$info.content}</div>
     </div>
     <?php echo '<script>var domainname="'.$info['domainname'].'";</script>';?>
    <script>
@@ -240,7 +240,7 @@
                     </div>
             <div class="comment">
                 <div class="comment_top">
-                    <div class="fl" >用户评价（{:fun('comment@total',$info['id'],'hy')}）</div>
+                    <div class="fl" >用户评价（<span id="commentTotal"></span>）</div>
                     <div onclick="commshow()" class="fr" style="padding: 0 0.2rem;background-color: #FB9220;color: #333;">评论</div>
                 </div>
                 <div class="gradexin" style="padding: 0.2rem;float: right;">
@@ -278,7 +278,7 @@
                     </div>
                 </div>
             </div>
-             <div onclick="getcomment()" style="width: 100%;height: 0.6rem;line-height: 0.6rem;margin-bottom: 0.3rem;text-align: center;background: #fff;">更多评论</div>
+             <div onclick="getcomment()" style="width: 100%;height: 0.6rem;line-height: 0.6rem;margin-bottom: 0.3rem;text-align: center;background: #fff;" id="commentTip">没有相关评论</div>
     </div>
     <!-- 改 -->
     <div class="mask" onclick="hide()">
@@ -346,9 +346,11 @@
     </div>
     
     <script>
-    	var xinnum={:fun('xiangke@getcommgradexin',$info['id'])};
-    	console.log(xinnum+"~fun");
-    	getcommgradexin({$info['id']});
+    	var xinnum={:fun('xiangke@getcommgradexin',$info['id'])};    
+    	var commentTotal={:fun('comment@total',$info['id'],'hy')};
+    	$('#commentTotal').text(commentTotal);
+    	console.log("xingxing:" + xinnum+";comment:" + commentTotal);
+    	//getcommgradexin({$info['id']});
     	function getcommgradexin(infoid){
     		if(infoid!=null&&infoid!=""){
     			$.ajax({
@@ -359,6 +361,7 @@
     					console.log(data);
     					if(data>=0){
     						xinnum=data;
+    						gradenum();
     					}
     				}
     			});
@@ -366,7 +369,7 @@
     	}
     	//b遍历综合评分的星星
     	function gradenum(){
-    		if(xinnum>0){
+    		if(xinnum>=0){
     			var xintext="";
     			$('.gradexin').html('');
     			for(var i=1;i<=5;i++){
@@ -414,8 +417,11 @@
 	    				}
 	    				commpages++;
 	    				$('.comment').append(commtext);
+	    				$('#commentTip').text("更多评论");
     				}else{
-    					layer.msg("没有更多评论了");
+    					if(commpages>1){
+    						layer.msg("没有更多评论了");
+    					}
     				}
     			}
     		});
@@ -458,10 +464,11 @@
     					$('.comminfo').val("");
     					$('.comment .comment_bottom').remove();
     					commpages=1;
-    					getcommgradexin({$info['id']});
-    					gradenum();
+    					getcommgradexin({$info['id']});    					
+						console.log(xinnum);
+    					//gradenum();
     					getcomment();
-    					
+    					$("#commentTotal").text(parseInt($("#commentTotal").text())+1);
     				}else{
     					layer.msg("发表失败");
     				}
@@ -491,6 +498,7 @@
             $(this).prevAll().find('img').attr('src','__STATIC__/hy/assets/images/Stars.png').attr("data-src",1);
             $(this).find('img').attr('src','__STATIC__/hy/assets/images/Stars.png').attr("data-src",1);
             $(this).nextAll().find('img').attr('src','__STATIC__/hy/assets/images/huix.png');
+            $(this).nextAll().find('img').attr("data-src",0);
         })
     </script>
 </div>    

@@ -137,8 +137,14 @@
 										        	retest+='</div>';
 										        	retest+='<div class="Sold">已售'+listdata[i]['sold']+'</div>';
 										        	retest+=' <a href="'+domainname+'/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'" class= "go"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
+										        	<?php
+											        		if($userdb){ 
+											        	?>
 										        	retest+='<div class="xs" onclick="xs(this,'+listdata[i]['id']+',{$rs.id})">享客码</div>';
 										        	retest+=' <div class="img" id="qr'+listdata[i]['id']+'" data-url="'+domainname+'"></div>';
+										        	<?php
+											        		}
+											        	?>
 										        	retest+=' </div> </div>';
 										        }
 //										        sessionStorage.setItem('asd',retest)
@@ -186,7 +192,7 @@
 					if(!host) return;
 					domain = (protocol?protocol+'//':'')+host;
 //					qrcode.makeCode(domain+"/index.php/cms/content/shareurl/d/"+domurl+"/k/"+qrid+"/u/{$userdb.uid}/g/{$info.id}");
-					
+					console.log(domain+"/index.php/cms/content/shareurl/d/"+domurl+"/k/"+qrid+"/u/{$userdb.uid}/g/{$info.id}")
 					$("#qrcode").empty();
 					$("#qrcode").qrcode({
 			            render : "canvas",    //设置渲染方式，有table和canvas，使用canvas方式渲染性能相对来说比较好
