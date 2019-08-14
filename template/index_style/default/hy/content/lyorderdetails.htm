@@ -246,12 +246,11 @@
     </div>
     <div style="line-height: 0.4rem;margin-top: 0.2rem;font-size:0.24rem;color: #666666;padding: 0.3rem;">
     	<p>订单编号：<span class="orderid"></span></p>
-    	<p>下单时间： <span class="ordertime"></span></p>
-    	<p>支付时间：</p>
+    	<p>下单时间：<span class="ordertime"></span></p>
+    	<p>支付时间：<span class="paytime"></span></p>
     	<p>使用优惠：没有</p>
     </div>
-    <script>
-    	
+    <script>    	
     	function orderdetailsload(){
     		$.ajax({
     			type:"get",
@@ -298,7 +297,8 @@
 	    				}
 	    				$('.orderlist').append(ohtml);
 	    				$('.orderid').text(odata[0]['orderid']);
-	    				$('.ordertime').text(odata[0]['create_time']);
+	    				$('.ordertime').text(new Date(parseInt(odata[0]['create_time']+'000')).format("yyyy-MM-dd hh:mm:ss"));
+	    				$('.paytime').text(new Date(parseInt(odata[0]['update_time']+'000')).format("yyyy-MM-dd hh:mm:ss"));
     				}
     				
     			}

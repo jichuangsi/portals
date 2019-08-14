@@ -186,6 +186,7 @@ border-radius: 11px;
     font-size:0.3rem;
     color: #666666;
     width: 3rem;
+    height: 0.4rem;
     white-space: nowrap;
     text-overflow:ellipsis;
     overflow: hidden;

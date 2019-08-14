@@ -57,6 +57,7 @@ body {
     float: right;
 }
 .top .text {
+	padding-right: 0.4rem;
     padding-left: 0.4rem;
     color: #666;
     font-size: 0.18rem;

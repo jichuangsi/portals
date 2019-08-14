@@ -36,7 +36,7 @@
 		}
 		 .ListBox .box .listbottom{
 		    position: absolute;
-		    top: 0px;
+		    top: 0.2rem;
 		    left: 1.6rem;
 		    width: 4.28rem;
 		    height: 100%;
@@ -50,14 +50,14 @@
 		    text-overflow:ellipsis;
 		    overflow: hidden;
 		}
-		 .ListBox .box .listbottom .text{
+		 .ListBox .box .listbottom .text p{
 		    font-size: 0.24rem;
 		    color: #7B7B7B;
 		    white-space: nowrap;
 		    text-overflow:ellipsis;
 		    overflow: hidden;
-		    margin-top: 0.2rem;
-		    margin-bottom: 0.2rem;
+		    /* margin-top: 0.2rem;
+		    margin-bottom: 0.2rem; */
 		}
 		 .ListBox .box .listbottom .star{
 		    height: 0.25rem;
@@ -91,8 +91,8 @@
 		}
 		 .ListBox .box .Sold{
 		    position: absolute;
-		    right: 0.3rem;
-		    top: 0.2rem;
+		    right: 0.1rem;
+		    top: 0.4rem;
 		    color: #7B7B7B;
 		    font-size: 0.2rem;
 		}  
@@ -171,7 +171,7 @@
         <div class="fl" onclick="window.location.href='/index.php/hy/content/personal'">
             <img src="__STATIC__/hy/assets/images/return.png" alt="">
         </div>
-        <div class="title" style="color: #666666;" onclick="sss()">存在订单的机构</div>
+        <div class="title" style="color: #666666;width:90%" onclick="sss()">已下单机构</div>
     </div>
     <div class="collectlist">
     	<div class="ListBox" style="display: none;"> 
@@ -208,7 +208,7 @@
     								var isorder=JSON.parse(datas);
     								console.log(isorder);
     								if(isorder['count']>0){
-    									falg=true;
+    									falg=isorder['count'];
     								}else{
     									falg=false;
     								}
@@ -234,7 +234,8 @@
     				if(data!=null&&data!=""&&data!=0){
     					var collecthtml="";
     					for(var i in data){
-    						if(ordercheck(data[i]['domainname'])){
+    						var order = ordercheck(data[i]['domainname']);
+    						if(order){
 	    						collecthtml+='<div class="ListBox" onclick="ordergo('+data[i]['id']+')"> ';
 	    						collecthtml+='<div class="colldel">';
 	    						collecthtml+='<div style="margin: auto;"><input class="favid" type="checkbox" name="favid" onclick="boxclick()" value="'+data[i]['favid']+'" /></div>';
@@ -244,10 +245,12 @@
 	    						collecthtml+='<div class="listbottom">';
 	    						collecthtml+='<div class="title">'+data[i]['title']+'</div> ';
 	    						collecthtml+='<div class="text">'+data[i]['content']+'</div>';
-	    						collecthtml+='<div class="star"><img src="/public/static/hy/assets/images/Stars.png" alt=""></div>';
+	    						collecthtml+='<div class="star_'+data[i]['id']+'"></div>';
+	    						collecthtml+='</div>';
+	    						collecthtml+='<div class="Sold">已下'+order+'单</div>';
 	    						collecthtml+='</div>';
 	    						collecthtml+='</div>';
-	    						collecthtml+='</div>';
+	    						getcommgradexin(data[i]['id']);
 	    					}	
     					}
     					$('.collectlist').append(collecthtml);
@@ -255,6 +258,34 @@
     			}
     		});
     	}
+    	
+    	function getcommgradexin(infoid){
+    		if(infoid!=null&&infoid!=""){
+    			$.ajax({
+    				type:"get",
+    				url:"/index.php/hy/content/getcommgradexin/infoid/"+infoid,
+    				async:true,
+    				success:function(data){
+    					console.log(data);
+    					if(data>=0){
+    						showXing(infoid, data);
+    					}
+    				}
+    			});
+    		}
+    	}
+    	
+        function showXing(id, xinnum){
+            var commtext='';
+            console.log(xinnum);
+            for(var j=0;j<xinnum;j++){
+				commtext+='<span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>';
+			}
+            for(var j=xinnum;j<5;j++){
+				commtext+='<span><img src="__STATIC__/hy/assets/images/huix.png" alt=""></span>';
+			}
+            $('.star_'+id).append(commtext);
+        }
     </script>
 {include file="index@share"/}
 	</body>
