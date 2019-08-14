@@ -128,6 +128,61 @@ class Content extends C
 		return $this->fetch();
 	}
 	/*
+	 * 收藏页面
+	 */
+	public function lycollect(){
+		return $this->fetch();
+	}
+	public function delcollect($id=0){
+		$rs=query("delete from qb_fav where id=$id");
+		return $rs;
+	}
+	/*
+	 * 订单页面
+	 */
+	public function lyorder($id=null){
+		if($id==null){
+			$this->error("该信息不存在");
+		}
+		$rs=query("select * from qb_hy_content1 where id=$id");
+		$this->assign("coninfo",$rs[0]);
+		return $this->fetch();
+	}
+	/*
+	 * 存在订单的机构页面
+	 */
+	public function lyisorder(){
+		return $this->fetch();
+	}
+	public function lyorderdetails($id=null,$orderid=null){
+		if($id==null||$orderid==null){
+			$this->error("该信息不存在");
+		}
+		$rs=query("select * from qb_hy_content1 where id=$id");
+		$this->assign("coninfo",$rs[0]);
+		$this->assign("orderid",$orderid);
+		return $this->fetch();
+	}
+	/**
+	 * 获取所有有域名的机构
+	 */
+	public function gethycontent(){
+		$rs=query("select * from qb_hy_content1 where domainname is not null and domainname <> ''");
+		return $rs;
+	}
+	/*
+	 * 获取收藏信息
+	 */
+	public function getcollect($rows=10,$pages=1){
+		$uid=$this->user['uid'];
+		if($uid==null||$uid==""){
+			return 0;
+		}
+		$limits=($pages-1)*$rows;
+		$result=query("select *,fav.id as favid from qb_fav fav inner join qb_hy_content1 hycont on fav.aid=hycont.id where sysid=11 and fav.uid=$uid limit $limits,$rows");
+		return $result;
+	}
+	/*
 	 * 注册
 	 */
 	public function lyregister(){
@@ -158,8 +213,8 @@ class Content extends C
 			return $this->error("请输入密码");
 		}
 		if($mail!=null){
-			if( UserModel::get_info($mail,'email') ){
-				return $this->error("该邮箱已存在");
+			if(UserModel::get_info($mail,'email') ){
+				return $this->error("该邮箱已被注册");
             }else{
 //          	 list($uid, $username, $password, $email) = uc_user_login($data['username'], "test125");
             	$uids=uc_user_edit($this->user['username'],$pwd,$pwd,$mail);
@@ -169,8 +224,12 @@ class Content extends C
 					if($rs>=1){
 						return $this->success($rs);
 					}
-				}else{
-					return $this->error("失败");
+				}else if($uids==-4){
+					return $this->error("邮箱格式有误");
+				}else if($uids==-5){
+					return $this->error("该邮箱不允许注册");
+				}else if($uids==-6){
+					return $this->error("该邮箱已被注册");
 				}
 				return $this->error("失败");
             }

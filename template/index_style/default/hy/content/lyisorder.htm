@@ -1,0 +1,261 @@
+{include file="common/heads" /}
+
+<link rel="stylesheet" href="__STATIC__/hy/assets/style/emil.css">
+    <link rel='stylesheet' href='__STATIC__/hy/assets/style/reset_android.css'>
+    <script src="__STATIC__/hy/assets/js/reset.js"></script>
+    <style type="text/css">
+    	body{
+    		background-color: #fff !important; 
+    	}
+    	 .ListBox {
+		    display: flex;
+		    justify-content: space-between;
+		    flex-wrap: wrap;
+		}
+		 .ListBox .box {
+		    margin-bottom: 0.49rem;
+		    width: 100%;
+		    height: 2rem;
+		    box-shadow:0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+		    border-radius: 9px;
+		    position: relative;
+		}
+		 .ListBox .box .listtop{
+		    position: absolute;
+		    top: -0.19rem;
+		    left: -0.32rem;
+		    width: 1.8rem;
+		    height: 1.94rem;
+		    border-radius: 0.18rem;
+		}
+		 .ListBox .box .listtop img{
+		width: 100%;
+		height: auto;
+		margin: auto;
+		border-radius: 11px;
+		}
+		 .ListBox .box .listbottom{
+		    position: absolute;
+		    top: 0px;
+		    left: 1.6rem;
+		    width: 4.28rem;
+		    height: 100%;
+		    padding: 0.2rem 0.2rem;
+		}
+		 .ListBox .box .listbottom .title{
+		    font-size:0.3rem;
+		    color: #666666;
+		    width: 3rem;
+		    white-space: nowrap;
+		    text-overflow:ellipsis;
+		    overflow: hidden;
+		}
+		 .ListBox .box .listbottom .text{
+		    font-size: 0.24rem;
+		    color: #7B7B7B;
+		    white-space: nowrap;
+		    text-overflow:ellipsis;
+		    overflow: hidden;
+		    margin-top: 0.2rem;
+		    margin-bottom: 0.2rem;
+		}
+		 .ListBox .box .listbottom .star{
+		    height: 0.25rem;
+		    display: flex;
+		    margin-top: 0.1rem;
+		    margin-bottom: 0.1rem;
+		    color: #666666;
+		    font-size: 0.20rem;
+		}
+		 .ListBox .box .listbottom .star img{
+		    width: 0.25rem;
+		    height: 0.25rem;
+		    margin-right: 0.1rem;
+		}
+		 .ListBox .box .listbottom .money{
+		    font-size: 0.3rem;
+		    color: #FB9220;
+		    white-space: nowrap;
+		    text-overflow:ellipsis;
+		    overflow: hidden;
+		}
+		 .ListBox .box .listbottom .more{
+		    display: inline-block;
+		    font-size: 0.3rem;
+		    color: #fff;
+		    padding: 0.1rem 0.15rem;
+		    background-color: #FF8522;
+		    border-radius: 0.3rem;
+		    position: absolute;
+		    bottom: 0.2rem;
+		}
+		 .ListBox .box .Sold{
+		    position: absolute;
+		    right: 0.3rem;
+		    top: 0.2rem;
+		    color: #7B7B7B;
+		    font-size: 0.2rem;
+		}  
+		.ListBox .text {
+		    font-size: 0.24rem;
+		    color: #7B7B7B;
+		    white-space: nowrap;
+		    text-overflow: ellipsis;
+		    overflow: hidden;
+		    margin-top: 0.2rem;
+		    margin-bottom: 0.2rem;
+		    }
+		 .ListBox .box .go{
+		    position: absolute;
+		    right: -0.2rem;
+		    top: 0.8rem;
+		    width: 0.42rem;
+		    height: 0.42rem;
+		    background-color: #FB9220;
+		    border-radius: 0.06rem;
+		    display: flex;
+		}   
+		.ListBox .box .go i{
+			color: #fff;
+			margin: auto;
+		}
+		.ListBox {
+		    background-color: #fff;
+		    border-bottom:1px solid #e7e7e7;
+		}
+		 .ListBox .box{
+		    box-shadow: none;
+		    /* background-color: red; */
+		    margin-top: 0.2rem;
+		    margin-bottom: 0.2rem;
+		}
+		 .ListBox .box .listtop{
+		    top: 0.3rem;
+		    left: 0.3rem;
+		    width: 1.4rem;
+		    height: 1.4rem;
+		    /*background-color: #FFBABA;*/
+		    border-radius: 0.1rem;
+		}
+		.ListBox .box .listbottom{
+		    margin-left: 0.52rem;
+		}
+		.colldel{
+			width: 15%;
+			height: 100%;
+			display: none;
+			height: 2rem;
+			margin-bottom: 0.2rem;
+			margin-top: 0.2rem;
+		}
+		.collfoot{
+			width: 100%;
+			height: 0.8rem;
+			position: fixed;
+			bottom: 0;
+			display: none;
+			border-top: 1px solid #F3F3F3;
+		}
+		.collfoot div{
+			width: 50%;
+			height: 100%;
+			text-align: center;
+			line-height: 0.8rem;
+			color: #333333;
+			font-size:0.36rem;
+			background-color: #fff;
+			z-index: 99;
+		}
+    </style>
+    <div class="top" style="background-color: #fff;border-bottom: 1px solid #6666;">
+        <div class="fl" onclick="window.location.href='/index.php/hy/content/personal'">
+            <img src="__STATIC__/hy/assets/images/return.png" alt="">
+        </div>
+        <div class="title" style="color: #666666;" onclick="sss()">存在订单的机构</div>
+    </div>
+    <div class="collectlist">
+    	<div class="ListBox" style="display: none;"> 
+    		<div class="colldel">
+    			<div style="margin: auto;"><input  type="checkbox"  /></div>
+    		</div>
+    		<div class="box" style="width: 84%;">
+    			<div class="listtop">
+    				<img src="http://sample.zaixian.jichuangsi.com/Uploads/Picture/2018-05-07/5aefc3db79dd3.jpg" onerror="errorImg(this)">
+    			</div>
+    			<div class="listbottom">
+    				<div class="title">
+    					让你的思维导图从零到颜值爆表！
+    				</div> 
+    			<div class="text"> 世界500强企业,上市公司,国内著名精品地产品牌,集民生地产/旅游综合体/体育及文化产业于一体的综合性企业,恒大集团</div>
+    			<div class="star"><img src="/public/static/hy/assets/images/Stars.png" alt=""><img src="/public/static/hy/assets/images/Stars.png" alt=""><img src="/public/static/hy/assets/images/Stars.png" alt=""></div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <script>
+    	function errorImg(imgs){
+	        		imgs.src = "__STATIC__/images/nopic.png"; imgs.onerror = null; 
+	     }
+    	getcollect();
+    	function ordercheck(domainname){
+    		var falg=false;
+    		console.log(domainname);
+    		$.ajax({
+    							type:"get",
+    							url:domainname+"/index.php/api/order/orderCheck/u/12",
+    							async:false,
+    							success:function(datas){
+    								var isorder=JSON.parse(datas);
+    								console.log(isorder);
+    								if(isorder['count']>0){
+    									falg=true;
+    								}else{
+    									falg=false;
+    								}
+    							},
+    							error:function(res){
+    								falg=false;
+    							}
+    						});
+    		return falg;
+    	}
+    	function ordergo(id){
+    		if(id!=null&&id!=""&&id!=undefined){
+    			window.location.href="/index.php/hy/content/lyorder/id/"+id;
+    		}
+    	}
+    	function getcollect(){
+    		$.ajax({
+    			type:"get",
+    			url:"/index.php/hy/content/gethycontent",
+    			async:true,
+    			success:function(data){
+    				console.log(data);
+    				if(data!=null&&data!=""&&data!=0){
+    					var collecthtml="";
+    					for(var i in data){
+    						if(ordercheck(data[i]['domainname'])){
+	    						collecthtml+='<div class="ListBox" onclick="ordergo('+data[i]['id']+')"> ';
+	    						collecthtml+='<div class="colldel">';
+	    						collecthtml+='<div style="margin: auto;"><input class="favid" type="checkbox" name="favid" onclick="boxclick()" value="'+data[i]['favid']+'" /></div>';
+	    						collecthtml+='</div>';
+	    						collecthtml+='<div class="box" style="width: 84%;">';
+	    						collecthtml+='<div class="listtop"><img src="/public/'+data[i]['picurl']+'" onerror="errorImg(this)"></div>';
+	    						collecthtml+='<div class="listbottom">';
+	    						collecthtml+='<div class="title">'+data[i]['title']+'</div> ';
+	    						collecthtml+='<div class="text">'+data[i]['content']+'</div>';
+	    						collecthtml+='<div class="star"><img src="/public/static/hy/assets/images/Stars.png" alt=""></div>';
+	    						collecthtml+='</div>';
+	    						collecthtml+='</div>';
+	    						collecthtml+='</div>';
+	    					}	
+    					}
+    					$('.collectlist').append(collecthtml);
+    				}
+    			}
+    		});
+    	}
+    </script>
+{include file="index@share"/}
+	</body>
+</html>

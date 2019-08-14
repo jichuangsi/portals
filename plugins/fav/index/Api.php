@@ -25,7 +25,9 @@ class Api extends IndexBase
         ];
         $result = FavModel::get($data);
         if ($result) {
-            return $this->err_js('请不要重复收藏');
+        	$results = FavModel::destroy($data);
+        	return $this->err_js('取消收藏');
+//          return $this->err_js('请不要重复收藏');
         }
         if(FavModel::create($data)){
             return $this->ok_js('收藏成功');

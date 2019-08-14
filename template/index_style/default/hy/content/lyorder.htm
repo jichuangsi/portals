@@ -1,0 +1,321 @@
+{include file="common/heads" /}
+
+<link rel="stylesheet" href="__STATIC__/hy/assets/style/emil.css">
+    <link rel='stylesheet' href='__STATIC__/hy/assets/style/reset_android.css'>
+    <script src="__STATIC__/hy/assets/js/reset.js"></script>
+    <style type="text/css">
+    	body{
+    		background-color: #fff !important; 
+    	}
+    	 .ListBox {
+		    display: flex;
+		    justify-content: space-between;
+		    flex-wrap: wrap;
+		}
+		 .ListBox .box {
+		    margin-bottom: 0.49rem;
+		    width: 100%;
+		    height: 2rem;
+		    box-shadow:0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+		    position: relative;
+		}
+		 .ListBox .box .listtop{
+		    position: absolute;
+		    top: -0.19rem;
+		    left: -0.32rem;
+		    width: 1.8rem;
+		    height: 1.94rem;
+		    border-radius: 0.18rem;
+		}
+		 .ListBox .box .listtop img{
+		width: 100%;
+		height: auto;
+		margin: auto;
+		border-radius: 11px;
+		}
+		 .ListBox .box .listbottom{
+		    position: absolute;
+		    top: 0px;
+		    left: 1.6rem;
+		    width: 4.28rem;
+		    height: 100%;
+		    padding: 0.2rem 0.2rem;
+		}
+		 .ListBox .box .listbottom .title{
+		    font-size:0.3rem;
+		    color: #666666;
+		    width: 3rem;
+		    white-space: nowrap;
+		    text-overflow:ellipsis;
+		    overflow: hidden;
+		}
+		 .ListBox .box .listbottom .text{
+		    font-size: 0.24rem;
+		    color: #7B7B7B;
+		    white-space: nowrap;
+		    text-overflow:ellipsis;
+		    overflow: hidden;
+		    margin-top: 0.2rem;
+		    margin-bottom: 0.2rem;
+		}
+		 .ListBox .box .listbottom .star{
+		    height: 0.25rem;
+		    display: flex;
+		    margin-top: 0.3rem;
+		    margin-bottom: 0.3rem;
+		    color: #666666;
+		    font-size: 0.20rem;
+		}
+		 .ListBox .box .listbottom .star img{
+		    width: 0.25rem;
+		    height: 0.25rem;
+		    margin-right: 0.1rem;
+		    
+		}
+		 .ListBox .box .listbottom .money{
+		    font-size: 0.3rem;
+		    color: #FB9220;
+		    white-space: nowrap;
+		    text-overflow:ellipsis;
+		    overflow: hidden;
+		}
+		 .ListBox .box .listbottom .more{
+		    display: inline-block;
+		    font-size: 0.3rem;
+		    color: #fff;
+		    padding: 0.1rem 0.15rem;
+		    background-color: #FF8522;
+		    border-radius: 0.3rem;
+		    position: absolute;
+		    bottom: 0.2rem;
+		}
+		 .ListBox .box .Sold{
+		    position: absolute;
+		    right: 0.3rem;
+		    top: 0.2rem;
+		    color: #FF8522;
+		    font-size: 0.35rem;
+		}  
+		.sopnum{
+			position: absolute;
+		    right: 0.6rem;
+		    top: 0.8rem;
+		    color: #666666;
+		    font-size: 0.35rem;
+		}
+		.ListBox .text {
+		    font-size: 0.24rem;
+		    color: #7B7B7B;
+		    white-space: nowrap;
+		    text-overflow: ellipsis;
+		    overflow: hidden;
+		    margin-top: 0.2rem;
+		    margin-bottom: 0.2rem;
+		    }
+		 .ListBox .box .go{
+		    position: absolute;
+		    right: -0.2rem;
+		    top: 0.8rem;
+		    width: 0.42rem;
+		    height: 0.42rem;
+		    background-color: #FB9220;
+		    border-radius: 0.06rem;
+		    display: flex;
+		}   
+		.ListBox .box .go i{
+			color: #fff;
+			margin: auto;
+		}
+		.ListBox {
+		    background-color: #fff;
+		    border-radius: 0 0 0.1rem 0.1rem;
+    		box-shadow: 0 0.1rem #efefef;
+    		margin-bottom: 0.1rem;
+		}
+		 .ListBox .box{
+		    box-shadow: none;
+		    /* background-color: red; */
+		    /*margin-top: 0.2rem;*/
+		    margin-bottom: 0.2rem;
+		}
+		.Sold {
+		    position: absolute;
+		    right: 0.3rem;
+		    top: 0.2rem;
+		    color: #FF8522;
+		    font-size: 0.35rem;
+		}
+		 .ListBox .box .listtop{
+		    top: 0.3rem;
+		    left: 0.3rem;
+		    width: 1.4rem;
+		    height: 1.4rem;
+		    /*background-color: #FFBABA;*/
+		    border-radius: 0.1rem;
+		}
+		.ListBox .box .listbottom{
+		    margin-left: 0.52rem;
+		}
+		.colldel{
+			width: 15%;
+			height: 100%;
+			display: none;
+			height: 2rem;
+			margin-bottom: 0.2rem;
+			margin-top: 0.2rem;
+		}
+		.collfoot{
+			width: 100%;
+			height: 0.8rem;
+			position: fixed;
+			bottom: 0;
+			display: none;
+			border-top: 1px solid #F3F3F3;
+		}
+		.collfoot div{
+			width: 50%;
+			height: 100%;
+			text-align: center;
+			line-height: 0.8rem;
+			color: #333333;
+			font-size:0.36rem;
+			background-color: #fff;
+			z-index: 99;
+		}
+		.orderdetails{
+			width: 100%;
+			height: 0.8rem;
+			position: relative;
+			/*border-top: 1px solid #efefef;*/
+		}
+		.orderbtndiv{
+			width: 92%;
+		    display: flex;
+		    justify-content: flex-end;
+		    position: absolute;
+		    top: 0.1rem;
+		}
+		.btns{
+			margin-left: 0.1rem;
+			background-color: #fff;
+			font-size: 0.18rem;
+			border: 1px solid #efefef;
+    		padding: 0.05rem 0.1rem;
+		    padding: 0 0.2rem;
+    		border-radius: 10%;
+    		outline: none;
+    		text-align: center;
+    		line-height: 0.4rem;
+		}
+		.ordertotal{
+			width: 92%;
+    		text-align: right;
+		}
+    </style>
+    <div class="top" style="background-color: #fff;border-bottom: 1px solid #6666;">
+        <div class="fl" onclick="window.history.back(-1);">
+            <img src="__STATIC__/hy/assets/images/return.png" alt="">
+        </div>
+        <div class="title" style="color: #666666;" onclick="orderload()">我的订单</div>
+    </div>
+    <div class="orderlist">
+    	<div class="ListBox"> 
+    		<div style="width: 100%;padding: 0.1rem;"> <a  href="/index.php/hy/content/show/id/31">纯音琴行 <i style="font-size: 0.3rem;margin-left: 0.1rem;" class="fa fa-angle-right" aria-hidden="true"></i></a> <span style="float: right;margin-right: 0.2rem;color: #7B7B7B;">报名成功</span> </div>
+    		<div class="box">
+    			<div class="Sold">￥199</div>
+    			<div class="sopnum">x1</div>
+    			<div class="listtop">
+    				<img src="http://sample.zaixian.jichuangsi.com/Uploads/Picture/2018-05-07/5aefc3db79dd3.jpg" onerror="errorImg(this)">
+    			</div>
+    			<div class="listbottom">
+    				<div class="title">
+    					让你的思维导图从零到颜值爆表！
+    				</div> 
+    			<div class="star">
+    				<span><img src="/public/static/hy/assets/images/Stars.png" alt=""><img src="/public/static/hy/assets/images/Stars.png" alt=""><img src="/public/static/hy/assets/images/Stars.png" alt="">21人预约</span>
+    			</div>
+    			</div>
+    		</div>
+    		<div class="ordertotal">合计:600</div>
+    		<div class="orderdetails">
+	    		<div class="orderbtndiv">
+	    			<a href="" class="btns">去付款</a>
+	    			<button class="btns">查看详情</button>
+	    		</div>
+	    	</div>
+    	</div>
+    </div>
+    <div style="width: 100%;height: 1rem;text-align: center;line-height: 1rem;margin-bottom: 0.8rem;" onclick="orderload()">加载更多...</div>
+    <script>
+    	var orderpages=1;
+    	orderload();
+    	function ordergo(obj){
+    		var orderid=$(obj).attr("data-data");
+    		if(orderid!=null&&orderid!=""&&orderid!=undefined){
+    			window.location.href="/index.php/hy/content/lyorderdetails/id/{$coninfo.id}/orderid/"+orderid;
+    		}
+    	}
+    	function orderload(){
+    		$.ajax({
+    			type:"get",
+    			url:"{$coninfo.domainname}/index.php/api/order/orderQuery/p/"+orderpages+"/r/5/u/12",
+    			async:true,
+    			success:function(data){
+    				if(data!=null&&data!=""&&data!=undefined){
+    					var odata=JSON.parse(data).data;
+    					console.log(odata);
+    					if(odata!=null&&odata!=""&&odata!=undefined){
+	    					var ohtml="";
+	    					for(var i in odata){
+	    						if(odata[i].orderlist!=null){
+	    							ohtml+='<div class="ListBox"> ';
+	    							ohtml+='<div style="width: 100%;padding: 0.1rem;"> <a  href="/index.php/hy/content/show/id/{$coninfo.id}">{$coninfo.title} <i style="font-size: 0.3rem;margin-left: 0.1rem;" class="fa fa-angle-right" aria-hidden="true"></i></a> <span style="float: right;margin-right: 0.2rem;color: #7B7B7B;">';
+	    							if(odata[i]['status']==0){
+	    								ohtml+='订单已生成';
+	    							}else if(odata[i]['status']==1){
+	    								ohtml+='未付款';
+	    							}else if(odata[i]['status']==2){
+	    								ohtml+='已付款';
+	    							}else if(odata[i]['status']==6){
+	    								ohtml+='已取消';
+	    							}
+	    							ohtml+='</span> </div>';
+	    							var orderlist=odata[i]['orderlist'];
+	    							for(var j in orderlist){
+			    						ohtml+='<div class="box">';
+			    						ohtml+='<div class="Sold">￥'+orderlist[j]['price']+'</div>';
+			    						ohtml+='<div class="sopnum">x'+orderlist[j]['num']+'</div>';
+			    						ohtml+='<div class="listtop"><img src="'+orderlist[j]['imageurl']+'" onerror="errorImg(this)"></div>';
+			    						ohtml+='<div class="listbottom">';
+			    						ohtml+='<div class="title">'+orderlist[j]['title']+'</div>';
+			    						ohtml+='<div class="star"><span>点击量:'+orderlist[j]['view']+'</span><span style="margin-left: 0.3rem;">已售出：'+orderlist[j]['sold']+'</span></div>';
+			    						ohtml+='</div>';
+			    						ohtml+='</div>';
+	    							}
+	    							ohtml+='<div class="ordertotal">合计:'+odata[i]['total']+'</div>';
+		    						ohtml+='<div class="orderdetails">';
+		    						ohtml+='<div class="orderbtndiv">';
+		    						if(odata[i]['ispay']==1&&odata[i]['status']!=6){
+		    							ohtml+='<a href="{$coninfo.domainname}/index.php?s=/payoff/index/index/orderid/'+odata[i]['orderid']+' " class="btns">去付款</a>'
+		    						}
+		    						ohtml+='<button class="btns" onclick="ordergo(this)" data-data="'+odata[i]['orderid']+'">查看详情</button>';
+		    						ohtml+='</div>';
+		    						ohtml+='</div></div>'
+	    						}
+	    					}
+    						$('.orderlist').append(ohtml);
+    					}else{
+    						if(orderpages>1){
+    							layer.msg('没有更多了');
+    						}
+    					}
+    				}
+    				console.log(JSON.parse(data));
+    			}
+    		});
+    		orderpages++;
+    	}
+    </script>
+{include file="index@share"/}
+	</body>
+</html>

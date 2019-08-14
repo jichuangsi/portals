@@ -2,8 +2,47 @@
 <link rel="stylesheet" href="__STATIC__/hy/assets/style/index.css">
     <link rel='stylesheet' href='__STATIC__/hy/assets/style/reset_android.css'>
     <script src="__STATIC__/hy/assets/js/reset.js"></script>
-    <script src="__STATIC__/hy/assets/js/qrcode.js"></script>
+    <script src="__STATIC__/hy/assets/js/jquery-2.2.2.min.js"></script>
+    <script src="__STATIC__/hy/assets/js/qrcode_with_logo.js"></script>
+    <script src="__STATIC__/hy/assets/js/utf.js"></script>
     <style>
+    	.mask {
+		    width: 100%;
+		    height: 100%;
+		    padding: 0 0.2rem;
+		    background-color: rgba(0, 0, 0, 0.3);
+		    position: fixed;
+		    top: 0px;
+		    left: 0px;
+		    display: none;
+		    text-align: center;
+		    z-index: 999;
+		}
+		.mask .img {
+		    /* width: 100%; */
+		    position: absolute;
+		    left: 50%;
+		    top: 50%;
+		    transform: translate(-50%,-50%);
+		}
+		.mask .img div {
+		    width: 100%;
+		    height: auto;
+		}
+    	.xs{
+	    position: absolute;
+	    right: 1rem;
+	    top: 0.8rem;
+	    font-size: 0.26rem;
+	    padding: 0.08rem 0.1rem;
+	    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4);
+	    background-color: #FB9220;
+	    border-radius: 0.06rem;
+	    color: #fff;
+	}
+	 .xs:active{
+	    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.4);
+	}
     	.state{
     		width: 100%; 
 		    height: 0.9rem;
@@ -19,15 +58,34 @@
     	}
     	.gengduo{
     		width: 100%;
-	    height: 1rem;
-	    margin-bottom: 0.6rem;
-	    text-align: center;
-	    line-height: 1rem;
-	    border-top: 1px solid #888888;
-	    border-radius: 0 0 0.2rem 0.2rem;
-	    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
+		    height: 1rem;
+		    margin-bottom: 0.6rem;
+		    text-align: center;
+		    line-height: 1rem;
+		    border-top: 1px solid #888888;
+		    border-radius: 0 0 0.2rem 0.2rem;
+		    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
     	}
+    	.xs {
+		    position: absolute;
+		    right: 1rem;
+		    top: 0.8rem;
+		    font-size: 0.26rem;
+		    padding: 0.08rem 0.1rem;
+		    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4);
+		    background-color: #FB9220;
+		    border-radius: 0.06rem;
+		    color: #fff;
+		}
     </style>
+    <!-- 改 -->
+    <div class="mask" onclick="hide()">
+        <div class="img">
+            <!-- <img src="" alt=""> -->
+            <div id="qrcode"></div>         
+        </div>
+    </div>
+    <!-- 改 -->
     <div class="cmsinfohead">
     	<div class="state">
             <div onclick="window.history.back(-1);" style="width: 10%;padding: 0.1rem;">
@@ -45,6 +103,40 @@
         </div>
         <div onclick="hynext()" class="gengduo" >查看更多</div>
         <script>
+        	function xs(e,id,gid){
+		         qrcodes(id,gid);
+		        $('.mask').css('display','block'); 
+		    }
+		   	
+		   	function hide(){
+		        $('.mask').css('display','none');
+		    }
+        	function qrcodes(qrid,gid){
+//		   		var qrcode = new QRCode(document.getElementById("qr"+qrid), {
+//						width : 100,
+//						height : 100
+//					});
+					var domainname=$("#qr"+qrid).attr("data-url")
+					var domurl=domainname.substring(7,domainname.length);
+					var protocol = window.location.protocol;
+					var host = window.location.host;
+					var port = window.location.port;
+					if(!host) return;
+					domain = (protocol?protocol+'//':'')+host;
+//					qrcode.makeCode(domain+"/index.php/cms/content/shareurl/d/"+domurl+"/k/"+qrid+"/u/{$userdb.uid}/g/{$info.id}");
+					
+					$("#qrcode").empty();
+					$("#qrcode").qrcode({
+			            render : "canvas",    //设置渲染方式，有table和canvas，使用canvas方式渲染性能相对来说比较好
+			            text : domain+"/index.php/cms/content/shareurl/d/"+domurl+"/k/"+qrid+"/u/{$userdb.uid}/g/"+gid,    //扫描二维码后显示的内容,可以直接填一个网址，扫描二维码后自动跳向该链接
+			            width : "300",               //二维码的宽度
+			            height : "300",              //二维码的高度
+			            background : "#ffffff",       //二维码的后景色
+			            foreground : "#000000",        //二维码的前景色
+			            src: "__STATIC__/hy/assets/images/lx.png"             //二维码中间的图片
+			        });
+		   	}
+        	
         	function errorImg(imgs){
         		imgs.src = "__STATIC__/images/nopic.png"; imgs.onerror = null; 
         	}
@@ -55,9 +147,10 @@
         			url:'/index.php/hy/content/boutiquelist/rows/2/pages/'+pages,
         			async:true,
         			success:function(data){
+        				console.log(data);
         				for(var i in data){
         					if(data[i]['domainname']!=null&&data[i]['domainname']!=""){
-        						ssr(data[i]['domainname']);
+        						ssr(data[i]['domainname'],data[i]['id']);
         					}
         				}
         			}
@@ -77,7 +170,7 @@
         				if(data!=null&&data!=""){
 	        				for(var i in data){
 	        					if(data[i]['domainname']!=null&&data[i]['domainname']!=""){
-	        						ssr(data[i]['domainname']);
+	        						ssr(data[i]['domainname'],data[i]['id']);
 	        					}
 	        				}
         				}
@@ -85,7 +178,7 @@
         		});
         	}
         	
-        	function ssr(domainname){
+        	function ssr(domainname,gid){
         		if(domainname!=undefined&&domainname!=null&&domainname!=''){
 	        		$.ajax({
 					    url:domainname+"/index.php/api/course/recommendQuery",
@@ -107,7 +200,16 @@
 					        	retest+='</div>';
 					        	retest+='<div class="Sold">已售'+listdata[i]['sold']+'</div>';
 					        	retest+=' <a href="'+domainname+'/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'" class= "go"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
-					        	retest+=' <div class="img" id="qr'+listdata[i]['id']+'"></div>';
+					        	
+					        	<?php
+								if($userdb){ 
+								?>
+						        	retest+='<div class="xs" onclick="xs(this,'+listdata[i]['id']+','+gid+')">享客码</div>';
+						        	retest+=' <div class="img" id="qr'+listdata[i]['id']+'" data-url="'+domainname+'"></div>';
+								<?php
+								}
+								?>
+					        	
 					        	retest+=' </div> </div>';
 					        }
 					        $('#curriculums').append(retest);
