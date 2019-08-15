@@ -50,7 +50,7 @@
 		    text-overflow:ellipsis;
 		    overflow: hidden;
 		}
-		 .ListBox .box .listbottom .text{
+		 .ListBox .box .listbottom .text p{
 		    font-size: 0.24rem;
 		    color: #7B7B7B;
 		    white-space: nowrap;
@@ -177,7 +177,7 @@
         <div style="float: right;padding: 0 0.1rem;color: #666666;display: none;" class="manageclose" onclick="collmanageclose()" >
             取消
         </div>
-        <div class="title" style="color: #666666;" onclick="getxin()">收藏</div>
+        <div class="title" style="color: #666666;">收藏</div>
     </div>
     <div class="collectlist">
     	<div class="ListBox" style="display: none;"> 
@@ -212,10 +212,19 @@
     		$.ajax({
 				type:"get",
 				url:"/index.php/hy/content/getcommgradexins/infoid/"+infoid,
-				async:false,
+				async:true,
 				success:function(data){
 					console.log(parseInt(data));
 					xinnum=parseInt(data);
+					var xinthtml = '';
+					for(var j=1;j<=5;j++){
+						if(j>xinnum){
+							xinthtml+='<img src="/public/static/hy/assets/images/huix.png" alt="">';
+						}else{
+							xinthtml+='<img src="/public/static/hy/assets/images/Stars.png" alt="">';
+						}
+					}
+					$(".star_"+infoid).append(xinthtml);
 				}
 			});
 			return xinnum;
@@ -319,7 +328,7 @@
     		$.ajax({
     			type:"get",
     			url:"/index.php/hy/content/getcollect/rows/5/pages/"+pages,
-    			async:false,
+    			async:true,
     			success:function(data){
     				console.log(data);
     				if(data!=null&&data!=""&&data!=0){
@@ -334,19 +343,12 @@
     						collecthtml+='<div class="listbottom">';
     						collecthtml+='<div class="title">'+data[i]['title']+'</div> ';
     						collecthtml+='<div class="text">'+data[i]['content']+'</div>';
-    						collecthtml+='<div class="star xin" data-data="'+data[i]['id']+'">';
-    						var xincount=getcommgradexin(data[i]['id']);
-    						for(var j=1;j<=5;j++){
-    							if(j>xincount){
-    								collecthtml+='<img src="/public/static/hy/assets/images/huix.png" alt="">';
-    							}else{
-    								collecthtml+='<img src="/public/static/hy/assets/images/Stars.png" alt="">';
-    							}
-    						}
+    						collecthtml+='<div class="star_'+data[i]['id']+'" data-data="'+data[i]['id']+'">';    						
     						collecthtml+='</div>';
     						collecthtml+='</div>';
     						collecthtml+='</div>';
     						collecthtml+='</div>';
+    						getcommgradexin(data[i]['id']);    						
     					}
     					pages++;
     					$('.collectlist').append(collecthtml);
