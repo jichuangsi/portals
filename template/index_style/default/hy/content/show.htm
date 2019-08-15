@@ -22,8 +22,18 @@
             <div class="fr">
                 <img src="__STATIC__/hy/assets/images/share.png" alt="">
             </div>
-            <div class="fr" onclick="add_fav({$info.id})">
-                <img src="__STATIC__/hy/assets/images/xin.png" alt="">
+            <div class="fr" onclick="add_fav({$info.id})" data-data="{:fun('xiangke@iscollect',$userdb['uid'],$info['id'])}">
+            	<?php 
+            		if(fun('xiangke@iscollect',$info['id'],$userdb['uid'])==0){
+            	?>
+               	 <img class="xin" src="__STATIC__/hy/assets/images/xin.png" alt="">
+                <?php
+                	 }else{
+                	 	?>
+                 <img class="xin" src="__STATIC__/hy/assets/images/xins.png" alt="">
+                <?php
+                }
+                ?>
             </div>
         </div>
         <div class="title">
@@ -48,10 +58,10 @@
 		$.get(url,function(res){
 			if(res.code==0){
 				layer.msg('收藏成功');
-				$('.fav').css('color','red');
+				$('.xin').attr("src","__STATIC__/hy/assets/images/xins.png");
 			}else{
 				layer.msg(res.msg);
-				$('.fav').css('color','#2d374b');
+				$('.xin').attr("src","__STATIC__/hy/assets/images/xin.png");
 			}
 		})
 	}

@@ -178,28 +178,13 @@
 				var sortlen=$('.right .sorttitle').length;
 				var a = $('.right')[0].scrollTop;
 				var b = $('.right')[0].offsetTop;
-//				console.log($('.right')[0].scrollTop+"~~right~~");
-//				console.log($('.right')[0].offsetTop+"~~sss~~");
-//				console.log($('.right .sorttitle').eq(1)[0].offsetTop+"~~posi~~"+$('.right .sorttitle').eq(i).text());
 				for(var i=0;i<sortlen;i++){
 					if(a <= $('.right .sorttitle').eq(i)[0].offsetTop-b+10 && a >= $('.right .sorttitle').eq(i)[0].offsetTop-b-10){
-						
-//					var offset=$('.right .sorttitle').eq(i).offset().top-tophei;
-//					if(offset<10&&offset>-10){
 						var leftclass=$('.right .sorttitle').eq(i).attr("data-data");
 						console.log(leftclass);
-//						console.log("距离"+offset);
-						$('.'+leftclass).addClass("check");
 						$('.'+leftclass).siblings().removeClass("check");
-//						console.log($('.right .sorttitle').eq(i).attr("data-data"));
-//							console.log(a);
-//							console.log($('.right .sorttitle').eq(1)[0].offsetTop-b+10);
-//							console.log($('.right .sorttitle').eq(1)[0].offsetTop-b-10);
-//							console.log($('.right .sorttitle').eq(i).text());
+						$('.'+leftclass).addClass("check");
 					}
-					
-//					console.log($('.right .sorttitle').eq(i).offset().top+"~~off~~"+$('.right .sorttitle').eq(i).text());
-//					console.log($('.right .sorttitle').eq(i).offset().top+"~~posi~~"+$('.right .sorttitle').eq(i).text());
 				}
 			});
     	});
@@ -254,7 +239,7 @@
     </div>
     <script>
         function check(e){
-            $(e).addClass('check').siblings().removeClass()
+            $(e).addClass('check').siblings().removeClass("check");
 //          $('.right>.title').text($(e).find('span').text())
         }
     </script>

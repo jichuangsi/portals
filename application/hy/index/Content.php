@@ -99,6 +99,10 @@ class Content extends C
 		$this->assign("infoid",$infoid);
 		return $this->fetch();
 	}
+	public function getcommgradexins($infoid=1){
+		$rs=query("select avg(gradexin) as gradexin from qb_comment_content  where sysid=11 and status=1 and aid=$infoid");
+		return round($rs['0']['gradexin']);
+	}
 	/*
 	 * 发表评论
 	 */
@@ -182,6 +186,7 @@ class Content extends C
 		$result=query("select *,fav.id as favid from qb_fav fav inner join qb_hy_content1 hycont on fav.aid=hycont.id where sysid=11 and fav.uid=$uid limit $limits,$rows");
 		return $result;
 	}
+	
 	/*
 	 * 注册
 	 */

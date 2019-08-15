@@ -177,7 +177,7 @@
         <div style="float: right;padding: 0 0.1rem;color: #666666;display: none;" class="manageclose" onclick="collmanageclose()" >
             取消
         </div>
-        <div class="title" style="color: #666666;">收藏</div>
+        <div class="title" style="color: #666666;" onclick="ss()">收藏</div>
     </div>
     <div class="collectlist">
     	<div class="ListBox" style="display: none;"> 
@@ -204,6 +204,29 @@
     	<div class="delbtn" style="color: #999999;" onclick="delcollect()">删除</div>
     </div>
     <script>
+    	function getcommgradexin(infoid){
+    		if(infoid==null||infoid==""||infoid==undefined){
+    			return 0;
+    		}
+    		var xinnum=0;
+    		$.ajax({
+				type:"get",
+				url:"/index.php/hy/content/getcommgradexins/infoid/"+infoid,
+				async:false,
+				success:function(data){
+					console.log(parseInt(data));
+					xinnum=parseInt(data);
+				}
+			});
+			return xinnum;
+    	}
+    	function collectgo(obj){
+    		var infoid=$(obj).attr("data-data");
+    		if(infoid!=null&&infoid!=""&&infoid!=undefined){
+    			window.location.href="/index.php/hy/content/show/id/"+infoid;
+    		}
+			
+    	}
     	function collmanage(){
     		$('.colldel').css("display","flex");
     		$('.collfoot').css("display","flex");
@@ -237,7 +260,6 @@
 				}
 				location.reload();
 			}
-			
     	}
     	function boxclick(){
     		var ids = [];
@@ -260,16 +282,18 @@
 				ii=i;
 			})
 			if(ii==$("input[name='favid']").length-1){
-				$("input[name='favid']").prop("checked",false);
+//				$("input[name='favid']").prop("checked",false);
+				var checked = $("input[name='favid']").prop("checked");
+		    	$("input[name='favid']").prop("checked",!checked);
 			}else{
 				$("input[name='favid']").each(function(i){
 					$(this).prop("checked",true);
-					
 				})
 //				$("input[name='favid']").attr("checked",true);
 			}
 			boxclick();
     	}
+    	
     	var pages=1;
     	getcollect();
     	function getcollect(){
@@ -282,7 +306,7 @@
     				if(data!=null&&data!=""&&data!=0){
     					var collecthtml="";
     					for(var i in data){
-    						collecthtml+='<div class="ListBox"> ';
+    						collecthtml+='<div class="ListBox" data-data="'+data[i]['id']+'" onclick="collectgo(this)">';
     						collecthtml+='<div class="colldel">';
     						collecthtml+='<div style="margin: auto;"><input class="favid" type="checkbox" name="favid" onclick="boxclick()" value="'+data[i]['favid']+'" /></div>';
     						collecthtml+='</div>';
@@ -291,7 +315,15 @@
     						collecthtml+='<div class="listbottom">';
     						collecthtml+='<div class="title">'+data[i]['title']+'</div> ';
     						collecthtml+='<div class="text">'+data[i]['content']+'</div>';
-    						collecthtml+='<div class="star"><img src="/public/static/hy/assets/images/Stars.png" alt=""></div>';
+    						collecthtml+='<div class="star">';
+    						for(var j=1;j<=5;j++){
+    							if(j>getcommgradexin(data[i]['id'])){
+    								collecthtml+='<img src="/public/static/hy/assets/images/huix.png" alt="">';
+    							}else{
+    								collecthtml+='<img src="/public/static/hy/assets/images/Stars.png" alt="">';
+    							}
+    						}
+    						collecthtml+='</div>';
     						collecthtml+='</div>';
     						collecthtml+='</div>';
     						collecthtml+='</div>';
