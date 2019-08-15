@@ -102,7 +102,7 @@ class Reg extends IndexBase
         $data = get_post('post');
          $isModular=$data['isModular'];
         if(!empty($data)){
-            $array = explode(',','username,password,password2,email,mobphone,captcha,email_code,phone_code,weixin_code');  //允许注册的字段
+            $array = explode(',','uid,username,password,password2,email,mobphone,captcha,email_code,phone_code,weixin_code');  //允许注册的字段
             foreach($data AS $key=>$value){
                 if(!in_array($key, $array)){
                     unset($data[$key]);
@@ -158,6 +158,7 @@ class Reg extends IndexBase
 						$this->error('未定义！');
 					} 
 				} else {
+					$data['uid']=$uids;
 					$ucsynlogin = uc_user_synlogin($uids);
 					$res=urlencode($ucsynlogin);
 					$ress=urldecode($res);

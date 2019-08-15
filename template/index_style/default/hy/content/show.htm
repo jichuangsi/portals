@@ -22,7 +22,7 @@
             <div class="fr">
                 <img src="__STATIC__/hy/assets/images/share.png" alt="">
             </div>
-            <div class="fr">
+            <div class="fr" onclick="add_fav({$info.id})">
                 <img src="__STATIC__/hy/assets/images/xin.png" alt="">
             </div>
         </div>
@@ -43,6 +43,18 @@
     </div>
     <?php echo '<script>var domainname="'.$info['domainname'].'";</script>';?>
    <script>
+   	function add_fav(id){
+		var url="{:purl('fav/api/add')}?type={:config('system_dirname')}&id="+id;
+		$.get(url,function(res){
+			if(res.code==0){
+				layer.msg('收藏成功');
+				$('.fav').css('color','red');
+			}else{
+				layer.msg(res.msg);
+				$('.fav').css('color','#2d374b');
+			}
+		})
+	}
    	var curriculumlisturl=null;
    	var listpages=2;
    	

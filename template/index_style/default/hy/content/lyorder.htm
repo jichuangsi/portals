@@ -258,7 +258,7 @@
     	function orderload(){
     		$.ajax({
     			type:"get",
-    			url:"{$coninfo.domainname}/index.php/api/order/orderQuery/p/"+orderpages+"/r/5/u/12",
+    			url:"{$coninfo.domainname}/index.php/api/order/orderQuery/p/"+orderpages+"/r/5/u/{$userdb.uid}",
     			async:true,
     			success:function(data){
     				if(data!=null&&data!=""&&data!=undefined){

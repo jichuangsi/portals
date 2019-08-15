@@ -254,7 +254,7 @@
     	function orderdetailsload(){
     		$.ajax({
     			type:"get",
-    			url:"{$coninfo.domainname}/index.php/api/order/orderDetail/u/12/o/{$orderid}",
+    			url:"{$coninfo.domainname}/index.php/api/order/orderDetail/u/{$userdb.uid}/o/{$orderid}",
     			async:true,
     			success:function(data){
     				if(data!=null&&data!=""&&data!=undefined){

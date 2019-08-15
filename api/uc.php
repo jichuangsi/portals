@@ -140,7 +140,7 @@ class uc_note {
 //		require_once DISCUZ_ROOT.'./config.inc.php';
 		$db = new ucclient_db;
 		$dbs = new ucclient_db;
-        $db->connect('localhost', $toxconfig['username'], $toxconfig['password'], $toxconfig['database'], UC_DBCONNECT, true, 'utf8');
+        $db->connect('localhost', $toxconfig['username'],$toxconfig['password'], $toxconfig['database'], UC_DBCONNECT, true, 'utf8');
         $user =  $db->fetch_first("SELECT * FROM qb_memberdata WHERE username='{$username}'");
 		if($user==null||$user==""){
 			$dbs->connect('localhost', UC_DBUSER, UC_DBPW, 'ucenter', UC_DBCONNECT, true, 'utf8');
@@ -149,7 +149,7 @@ class uc_note {
 			$db->connect('localhost', $toxconfig['username'], $toxconfig['password'], $toxconfig['database'], UC_DBCONNECT, true, 'utf8');
 			$times=time();
 			$ips=get_ip();
-			$intoresult=$db->fetch_first("insert into qb_memberdata(password,password_rand,username,nickname,groupid,yz,lastvist,lastip,regdate,regip,email) values('{$ucuser['password']}','{$ucuser['salt']}','{$username}','{$username}',8,1,'{$times}','{$ips}','{$times}','{$ips}','{$ucuser['email']}')");
+			$intoresult=$db->fetch_first("insert into qb_memberdata(uid,password,password_rand,username,nickname,groupid,yz,lastvist,lastip,regdate,regip,email) values('{$ucuser['uid']}','{$ucuser['password']}','{$ucuser['salt']}','{$username}','{$username}',8,1,'{$times}','{$ips}','{$times}','{$ips}','{$ucuser['email']}')");
 			$users=$db->fetch_first("SELECT * FROM qb_memberdata WHERE username='{$username}'");
 			_setcookie("passport","{$users['uid']}"."\t"."{$users['username']}\t".mymd5($users['password'],'EN'));
 		}else{

@@ -202,7 +202,7 @@
     		console.log(domainname);
     		$.ajax({
     							type:"get",
-    							url:domainname+"/index.php/api/order/orderCheck/u/12",
+    							url:domainname+"/index.php/api/order/orderCheck/u/{$userdb.uid}",
     							async:false,
     							success:function(datas){
     								var isorder=JSON.parse(datas);

@@ -144,6 +144,65 @@
         {/qb:listpage}
     </div>
     <script>
+    	function testtop(){
+    		console.log(123);
+    		$('.right .sorttitle').eq(0).offsetTop=100;
+//  		$('.right').offset().top;
+//  		console.log($('.top').height());
+//  		var sortlen=$('.right .sorttitle').length;
+//  		var tophei=$('.top').height();
+//				for(var i=0;i<sortlen;i++){
+//					var offset=$('.right .sorttitle').eq(i).offset().top-tophei;
+//					if(offset<10&&offset>-10){
+//						console.log($('.right .sorttitle').eq(i).attr("data-data"));
+//					}
+//					console.log($('.right .sorttitle').eq(i).offset().top+"~~off~~"+$('.right .sorttitle').eq(i).text());
+//				}
+    	}
+    	$(function(){
+    		$('.center').scrollTop(100)
+    		var navnum=$('.nav .nav_box a').length;
+    		console.log(navnum);
+    		$('.nav .nav_box').css("width",navnum*2+"rem");
+    		for(var i=0;i<navnum;i++){
+    			if($('.nav .nav_box a').eq(i).hasClass('nav_check')){
+    				console.log($('.nav .nav_box a').eq(i));
+    				if(i>2){
+    					var num=i-2;
+    					$('.nav').scrollLeft(num*100);
+    				}
+    			}
+    		}
+	    	$('.right').on('scroll',function(){
+				var tophei=$('.top').height();
+				var sortlen=$('.right .sorttitle').length;
+				var a = $('.right')[0].scrollTop;
+				var b = $('.right')[0].offsetTop;
+//				console.log($('.right')[0].scrollTop+"~~right~~");
+//				console.log($('.right')[0].offsetTop+"~~sss~~");
+//				console.log($('.right .sorttitle').eq(1)[0].offsetTop+"~~posi~~"+$('.right .sorttitle').eq(i).text());
+				for(var i=0;i<sortlen;i++){
+					if(a <= $('.right .sorttitle').eq(i)[0].offsetTop-b+10 && a >= $('.right .sorttitle').eq(i)[0].offsetTop-b-10){
+						
+//					var offset=$('.right .sorttitle').eq(i).offset().top-tophei;
+//					if(offset<10&&offset>-10){
+						var leftclass=$('.right .sorttitle').eq(i).attr("data-data");
+						console.log(leftclass);
+//						console.log("距离"+offset);
+						$('.'+leftclass).addClass("check");
+						$('.'+leftclass).siblings().removeClass("check");
+//						console.log($('.right .sorttitle').eq(i).attr("data-data"));
+//							console.log(a);
+//							console.log($('.right .sorttitle').eq(1)[0].offsetTop-b+10);
+//							console.log($('.right .sorttitle').eq(1)[0].offsetTop-b-10);
+//							console.log($('.right .sorttitle').eq(i).text());
+					}
+					
+//					console.log($('.right .sorttitle').eq(i).offset().top+"~~off~~"+$('.right .sorttitle').eq(i).text());
+//					console.log($('.right .sorttitle').eq(i).offset().top+"~~posi~~"+$('.right .sorttitle').eq(i).text());
+				}
+			});
+    	});
         function nav_click(e){
             $(e).addClass('nav_check').siblings().removeClass('nav_check')
         }
@@ -171,40 +230,22 @@
 		        <div class="fl" onclick="hidesort()">
 		            <img src="__STATIC__/hy/assets/images/return.png" alt="">
 		        </div>
-		        <div class="title">学习培训全部分类</div>
+		        <div class="title" onclick="testtop()">学习培训全部分类</div>
 		    </div>
 		    <div class="center">
 		        <div class="left">
 		        	<?php $num=0;?>
 		        	{volist name="0|get_sort=###,'other'" id="vo" }
-		        		<div {if ($num==0)}class="check"{/if} onclick="check(this)"><span>{$vo}</span></div>
-		        		{volist name=":sort_config('hy',$key)" id="name"}
-						<!--<div  onclick="check(this)"><span>{$name}s</span></div>-->
-						{/volist}
+		        		<div class="{if ($num==0)}check{/if} sort{$key}" onclick="check(this)"><span>{$vo}</span></div>
 						<?php $num++;?>
 					{/volist}
-		            <!--<div class="check" onclick="check(this)"><span>语言培训</span></div>
-		            <div onclick="check(this)"><span>留学</span></div>
-		            <div onclick="check(this)"><span>升学辅导</span></div>
-		            <div onclick="check(this)"><span>音乐培训</span></div>
-		            <div onclick="check(this)"><span>美术培训</span></div>
-		            <div onclick="check(this)"><span>书法培训</span></div>
-		            <div onclick="check(this)"><span>职业培训</span></div>-->
 		        </div>
 		        <div class="right">
-		            <!--<div class="title">语言培训</div>
-		            <div class="nav">
-		                <div>英语</div>
-		                <div>英语</div>
-		                <div>英语</div>
-		                <div>英语</div>
-		                <div>英语</div>
-		            </div>-->
 		            {volist name="0|get_sort=###,'other'" id="vo" }
-		        		 <div class="title">{$vo}</div>
+		        		 <div class="sorttitle title sort{$key}" data-data="sort{$key}">{$vo}</div>
 		        		 <div class="nav">
 		        		{volist name=":sort_config('hy',$key)" id="name"}
-							<div onclick="window.location.href='{:urls('content/index',['fid'=>$key])}'">{$name}</div>
+							<div  onclick="window.location.href='{:urls('content/index',['fid'=>$key])}'">{$name}</div>
 						{/volist}
 						</div>
 					{/volist}
