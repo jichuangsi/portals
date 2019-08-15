@@ -177,7 +177,7 @@
         <div style="float: right;padding: 0 0.1rem;color: #666666;display: none;" class="manageclose" onclick="collmanageclose()" >
             取消
         </div>
-        <div class="title" style="color: #666666;" onclick="ss()">收藏</div>
+        <div class="title" style="color: #666666;" onclick="getxin()">收藏</div>
     </div>
     <div class="collectlist">
     	<div class="ListBox" style="display: none;"> 
@@ -225,7 +225,6 @@
     		if(infoid!=null&&infoid!=""&&infoid!=undefined){
     			window.location.href="/index.php/hy/content/show/id/"+infoid;
     		}
-			
     	}
     	function collmanage(){
     		$('.colldel').css("display","flex");
@@ -293,31 +292,52 @@
 			}
 			boxclick();
     	}
-    	
+    	function getxin(){
+    		var xinlength=$('.listbottom .xin').length;
+    		for(var i=0;i<xinlength;i++){
+    			var xinobj=$('.listbottom .xin').eq(i);
+    			console.log($('.listbottom .xin').eq(i).attr("data-data"));
+    			var infoid=$('.listbottom .xin').eq(i).attr("data-data");
+    			var collecthtml="";
+    			console.log(infoid+"infoid")
+    			var xincount=getcommgradexin(infoid);
+    			for(var j=1;j<=5;j++){
+					if(j>xincount){
+						collecthtml+='<img src="/public/static/hy/assets/images/huix.png" alt="">';
+					}else{
+						collecthtml+='<img src="/public/static/hy/assets/images/Stars.png" alt="">';
+					}
+				}
+    			$('.listbottom .star').eq(i+1).append(collecthtml);
+    			console.log($('.listbottom .star').eq(i+1));
+//  			$('.listbottom .star').eq(i+1).removeClass("xin");
+    		}
+    	}
     	var pages=1;
     	getcollect();
     	function getcollect(){
     		$.ajax({
     			type:"get",
     			url:"/index.php/hy/content/getcollect/rows/5/pages/"+pages,
-    			async:true,
+    			async:false,
     			success:function(data){
     				console.log(data);
     				if(data!=null&&data!=""&&data!=0){
     					var collecthtml="";
     					for(var i in data){
-    						collecthtml+='<div class="ListBox" data-data="'+data[i]['id']+'" onclick="collectgo(this)">';
+    						collecthtml+='<div class="ListBox" >';
     						collecthtml+='<div class="colldel">';
     						collecthtml+='<div style="margin: auto;"><input class="favid" type="checkbox" name="favid" onclick="boxclick()" value="'+data[i]['favid']+'" /></div>';
     						collecthtml+='</div>';
-    						collecthtml+='<div class="box" style="width: 84%;">';
+    						collecthtml+='<div class="box" style="width: 84%;" data-data="'+data[i]['id']+'" onclick="collectgo(this)"> ';
     						collecthtml+='<div class="listtop"><img src="/public/'+data[i]['picurl']+'" onerror="errorImg(this)"></div>';
     						collecthtml+='<div class="listbottom">';
     						collecthtml+='<div class="title">'+data[i]['title']+'</div> ';
     						collecthtml+='<div class="text">'+data[i]['content']+'</div>';
-    						collecthtml+='<div class="star">';
+    						collecthtml+='<div class="star xin" data-data="'+data[i]['id']+'">';
+    						var xincount=getcommgradexin(data[i]['id']);
     						for(var j=1;j<=5;j++){
-    							if(j>getcommgradexin(data[i]['id'])){
+    							if(j>xincount){
     								collecthtml+='<img src="/public/static/hy/assets/images/huix.png" alt="">';
     							}else{
     								collecthtml+='<img src="/public/static/hy/assets/images/Stars.png" alt="">';
@@ -337,7 +357,6 @@
     				}
     			}
     		});
-    		
     	}
     </script>
 {include file="index@share"/}
