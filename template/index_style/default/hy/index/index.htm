@@ -102,7 +102,7 @@
         </div>
         <h3>推荐机构</h3>
         <div class="curriculum">
-        	{qb:tag name="hy_wapindex002" type="hy" by="desc" rows="2" where="istop=1" }
+        	{qb:tag name="hy_wapindex002" type="hy" by="asc" order="list" rows="3" where="istop=1" }
 	            <div class="ListBox">
 	                <div class="box" onclick="window.location.href='{$rs.url}'" data-url="{$rs.picurl}">
 	                    <div class="listtop" style="display: flex;"> <img src="/public/{$rs.picurl}" onerror="this.src='__STATIC__/images/nopic.png'"  /> </div>

@@ -45,7 +45,7 @@
 				{/volist}
             </div>
         </div>
-        {qb:listpage name="hy_waplist_001" where="status>0&title*$hytitle" rows="10" }
+        {qb:listpage name="hy_waplist_001" where="status>0&title*$hytitle" rows="10" by="asc" order="list"}
             <div class="curriculum">
                     <div class="ListBox" onclick="window.location.href='{$rs.url}'">
                         <div class="box">
