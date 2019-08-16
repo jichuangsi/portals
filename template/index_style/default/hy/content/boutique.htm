@@ -183,13 +183,13 @@
 	        		$.ajax({
 					    url:domainname+"/index.php/api/course/recommendQuery",
 					    type:"GET",
-					    async:false,
+					    async:true,
 					    success:function(res){
 					    	 var datas=JSON.parse(res);
 					        console.log(datas);
 					        var listdata=datas.data;
-					        var retest="";
 					        for(var i in listdata){
+					        	var retest="";
 					        	retest+='<div class="ListBox">';
 					        	retest+=' <div class="box">';
 					        	retest+='<div class="listtop"><img src="'+listdata[i]['imageurl']+'" onerror="errorImg(this)"   /></div>';
@@ -211,8 +211,9 @@
 								?>
 					        	
 					        	retest+=' </div> </div>';
+					        	$('#curriculums').append(retest);
 					        }
-					        $('#curriculums').append(retest);
+					       
 					    }
 					});	
 				}

@@ -216,34 +216,9 @@
         <div class="fl" onclick="window.history.back(-1);">
             <img src="__STATIC__/hy/assets/images/return.png" alt="">
         </div>
-        <div class="title" style="color: #666666;width:90%;" onclick="orderload()">我的订单</div>
+        <div class="title" style="color: #666666;width:90%;" >我的订单</div>
     </div>
     <div class="orderlist">
-    	<!-- <div class="ListBox"> 
-    		<div style="width: 100%;padding: 0.1rem;"> <a  href="/index.php/hy/content/show/id/31">纯音琴行 <i style="font-size: 0.3rem;margin-left: 0.1rem;" class="fa fa-angle-right" aria-hidden="true"></i></a> <span style="float: right;margin-right: 0.2rem;color: #7B7B7B;">报名成功</span> </div>
-    		<div class="box">
-    			<div class="Sold">￥199</div>
-    			<div class="sopnum">x1</div>
-    			<div class="listtop">
-    				<img src="http://sample.zaixian.jichuangsi.com/Uploads/Picture/2018-05-07/5aefc3db79dd3.jpg" onerror="errorImg(this)">
-    			</div>
-    			<div class="listbottom">
-    				<div class="title">
-    					让你的思维导图从零到颜值爆表！
-    				</div> 
-    			<div class="star">
-    				<span><img src="/public/static/hy/assets/images/Stars.png" alt=""><img src="/public/static/hy/assets/images/Stars.png" alt=""><img src="/public/static/hy/assets/images/Stars.png" alt="">21人预约</span>
-    			</div>
-    			</div>
-    		</div>
-    		<div class="ordertotal">合计:600</div>
-    		<div class="orderdetails">
-	    		<div class="orderbtndiv">
-	    			<a href="" class="btns">去付款</a>
-	    			<button class="btns">查看详情</button>
-	    		</div>
-	    	</div>
-    	</div> -->
     </div>
     <div style="width: 100%;height: 1rem;text-align: center;line-height: 1rem;margin-bottom: 0.8rem;" onclick="orderload()">加载更多...</div>
     <script>
@@ -255,6 +230,31 @@
     			window.location.href="/index.php/hy/content/lyorderdetails/id/{$coninfo.id}/orderid/"+orderid;
     		}
     	}
+    	function cancelorder(obj){
+    		var orderid=$(obj).attr("data-data");
+    		layer.confirm("确认要取消吗？", {btn: ['确定', '取消'], title: "提示"}, function () {
+		       if(orderid!=null&&orderid!=""&&orderid!=undefined){
+	    			$.ajax({
+	    				type:"get",
+	    				url:"{$coninfo.domainname}/index.php/api/order/orderCancel/u/{$userdb.uid}/o/"+orderid,
+	    				async:true,
+	    				success:function(data){
+	    					console.log(data);
+	    					console.log(JSON.parse(data));
+	    					var canceldata=JSON.parse(data);
+	    					if(canceldata['error_code']==0){
+	    						$(obj).parent().parent().siblings(":first").children(".orstatus").text("已取消");
+	    						$(obj).css("display","none");
+	    						layer.msg('操作成功', {icon: 1});
+	    					}else{
+	    						layer.msg('操作失败', {icon: 2});
+	    					}
+	    				}
+	    			});
+	    		}
+		    });
+    		
+    	}
     	function orderload(){
     		$.ajax({
     			type:"get",
@@ -265,11 +265,11 @@
     					var odata=JSON.parse(data).data;
     					console.log(odata);
     					if(odata!=null&&odata!=""&&odata!=undefined){
-	    					var ohtml="";
 	    					for(var i in odata){
+	    						var ohtml="";
 	    						if(odata[i].orderlist!=null){
 	    							ohtml+='<div class="ListBox"> ';
-	    							ohtml+='<div style="width: 100%;padding: 0.1rem;"> <a  href="/index.php/hy/content/show/id/{$coninfo.id}">{$coninfo.title} <i style="font-size: 0.3rem;margin-left: 0.1rem;" class="fa fa-angle-right" aria-hidden="true"></i></a> <span style="float: right;margin-right: 0.2rem;color: #7B7B7B;">';
+	    							ohtml+='<div style="width: 100%;padding: 0.1rem;"> <a  href="/index.php/hy/content/show/id/{$coninfo.id}">{$coninfo.title} <i style="font-size: 0.3rem;margin-left: 0.1rem;" class="fa fa-angle-right" aria-hidden="true"></i></a> <span style="float: right;margin-right: 0.2rem;color: #7B7B7B;" class="orstatus">';
 	    							if(odata[i]['status']==0){
 	    								ohtml+='订单已生成';
 	    							}else if(odata[i]['status']==1){
@@ -295,6 +295,9 @@
 	    							ohtml+='<div class="ordertotal">合计:'+odata[i]['total']+'</div>';
 		    						ohtml+='<div class="orderdetails">';
 		    						ohtml+='<div class="orderbtndiv">';
+		    						if(odata[i]['status']==1){
+		    							ohtml+='<button class="btns" onclick="cancelorder(this)" data-data="'+odata[i]['orderid']+'" class="btns">取消订单</button>'
+		    						}
 		    						if(odata[i]['ispay']==1&&odata[i]['status']!=6){
 		    							ohtml+='<a href="{$coninfo.domainname}/index.php?s=/payoff/index/index/orderid/'+odata[i]['orderid']+' " class="btns">去付款</a>'
 		    						}
@@ -302,8 +305,8 @@
 		    						ohtml+='</div>';
 		    						ohtml+='</div></div>'
 	    						}
+	    						$('.orderlist').append(ohtml);
 	    					}
-    						$('.orderlist').append(ohtml);
     					}else{
     						if(orderpages>1){
     							layer.msg('没有更多了');
