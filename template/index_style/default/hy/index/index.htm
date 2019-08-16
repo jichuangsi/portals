@@ -95,14 +95,14 @@
             </div>
         </div>
     </div>
-    <?php echo '<script>var retest=""; </script>'; ?>
+    <?php echo '<script> var doma=[]; var gid=[]; </script>'; ?>
     <div class="center">
         <div class="center_img">
             <img src="__STATIC__/hy/assets/images/advertisement_2.png" alt="">
         </div>
         <h3 onclick="ssrr()">推荐机构</h3>
         <div class="curriculum">
-        	{qb:tag name="hy_wapindex002" type="hy" by="desc" rows="10" where="istop=1" }
+        	{qb:tag name="hy_wapindex002" type="hy" by="desc" rows="2" where="istop=1" }
 	            <div class="ListBox">
 	                <div class="box" onclick="window.location.href='{$rs.url}'" data-url="{$rs.picurl}">
 	                    <div class="listtop" style="display: flex;"> <img src="/public/{$rs.picurl}" onerror="this.src='__STATIC__/images/nopic.png'"  /> </div>
@@ -116,6 +116,8 @@
 	                        </div>
 	                         <script>
 		                         showXing();
+		                         doma.push("{$rs.domainname}");
+		                         gid.push("{$rs.id}");
 		                         function showXing(){
 		                         	var xinnum={:fun('xiangke@getcommgradexin',$rs['id'])};
 		                             var commtext='';
@@ -128,43 +130,6 @@
 		         					}
 		                             $('.star_'+{$rs.id}).append(commtext);
 		                         }
-//	                        	console.log({$rs.domainname});
-					        	function ssr(domainname){
-					        		if(domainname!=undefined&&domainname!=null&&domainname!=''){
-						        		$.ajax({
-										    url:domainname+"/index.php/api/course/recommendQuery",
-										    type:"GET",
-										    async:false,
-										    success:function(res){
-										    	 var datas=JSON.parse(res);
-										        console.log(datas);
-										        var listdata=datas.data;
-										        for(var i in listdata){
-										        	retest+='<div class="ListBox">';
-										        	retest+=' <div class="box">';
-										        	retest+='<div class="listtop"><img src="'+listdata[i]['imageurl']+'" onerror="errorImg(this)"   /></div>';
-										        	retest+='<div class="listbottom">';
-										        	retest+=' <div class="title">'+listdata[i]['title']+'</div>';
-										        	retest+=' <div class="star">点击次数 : '+listdata[i]['view']+'</div>';
-										        	retest+=' <div class="money">¥ '+listdata[i]["price"]+'</div>';
-										        	retest+='</div>';
-										        	retest+='<div class="Sold">已售'+listdata[i]['sold']+'</div>';
-										        	retest+=' <a href="'+domainname+'/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'" class= "go"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
-										        	<?php
-											        		if($userdb){ 
-											        	?>
-										        	retest+='<div class="xs" onclick="xs(this,'+listdata[i]['id']+',{$rs.id})">享客码</div>';
-										        	retest+=' <div class="img" id="qr'+listdata[i]['id']+'" data-url="'+domainname+'"></div>';
-										        	<?php
-											        		}
-											        	?>
-										        	retest+=' </div> </div>';
-										        }
-//										        sessionStorage.setItem('asd',retest)
-										    }
-										});	
-									}
-					        	}
 					        </script>
 	                        <div class="money"><script>ssr('{$rs.domainname}')</script></div>
 	                    </div>
@@ -188,7 +153,6 @@
 		         qrcodes(id,gid);
 		        $('.mask').css('display','block'); 
 		    }
-		   	
 		   	function hide(){
 		        $('.mask').css('display','none');
 		    }
@@ -235,8 +199,50 @@
         </script>
         <script>
         	$(function(){
-        		$('#curriculums').append(retest);
+        		if(doma!=null&&doma!=""&&doma!=undefined&&gid!=null&&gid!=""&&gid!=undefined){
+        			for(var i=0;i<doma.length;i++){
+        				ssr(doma[i],gid[i]);
+        			}
+        		}
         	});
+        		function ssr(domainname,gid){
+        		if(domainname!=undefined&&domainname!=null&&domainname!=''){
+	        		$.ajax({
+					    url:domainname+"/index.php/api/course/recommendQuery",
+					    type:"GET",
+					    async:true,
+					    success:function(res){
+					    	 var datas=JSON.parse(res);
+					        console.log(datas);
+					        var listdata=datas.data;
+					        for(var i in listdata){
+					        	var retest="";
+					        	retest+='<div class="ListBox">';
+					        	retest+=' <div class="box">';
+					        	retest+='<div class="listtop"><img src="'+listdata[i]['imageurl']+'" onerror="errorImg(this)"   /></div>';
+					        	retest+='<div class="listbottom">';
+					        	retest+=' <div class="title">'+listdata[i]['title']+'</div>';
+					        	retest+=' <div class="star">点击次数 : '+listdata[i]['view']+'</div>';
+					        	retest+=' <div class="money">¥ '+listdata[i]["price"]+'</div>';
+					        	retest+='</div>';
+					        	retest+='<div class="Sold">已售'+listdata[i]['sold']+'</div>';
+					        	retest+=' <a href="'+domainname+'/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'" class= "go"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
+					        	<?php
+						        		if($userdb){ 
+						        	?>
+					        	retest+='<div class="xs" onclick="xs(this,'+listdata[i]['id']+','+gid+')">享客码</div>';
+					        	retest+=' <div class="img" id="qr'+listdata[i]['id']+'" data-url="'+domainname+'"></div>';
+					        	<?php
+						        		}
+						        	?>
+					        	retest+=' </div> </div>';
+					        	$('#curriculums').append(retest);
+					        }
+//										        sessionStorage.setItem('asd',retest)
+					    }
+					});	
+				}
+        	}
         </script>
         <h3>推荐课程</h3>
         <div class="curriculum" id="curriculums">

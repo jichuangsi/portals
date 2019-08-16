@@ -156,7 +156,6 @@ class uc_note {
 			$uids=$user['uid'];
 			_setcookie("passport","{$user['uid']}"."\t"."{$user['username']}\t".mymd5($user['password'],'EN'));
 		}
-		
 	}
 	
 
