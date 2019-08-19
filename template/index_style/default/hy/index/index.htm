@@ -95,7 +95,7 @@
             </div>
         </div>
     </div>
-    <?php echo '<script> var doma=[]; var gid=[]; </script>'; ?>
+    <?php echo '<script> var doma=[]; var gid=[];var gtitle=[]; </script>'; ?>
     <div class="center">
         <div class="center_img">
             <img src="__STATIC__/hy/assets/images/advertisement_2.png" alt="">
@@ -118,6 +118,7 @@
 		                         showXing();
 		                         doma.push("{$rs.domainname}");
 		                         gid.push("{$rs.id}");
+		                         gtitle.push("{$rs.title}");
 		                         function showXing(){
 		                         	var xinnum={:fun('xiangke@getcommgradexin',$rs['id'])};
 		                             var commtext='';
@@ -201,11 +202,11 @@
         	$(function(){
         		if(doma!=null&&doma!=""&&doma!=undefined&&gid!=null&&gid!=""&&gid!=undefined){
         			for(var i=0;i<doma.length;i++){
-        				ssr(doma[i],gid[i]);
+        				ssr(doma[i],gid[i],gtitle[i]);
         			}
         		}
         	});
-        		function ssr(domainname,gid){
+        		function ssr(domainname,gid,gtitle){
         		if(domainname!=undefined&&domainname!=null&&domainname!=''){
 	        		$.ajax({
 					    url:domainname+"/index.php/api/course/recommendQuery",
@@ -221,7 +222,8 @@
 					        	retest+=' <div class="box">';
 					        	retest+='<div class="listtop"><img src="'+listdata[i]['imageurl']+'" onerror="errorImg(this)"   /></div>';
 					        	retest+='<div class="listbottom">';
-					        	retest+=' <div class="title">'+listdata[i]['title']+'</div>';
+					        	retest+=' <div class="title">机构：'+gtitle+'</div>';
+					        	retest+=' <div class="title" style="font-size: 0.25rem;line-height: 0.4rem;width:2.5rem">'+listdata[i]['title']+'</div>';
 					        	retest+=' <div class="star">点击次数 : '+listdata[i]['view']+'</div>';
 					        	retest+=' <div class="money">¥ '+listdata[i]["price"]+'</div>';
 					        	retest+='</div>';

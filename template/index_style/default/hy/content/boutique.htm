@@ -150,7 +150,7 @@
         				console.log(data);
         				for(var i in data){
         					if(data[i]['domainname']!=null&&data[i]['domainname']!=""){
-        						ssr(data[i]['domainname'],data[i]['id']);
+        						ssr(data[i]['domainname'],data[i]['id'],data[i]['title']);
         					}
         				}
         			}
@@ -170,7 +170,7 @@
         				if(data!=null&&data!=""){
 	        				for(var i in data){
 	        					if(data[i]['domainname']!=null&&data[i]['domainname']!=""){
-	        						ssr(data[i]['domainname'],data[i]['id']);
+	        						ssr(data[i]['domainname'],data[i]['id'],data[i]['title']);
 	        					}
 	        				}
         				}
@@ -178,7 +178,7 @@
         		});
         	}
         	
-        	function ssr(domainname,gid){
+        	function ssr(domainname,gid,gtitle){
         		if(domainname!=undefined&&domainname!=null&&domainname!=''){
 	        		$.ajax({
 					    url:domainname+"/index.php/api/course/recommendQuery",
@@ -194,7 +194,8 @@
 					        	retest+=' <div class="box">';
 					        	retest+='<div class="listtop"><img src="'+listdata[i]['imageurl']+'" onerror="errorImg(this)"   /></div>';
 					        	retest+='<div class="listbottom">';
-					        	retest+=' <div class="title">'+listdata[i]['title']+'</div>';
+					        	retest+=' <div class="title">机构：'+gtitle+'</div>';
+					        	retest+=' <div class="title" style="font-size: 0.25rem;line-height: 0.4rem;width:2.5rem">'+listdata[i]['title']+'</div>';
 					        	retest+=' <div class="star">点击次数 : '+listdata[i]['view']+'</div>';
 					        	retest+=' <div class="money">¥ '+listdata[i]["price"]+'</div>';
 					        	retest+='</div>';
