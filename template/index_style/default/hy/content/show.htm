@@ -41,7 +41,7 @@
         </div>
         <div class="Diagram">
             <div class="left" style="margin-left: 2rem;">
-				<img style="width: 100%;" src="{$info.picurl}" />
+				<img style="width: 100%;" src="{$info.picurl}" onerror="this.src='__STATIC__/images/jichuangsi.jpg'" />
             </div>
             <div class="right" style="display: none;">
 
@@ -124,7 +124,7 @@
    		if(picurl!=null&&picurl!=""){
    			imgs.src = "{$info.picurl}"; imgs.onerror = null; return false;
    		}
-        		imgs.src = "__STATIC__/images/nopic.png"; imgs.onerror = null; 
+        		imgs.src = "__STATIC__/images/jichuangsi.jpg"; imgs.onerror = null; 
      }
    	function iconerror(imgs){
    		imgs.src = "__STATIC__/images/nobody.gif"; imgs.onerror = null;

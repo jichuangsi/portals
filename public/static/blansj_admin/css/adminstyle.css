@@ -11,7 +11,7 @@
 .layui-layout-admin .header-demo{height: 90px;
     line-height: 88px;
     background: url(../img/bg_repx.gif) repeat-x;}
-.header-demo .logo{left: -20px;width: 215px;height: 75px; background: url(../img/logo.png) no-repeat 15px 0px;}
+.header-demo .logo{left: -20px;width: 215px;height: 75px; background: url(../img/logo.png) no-repeat 10px 0px;background-size: 100%;}
 .header-demo .logo:hover{color: #D9D9D9;}
 .header-demo .layui-nav{top: 0;}
 .header-demo .layui-nav .layui-nav-item{margin: 0 10px; line-height: 90px;}

@@ -105,7 +105,7 @@
         	{qb:tag name="hy_wapindex002" type="hy" by="asc" order="list" rows="3" where="istop=1" }
 	            <div class="ListBox">
 	                <div class="box" onclick="window.location.href='{$rs.url}'" data-url="{$rs.picurl}">
-	                    <div class="listtop" style="display: flex;"> <img src="/public/{$rs.picurl}" onerror="this.src='__STATIC__/images/nopic.png'"  /> </div>
+	                    <div class="listtop" style="display: flex;"> <img src="/public/{$rs.picurl}" onerror="this.src='__STATIC__/images/jichuangsi.jpg'"  /> </div>
 	                    <div class="listbottom">
 	                        <div class="title">{$rs.title}</div>
 	                        <div class="text">{$rs.content}</div>
@@ -189,7 +189,7 @@
         		if(picurl!=null&&picurl!=""){
         			imgs.src = "/public/"+picurl; imgs.onerror = null; return false;
         		}
-        		imgs.src = "__STATIC__/images/nopic.png"; imgs.onerror = null; 
+        		imgs.src = "__STATIC__/images/jichuangsi.jpg"; imgs.onerror = null; 
         	}
         	function ssrr(domainname){
         		console.log(domainname);
@@ -226,7 +226,7 @@
 					        	var retest="";
 					        	retest+='<div class="ListBox">';
 					        	retest+=' <div class="box">';
-					        	retest+='<div class="listtop"><img src="'+listdata[i]['imageurl']+'" onerror="errorImg(this)" data-data="'+gpicurl+'"  /></div>';
+					        	retest+='<div class="listtop"><img src="s'+listdata[i]['imageurl']+'" onerror="errorImg(this)" data-data="'+gpicurl+'"  /></div>';
 					        	retest+='<div class="listbottom">';
 					        	retest+=' <div class="title">机构：'+gtitle+'</div>';
 					        	retest+=' <div class="title" style="font-size: 0.25rem;line-height: 0.4rem;width:2.5rem">'+listdata[i]['title']+'</div>';
