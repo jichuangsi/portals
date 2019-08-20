@@ -97,6 +97,7 @@ body {
 }
 .center .curriculum .ListBox .box .listtop{
     position: absolute;
+    display: flex;
     top: 0rem;
     left: -0.3rem;
     width: 1.8rem;

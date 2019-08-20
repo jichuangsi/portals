@@ -162,6 +162,7 @@ body {
 }
 .center .curriculum .ListBox .box .listtop{
     position: absolute;
+    display: flex;
     top: -0.19rem;
     left: -0.32rem;
     width: 1.8rem;
@@ -197,6 +198,7 @@ border-radius: 11px;
     white-space: nowrap;
     text-overflow:ellipsis;
     overflow: hidden;
+    padding: 0.1rem 0;
     margin-top: 0.2rem;
     margin-bottom: 0.2rem;
 }
