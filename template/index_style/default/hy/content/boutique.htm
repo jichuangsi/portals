@@ -138,6 +138,10 @@
 		   	}
         	
         	function errorImg(imgs){
+        		var picurl=$(imgs).attr("data-data");
+        		if(picurl!=null&&picurl!=""){
+        			imgs.src = "/public/"+picurl; imgs.onerror = null; return false;
+        		}
         		imgs.src = "__STATIC__/images/nopic.png"; imgs.onerror = null; 
         	}
         	$(function(){
@@ -150,7 +154,7 @@
         				console.log(data);
         				for(var i in data){
         					if(data[i]['domainname']!=null&&data[i]['domainname']!=""){
-        						ssr(data[i]['domainname'],data[i]['id'],data[i]['title']);
+        						ssr(data[i]['domainname'],data[i]['id'],data[i]['title'],data[i]['picurl']);
         					}
         				}
         			}
@@ -170,7 +174,9 @@
         				if(data!=null&&data!=""){
 	        				for(var i in data){
 	        					if(data[i]['domainname']!=null&&data[i]['domainname']!=""){
-	        						ssr(data[i]['domainname'],data[i]['id'],data[i]['title']);
+	        						console.log(data[i]['picurl']);
+	        						ssr(data[i]['domainname'],data[i]['id'],data[i]['title'],data[i]['picurl']);
+										        					
 	        					}
 	        				}
         				}
@@ -178,7 +184,7 @@
         		});
         	}
         	
-        	function ssr(domainname,gid,gtitle){
+        	function ssr(domainname,gid,gtitle,gpicurl){
         		if(domainname!=undefined&&domainname!=null&&domainname!=''){
 	        		$.ajax({
 					    url:domainname+"/index.php/api/course/recommendQuery",
@@ -192,7 +198,7 @@
 					        	var retest="";
 					        	retest+='<div class="ListBox">';
 					        	retest+=' <div class="box">';
-					        	retest+='<div class="listtop"><img src="'+listdata[i]['imageurl']+'" onerror="errorImg(this)"   /></div>';
+					        	retest+='<div class="listtop"><img src="'+listdata[i]['imageurl']+'" onerror="errorImg(this)" data-data="'+gpicurl+'"  /></div>';
 					        	retest+='<div class="listbottom">';
 					        	retest+=' <div class="title">机构：'+gtitle+'</div>';
 					        	retest+=' <div class="title" style="font-size: 0.25rem;line-height: 0.4rem;width:2.5rem">'+listdata[i]['title']+'</div>';

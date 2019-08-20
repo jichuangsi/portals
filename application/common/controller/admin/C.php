@@ -55,10 +55,10 @@ abstract class C extends AdminBase
     	
         $data = $this->request->post();
         
-         if(strpos($data['picurl'],'uploads') !== false){
-         	$dataurl=substr($urls,0,strpos($urls,'/admin'))."/public/";
-         	$data['picurl']=$dataurl.$data['picurl'];
-         }
+//       if(strpos($data['picurl'],'uploads') !== false){
+//       	$dataurl=substr($urls,0,strpos($urls,'/admin'))."/public/";
+//       	$data['picurl']=$dataurl.$data['picurl'];
+//       }
        
         isset($data['fid']) && $fid = $data['fid'];
         

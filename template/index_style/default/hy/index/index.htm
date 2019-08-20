@@ -95,7 +95,7 @@
             </div>
         </div>
     </div>
-    <?php echo '<script> var doma=[]; var gid=[];var gtitle=[]; </script>'; ?>
+    <?php echo '<script> var doma=[]; var gid=[];var gtitle=[];var gpicurl=[]; </script>'; ?>
     <div class="center">
         <div class="center_img">
             <img src="__STATIC__/hy/assets/images/advertisement_2.png" alt="">
@@ -119,6 +119,7 @@
 		                         doma.push("{$rs.domainname}");
 		                         gid.push("{$rs.id}");
 		                         gtitle.push("{$rs.title}");
+		                         gpicurl.push("{$rs.picurl}");
 		                         function showXing(){
 		                         	var xinnum={:fun('xiangke@getcommgradexin',$rs['id'])};
 		                             var commtext='';
@@ -184,6 +185,10 @@
 		   	}
         	
         	function errorImg(imgs){
+        		var picurl=$(imgs).attr("data-data");
+        		if(picurl!=null&&picurl!=""){
+        			imgs.src = "/public/"+picurl; imgs.onerror = null; return false;
+        		}
         		imgs.src = "__STATIC__/images/nopic.png"; imgs.onerror = null; 
         	}
         	function ssrr(domainname){
@@ -202,11 +207,12 @@
         	$(function(){
         		if(doma!=null&&doma!=""&&doma!=undefined&&gid!=null&&gid!=""&&gid!=undefined){
         			for(var i=0;i<doma.length;i++){
-        				ssr(doma[i],gid[i],gtitle[i]);
+        				ssr(doma[i],gid[i],gtitle[i],gpicurl[i]);
+        				console.log("~~~"+gpicurl[i])
         			}
         		}
         	});
-        		function ssr(domainname,gid,gtitle){
+        		function ssr(domainname,gid,gtitle,gpicurl){
         		if(domainname!=undefined&&domainname!=null&&domainname!=''){
 	        		$.ajax({
 					    url:domainname+"/index.php/api/course/recommendQuery",
@@ -220,7 +226,7 @@
 					        	var retest="";
 					        	retest+='<div class="ListBox">';
 					        	retest+=' <div class="box">';
-					        	retest+='<div class="listtop"><img src="'+listdata[i]['imageurl']+'" onerror="errorImg(this)"   /></div>';
+					        	retest+='<div class="listtop"><img src="'+listdata[i]['imageurl']+'" onerror="errorImg(this)" data-data="'+gpicurl+'"  /></div>';
 					        	retest+='<div class="listbottom">';
 					        	retest+=' <div class="title">机构：'+gtitle+'</div>';
 					        	retest+=' <div class="title" style="font-size: 0.25rem;line-height: 0.4rem;width:2.5rem">'+listdata[i]['title']+'</div>';

@@ -119,6 +119,11 @@
         });
    	}
    	function errorImg(imgs){
+   		var picurl="{$info.picurl}";
+   		console.log(picurl);
+   		if(picurl!=null&&picurl!=""){
+   			imgs.src = "{$info.picurl}"; imgs.onerror = null; return false;
+   		}
         		imgs.src = "__STATIC__/images/nopic.png"; imgs.onerror = null; 
      }
    	function iconerror(imgs){
