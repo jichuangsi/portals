@@ -1,9 +1,12 @@
 {include file="common/heads" /}
 
 <link rel="stylesheet" href="__STATIC__/hy/assets/style/set.css">
+<link rel="stylesheet" href="__STATIC__/hy/assets/style/cropper.min.css">
+<link rel="stylesheet" href="__STATIC__/hy/assets/style/ImgCropping.css">
     <link rel='stylesheet' href='__STATIC__/hy/assets/style/reset_android.css'>
     <script src="__STATIC__/hy/assets/js/reset.js"></script>
     <script src="__STATIC__/hy/assets/js/qrcode.js"></script>
+     <script src="__STATIC__/hy/assets/js/cropper.min.js"></script>
     <div class="top">
         <div class="fl" onclick="window.location.href='/index.php/hy/content/personal'">
             <img src="__STATIC__/hy/assets/images/return1.png" alt="">
@@ -12,7 +15,8 @@
     </div>
     <div class="center">
         <div class="center_top">
-            <img src="/public/{$lyuser.icon}" alt="" onclick="iconbtn()">
+            <!--<img id="replaceImg" src="/public/{$lyuser.icon}" alt="" onclick="iconbtn()">-->
+            <img id="replaceImg" src="/public/{$lyuser.icon}" alt="">
             <div>修改头像</div>
             <from action="" enctype="multipart/form-data" method="post" >
 		        <input type="file" id="fileUp" accept="image/png,image/jpeg" style="display: none;">
@@ -52,9 +56,15 @@
 			    //获取文件对象，files是文件选取控件的属性，存储的是文件选取控件选取的文件对象，类型是一个数组
 			    var fileObj = fileM.files[0];
 			    //创建formdata对象，formData用来存储表单的数据，表单数据时以键值对形式存储的。
-			    var formData = new FormData();
-			    formData.append('file', fileObj);
+//			    var formData = new FormData();
+//			    formData.append('file', fileObj);
 			    console.log(formData);
+			    var imgdata=$('#finalImg').attr("src");
+	    		var formDatas=new FormData();
+	    		formDatas.append('file',blob);
+	    		var formData = new FormData();
+			    formData.append('file', convertBase64UrlToBlob(imgdata));
+//			    console.log(imgdata)
 //			    /index.php/index/attachment/upload/dir/images/from/base64/module/member.html
 			    $.ajax({
 			        url: "/index.php/index/attachment/upload/dir/images/from/formData/module/member.html",
@@ -74,6 +84,31 @@
 			        },
 			    });
 			});
+			
+		function uploadimg(){
+			 var imgdata=$('#finalImg').attr("src");
+			var formData = new FormData();
+			    formData.append('file', convertBase64UrlToBlob(imgdata));
+//			    console.log(imgdata)
+//			    /index.php/index/attachment/upload/dir/images/from/base64/module/member.html
+			    $.ajax({
+			        url: "/index.php/index/attachment/upload/dir/images/from/formData/module/member.html",
+			        type: "post",
+			        dataType: "json",
+			        data: formData,
+			        async: false,
+			        cache: false,
+			        contentType: false,
+			        processData: false,
+			        success: function (data) {
+			        	console.log(data);
+			        	console.log(data['class']);
+			        	if(data['class']=="success"){
+			        		upicon(data['id']);
+			        	}
+			        },
+			    });
+		}
 		function upicon(iconurl){
 			if(iconurl!=null&&iconurl!=""){
 				console.log(iconurl);
@@ -92,8 +127,155 @@
 				});
 			}
 		}
-			
+		function convertBase64UrlToBlob(urlData){  
+
+	    var bytes=window.atob(urlData.split(',')[1]);        //去掉url的头，并转换为byte  
+	
+	    //处理异常,将ascii码小于0的转换为大于0  
+	    var ab = new ArrayBuffer(bytes.length);  
+	    var ia = new Uint8Array(ab);  
+	    for (var i = 0; i < bytes.length; i++) {  
+	        ia[i] = bytes.charCodeAt(i);  
+	    }  
+	    return new Blob( [ab] , {type : 'image/png'});  
+	} 
+	    
     </script>
+    
+    
+  <button id="replaceImg" style="display: none;" class="l-btn">更换图片</button>
+<div style="display: none;" style="width: 320px;height: 320px;border: solid 1px #555;padding: 5px;margin-top: 10px">
+    <img id="finalImg" src="" width="100%">
+</div>
+
+    <!--图片裁剪框 start-->
+<div style="display: none" class="tailoring-container">
+    <div class="black-cloth" onclick="closeTailor(this)"></div>
+    <div class="tailoring-content">
+            <div class="tailoring-content-one">
+                <label title="上传图片" for="chooseImg" class="l-btn choose-btn">
+                    <input type="file" accept="image/jpg,image/jpeg,image/png" name="file" id="chooseImg" class="hidden" onchange="selectImg(this)">
+                    选择图片
+                </label>
+                <div class="close-tailoring"  onclick="closeTailor(this)">×</div>
+            </div>
+            <div class="tailoring-content-two">
+            	<div class="preview-box-parcel">
+                    <p>图片预览：</p>
+                    <div class="square previewImg"></div>
+                    <div class="circular previewImg"></div>
+                </div>
+                <div class="tailoring-box-parcel">
+                    <img id="tailoringImg">
+                </div>
+                
+            </div>
+            <div class="tailoring-content-three">
+                <button class="l-btn cropper-reset-btn">复位</button>
+                <button class="l-btn cropper-rotate-btn">旋转</button>
+                <button class="l-btn cropper-scaleX-btn">换向</button>
+                <button class="l-btn sureCut" id="sureCut">确定</button>
+            </div>
+        </div>
+</div>
+<!--图片裁剪框 end-->
+<script>
+
+    //弹出框水平垂直居中
+    (window.onresize = function () {
+        var win_height = $(window).height();
+        var win_width = $(window).width();
+        if (win_width <= 768){
+            $(".tailoring-content").css({
+                "top": (win_height - $(".tailoring-content").outerHeight())/2,
+                "left": 0
+            });
+        }else{
+            $(".tailoring-content").css({
+                "top": (win_height - $(".tailoring-content").outerHeight())/2,
+                "left": (win_width - $(".tailoring-content").outerWidth())/2
+            });
+        }
+    })();
+
+    //弹出图片裁剪框
+    $("#replaceImg").on("click",function () {
+        $(".tailoring-container").toggle();
+    });
+    //图像上传
+    function selectImg(file) {
+        if (!file.files || !file.files[0]){
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+            var replaceSrc = evt.target.result;
+            //更换cropper的图片
+            $('#tailoringImg').cropper('replace', replaceSrc,false);//默认false，适应高度，不失真
+        }
+        reader.readAsDataURL(file.files[0]);
+    }
+    //cropper图片裁剪
+    $('#tailoringImg').cropper({
+        aspectRatio: 1/1,//默认比例
+        preview: '.previewImg',//预览视图
+        guides: false,  //裁剪框的虚线(九宫格)
+        autoCropArea: 0.5,  //0-1之间的数值，定义自动剪裁区域的大小，默认0.8
+        movable: false, //是否允许移动图片
+        dragCrop: true,  //是否允许移除当前的剪裁框，并通过拖动来新建一个剪裁框区域
+        movable: true,  //是否允许移动剪裁框
+        resizable: true,  //是否允许改变裁剪框的大小
+        zoomable: false,  //是否允许缩放图片大小
+        mouseWheelZoom: false,  //是否允许通过鼠标滚轮来缩放图片
+        touchDragZoom: true,  //是否允许通过触摸移动来缩放图片
+        rotatable: true,  //是否允许旋转图片
+        crop: function(e) {
+            // 输出结果数据裁剪图像。
+        }
+    });
+    //旋转
+    $(".cropper-rotate-btn").on("click",function () {
+        $('#tailoringImg').cropper("rotate", 45);
+    });
+    //复位
+    $(".cropper-reset-btn").on("click",function () {
+        $('#tailoringImg').cropper("reset");
+    });
+    //换向
+    var flagX = true;
+    $(".cropper-scaleX-btn").on("click",function () {
+        if(flagX){
+            $('#tailoringImg').cropper("scaleX", -1);
+            flagX = false;
+        }else{
+            $('#tailoringImg').cropper("scaleX", 1);
+            flagX = true;
+        }
+        flagX != flagX;
+    });
+
+    //裁剪后的处理
+    $("#sureCut").on("click",function () {
+        if ($("#tailoringImg").attr("src") == null ){
+            return false;
+        }else{
+            var cas = $('#tailoringImg').cropper('getCroppedCanvas');//获取被裁剪后的canvas
+            var base64url = cas.toDataURL('image/png'); //转换为base64地址形式
+            $("#finalImg").prop("src",base64url);//显示为图片的形式
+
+            //关闭裁剪框
+            closeTailor();
+        	uploadimg();
+        }
+    });
+    //关闭裁剪框
+    function closeTailor() {
+        $(".tailoring-container").toggle();
+    }
+
+
+
+</script>
 {include file="index@share"/}
 	</body>
 </html>

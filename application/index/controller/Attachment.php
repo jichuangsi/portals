@@ -43,6 +43,7 @@ class Attachment extends IndexBase
         $Orientation = $data['Orientation'];
         if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64_image_content, $result)){
             $type = $result[2];
+           
             $new_file = config('upload_path') . DS . $dir . DS . date('Ymd') . DS ;
             
             if(!file_exists(dirname($new_file))) {
@@ -62,7 +63,7 @@ class Attachment extends IndexBase
             $new_file = $new_file.$name;
             
             Hook_listen('upload_attachment_begin', $data, ['base64' => true, 'from' => $from,  'module' => $module]);  //钩子接口,上传前处理
-            
+             return $this->error($Orientation);
             if (file_put_contents($new_file, base64_decode(str_replace($result[1],'', $base64_image_content)))){
                 $_array = @getimagesize($new_file);
                 if($_array[0]<1 || $_array[1]<1 || !preg_match('/image/i', $_array['mime'])){
@@ -80,11 +81,11 @@ class Attachment extends IndexBase
                 ];
                 $this->rotate_jpg($new_file , $Orientation);    //图片摆正角度
                 
-                if ( config('webdb.is_waterimg') && config('webdb.waterimg') ) {    //加水印
+                if (config('webdb.is_waterimg') && config('webdb.waterimg') ) {    //加水印
                     $this->create_water( $new_file );
                 }
                 
-				 if (config('webdb.upload_driver')  != 'local') {
+				if (config('webdb.upload_driver')  != 'local') {
                     $hook_result = \think\Hook::listen('upload_driver',$file_info, ['from' => $from, 'module' => $module, 'type' => 'base64'], true);
                     if (false !== $hook_result) {
         				@unlink($new_file);
@@ -99,7 +100,7 @@ class Attachment extends IndexBase
                 return $this->errFile($from,'文件写入失败！');
             }
         }else{
-            return $this->errFile($from,'文件获取失败！');
+            return $this->errFile($from,'文件获取失败ssr！');
         }
     }
     
@@ -281,7 +282,7 @@ class Attachment extends IndexBase
         $size_limit = $size_limit * 1024;        
         
         // 附件类型限制
-        $ext_limit = $dir == 'images' ? 'gif,jpg,jpeg,png' : str_replace('.', '', config('webdb.upfileType'));
+        $ext_limit = $dir == 'images' ? 'gif,jpg,jpeg,png,lob' : str_replace('.', '', config('webdb.upfileType'));
         $ext_limit = $ext_limit != '' ? str_array($ext_limit) : '';        
 
         // 判断附件格式是否符合
@@ -305,7 +306,6 @@ class Attachment extends IndexBase
         }else{
             $error_msg = false;
         }
-        
         $upfile_num = intval( get_cookie('upfile_num') );
         if(!$this->admin && $upfile_num>50){
             $error_msg = '本次上传超50个了！';
