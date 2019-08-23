@@ -139,8 +139,8 @@ body {
 .center .curriculum .ListBox .box .listbottom .star{
     height: 0.25rem;
     display: flex;
-    margin-top: 0.1rem;
-    margin-bottom: 0.1rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
 }
 .center .curriculum .ListBox .box .listbottom .star img{
     width: 0.25rem;

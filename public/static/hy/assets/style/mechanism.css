@@ -113,11 +113,17 @@
 .list_center .curriculum .ListBox .box .listbottom .text{
     font-size: 0.24rem;
     color: #7B7B7B;
-    white-space: nowrap;
+    /*white-space: nowrap;
     text-overflow:ellipsis;
     overflow: hidden;
     padding: 0.1rem 0;
-    margin-top: 0.2rem;
+    margin-top: 0.2rem;*/
+   text-indent: 0.2rem;
+    display:-webkit-box;
+	-webkit-line-clamp:3;
+	-webkit-box-orient:vertical;
+	overflow:hidden;
+	line-height: 0.3rem;
     margin-bottom: 0.2rem;
 }
 .list_center .curriculum .ListBox .box .listbottom .star{
