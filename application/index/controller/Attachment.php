@@ -63,7 +63,6 @@ class Attachment extends IndexBase
             $new_file = $new_file.$name;
             
             Hook_listen('upload_attachment_begin', $data, ['base64' => true, 'from' => $from,  'module' => $module]);  //钩子接口,上传前处理
-             return $this->error($Orientation);
             if (file_put_contents($new_file, base64_decode(str_replace($result[1],'', $base64_image_content)))){
                 $_array = @getimagesize($new_file);
                 if($_array[0]<1 || $_array[1]<1 || !preg_match('/image/i', $_array['mime'])){
@@ -282,6 +281,11 @@ class Attachment extends IndexBase
         $size_limit = $size_limit * 1024;        
         
         // 附件类型限制
+//      if($module=='lxk'){
+//      	$ext_limit = $dir == 'images' ? 'gif,jpg,jpeg,png,lob' : str_replace('.', '', config('webdb.upfileType'));
+//      }else{
+//      	$ext_limit = $dir == 'images' ? 'gif,jpg,jpeg,png' : str_replace('.', '', config('webdb.upfileType'));
+//      }
         $ext_limit = $dir == 'images' ? 'gif,jpg,jpeg,png,lob' : str_replace('.', '', config('webdb.upfileType'));
         $ext_limit = $ext_limit != '' ? str_array($ext_limit) : '';        
 

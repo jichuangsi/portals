@@ -124,7 +124,7 @@
 	-webkit-box-orient:vertical;
 	overflow:hidden;
 	line-height: 0.3rem;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.1rem;
 }
 .list_center .curriculum .ListBox .box .listbottom .star{
     height: 0.25rem;
@@ -172,12 +172,18 @@
     color: #FF8522;
     margin-left: 0.88rem;
     float: left;
+    width: 15%;
 }
 .list_center .curriculum .specs div:nth-child(2){
     font-size: 0.24rem;
     color: #666666;
     margin-left: 0.56rem;
     float: left;
+    width: 40%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .list_center .curriculum .specs div:nth-child(3){
     font-size: 0.2rem;

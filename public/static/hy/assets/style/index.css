@@ -159,6 +159,7 @@ body {
     box-shadow:0px 2px 5px 0px rgba(0, 0, 0, 0.1);
     border-radius: 9px;
     position: relative;
+    background: #fff;
 }
 .center .curriculum .ListBox .box .listtop{
     position: absolute;
@@ -205,7 +206,7 @@ border-radius: 11px;
 	-webkit-box-orient:vertical;
 	overflow:hidden;
 	line-height: 0.3rem;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.1rem;
 }
 .center .curriculum .ListBox .box .listbottom .star{
     height: 0.25rem;

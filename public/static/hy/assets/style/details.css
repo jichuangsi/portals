@@ -121,7 +121,7 @@ body {
 }
 .center .curriculum .ListBox .box .listbottom .title{
     font-size:0.3rem;
-    color: #666666;
+    /*color: #666666;*/
     width: 3rem;
     white-space: nowrap;
     text-overflow:ellipsis;
@@ -141,6 +141,8 @@ body {
     display: flex;
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
+    font-size: 0.25rem;
+    color: #666666;
 }
 .center .curriculum .ListBox .box .listbottom .star img{
     width: 0.25rem;
