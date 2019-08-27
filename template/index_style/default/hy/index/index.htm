@@ -136,7 +136,7 @@
 	                    <div class="listtop" style="display: flex;"> <img src="/public/{$rs.picurl}" onerror="this.src='__STATIC__/images/jichuangsi.jpg'"  /> </div>
 	                    <div class="listbottom">
 	                        <div class="title">{$rs.title}</div>
-	                        <div class="text">{$rs.content}</div>
+	                        
 	                        <div class="star_{$rs.id}">
 	                            <!-- <img src="__STATIC__/hy/assets/images/Stars.png" alt="">
 	                            <img src="__STATIC__/hy/assets/images/Stars.png" alt="">
@@ -161,6 +161,7 @@
 		                             $('.star_'+{$rs.id}).append(commtext);
 		                         }
 					        </script>
+					        <div class="text">{$rs.content}</div>
 	                        <div class="money"><!-- <script>ssr('{$rs.domainname}')</script> --></div>
 	                    </div>
 	                    <div class="Sold" style="display:none">已售177</div>
@@ -244,8 +245,8 @@
 	    <div class="mask" onclick="hide()">
 	        <div class="img">
 	            <!-- <img src="" alt=""> -->
-	            <div id="qrcode" ontouchstart="gtouchstart()" ontouchmove="gtouchmove()" ontouchend="gtouchend()"></div>  
-	            <img style="display: none;" src="" id="testimg" />
+	            <div style="display: none;" id="qrcode" ontouchstart="gtouchstart()" ontouchmove="gtouchmove()" ontouchend="gtouchend()"></div>  
+	            <img src="" id="testimg" />
 	        </div>
 	    </div>
     	<div class="editimg">
@@ -270,7 +271,7 @@
 		        $('.editimg').css('display','none');
 		    }
         	function qrcodes(qrid,gid){
-//		   		var qrcode = new QRCode(document.getElementById("qr"+qrid), {
+//		   		var qrcode = new QRCode(document.getElementById("qrcode"), {
 //						width : 100,
 //						height : 100
 //					});
@@ -281,8 +282,7 @@
 					var port = window.location.port;
 					if(!host) return;
 					domain = (protocol?protocol+'//':'')+host;
-//					qrcode.makeCode(domain+"/index.php/cms/content/shareurl/d/"+domurl+"/k/"+qrid+"/u/{$userdb.uid}/g/{$info.id}");
-					console.log(domain+"/index.php/cms/content/shareurl/d/"+domurl+"/k/"+qrid+"/u/{$userdb.uid}/g/{$info.id}")
+//					qrcode.makeCode(domain+"/index.php/cms/content/shareurl/d/"+domurl+"/k/"+qrid+"/u/{$userdb.uid}/g/"+gid);
 					$("#qrcode").empty();
 					var qrcode=$("#qrcode").qrcode({
 			            render : "canvas",    //设置渲染方式，有table和canvas，使用canvas方式渲染性能相对来说比较好

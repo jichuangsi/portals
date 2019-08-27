@@ -49,7 +49,8 @@
 		    white-space: nowrap;
 		    text-overflow:ellipsis;
 		    overflow: hidden;
-		    margin-bottom: 0.2rem;
+		    /*margin-bottom: 0.2rem;*/
+		   padding: 0.1rem 0;
 		}
 		 .ListBox .box .listbottom .text p{
 		    /*font-size: 0.24rem;
@@ -58,6 +59,7 @@
 		    text-overflow:ellipsis;
 		    overflow: hidden;*/
 		    display: inline;
+		    padding: 0.1rem 0;
 		    /* margin-top: 0.2rem;
 		    margin-bottom: 0.2rem; */
 		}
@@ -104,7 +106,8 @@
 		    white-space: nowrap;
 		    text-overflow: ellipsis;
 		    overflow: hidden;
-		    margin-bottom: 0.2rem;
+		    /*margin-top: 0.1rem;*/
+		   padding: 0.1rem 0;
 		 }
 		 .ListBox .box .go{
 		    position: absolute;
@@ -245,9 +248,9 @@
 	    						collecthtml+='<div class="listtop"><img src="/public/'+data[i]['picurl']+'" onerror="errorImg(this)"></div>';
 	    						collecthtml+='<div class="listbottom">';
 	    						collecthtml+='<div class="title">'+data[i]['title']+'</div> ';
-	    						collecthtml+='<div class="text">'+data[i]['content']+'</div>';
 	    						collecthtml+='<div class="star_'+data[i]['id']+'"></div>';
 	    						collecthtml+='</div>';
+	    						collecthtml+='<div class="text">'+data[i]['content']+'</div>';
 	    						collecthtml+='<div class="Sold">已下'+order+'单</div>';
 	    						collecthtml+='</div>';
 	    						collecthtml+='</div>';
@@ -280,10 +283,10 @@
             var commtext='';
             console.log(xinnum);
             for(var j=0;j<xinnum;j++){
-				commtext+='<span><img src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>';
+				commtext+='<span><img style="width:0.19rem;height:0.18rem" src="__STATIC__/hy/assets/images/Stars.png" alt=""></span>';
 			}
             for(var j=xinnum;j<5;j++){
-				commtext+='<span><img src="__STATIC__/hy/assets/images/huix.png" alt=""></span>';
+				commtext+='<span><img style="width:0.19rem;height:0.18rem" src="__STATIC__/hy/assets/images/huix.png" alt=""></span>';
 			}
             $('.star_'+id).append(commtext);
         }
