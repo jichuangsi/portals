@@ -277,10 +277,11 @@
 					        for(var i in listdata){
 					        	var retest="";
 					        	retest+='<div class="ListBox">';
+					        	retest+='<a href="'+domainname+'/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'">';
 					        	retest+=' <div class="box">';
 					        	retest+='<div class="listtop"><img src="'+listdata[i]['imageurl']+'" onerror="errorImg(this)" data-data="'+gpicurl+'"  /></div>';
 					        	retest+='<div class="listbottom">';
-					        	retest+=' <div class="title">机构：'+gtitle+'</div>';
+					        	retest+=' <div class="title" style="color:#333">'+gtitle+'</div>';
 					        	retest+=' <div class="title" style="font-size: 0.25rem;line-height: 0.4rem;width:2.5rem">'+listdata[i]['title']+'</div>';
 					        	retest+=' <div class="star">点击次数 : '+listdata[i]['view']+'</div>';
 					        	retest+=' <div class="money">¥ '+listdata[i]["price"]+'</div>';
@@ -297,7 +298,7 @@
 								}
 								?>
 					        	
-					        	retest+=' </div> </div>';
+					        	retest+=' </div></a> </div>';
 					        	$('#curriculums').append(retest);
 					        }
 					       

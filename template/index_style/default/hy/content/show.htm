@@ -170,6 +170,7 @@
 			    	  for(var i in listdata){
 	  					 retest="";
 	  					retest+='<div class="ListBox">';
+	  					retest+='<a href="'+domainname+'/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'">';
 			        	retest+=' <div class="box">';
 			        	retest+='<div class="listtop"><img src="'+listdata[i]['imageurl']+'" onerror="errorImg(this)"   /></div>';
 			        	retest+='<div class="listbottom">';
@@ -187,7 +188,7 @@
 			        	<?php
 			        		}
 			        	?>
-			        	retest+=' </div> </div>';
+			        	retest+=' </div></a> </div>';
 			        	$('.curriculum').append(retest);
 			        	//qrcodes(listdata[i]['id']);
 			    	  }
