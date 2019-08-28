@@ -109,6 +109,7 @@
     white-space: nowrap;
     text-overflow:ellipsis;
     overflow: hidden;
+    padding: 0.05rem 0;
 }
 .list_center .curriculum .ListBox .box .listbottom .text{
     font-size: 0.24rem;

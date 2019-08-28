@@ -125,6 +125,7 @@ body {
     font-size:0.3rem;
     /*color: #666666;*/
     width: 3rem;
+    padding: 0.05rem 0;
     white-space: nowrap;
     text-overflow:ellipsis;
     overflow: hidden;
