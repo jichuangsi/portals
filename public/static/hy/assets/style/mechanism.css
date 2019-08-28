@@ -169,16 +169,17 @@
 .list_center .curriculum .specs div:nth-child(1){
     font-size: 0.3rem;
     color: #FF8522;
-    margin-left: 0.88rem;
+    margin-left: 0.48rem;
     float: left;
-    width: 15%;
+    width: 16%;
+    text-align: right;
 }
 .list_center .curriculum .specs div:nth-child(2){
     font-size: 0.24rem;
     color: #666666;
     margin-left: 0.56rem;
     float: left;
-    width: 40%;
+    width: 55%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -190,6 +191,7 @@
     margin-right: 0.2rem;
     float: right;
     width:10%;
+	text-align: right;
 }
 .list_center .curriculum .ListBox .box .Sold{
     position: absolute;

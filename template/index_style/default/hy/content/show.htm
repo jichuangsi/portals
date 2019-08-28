@@ -179,7 +179,7 @@
 			        	retest+=' <div class="money">¥ '+listdata[i]["price"]+'</div>';
 			        	retest+='</div>';
 			        	retest+='<div class="Sold">已售'+listdata[i]['sold']+'</div>';
-			        	retest+=' <a target="_blank" href="'+domainname+'/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'" class="go" style="display:flex;"><i style="margin:auto;color:#fff" class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
+			        	retest+=' <a target="_blank" href="'+domainname+'/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'" class="go" style="display:none;"><i style="margin:auto;color:#fff" class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
 			        	<?php
 			        		if($userdb){ 
 			        	?>
@@ -484,8 +484,8 @@
     				}else{
     					xintext+='<span><img src="__STATIC__/hy/assets/images/huix.png" alt=""></span>';
     				}
-    				
     			}
+    			xintext+='<span style="font-size: 0.23rem;color: #FF8522;margin-left: 0.1rem;">'+xinnum+'.0分</span>';
     			$('.gradexin').append(xintext);
     		}
     	}

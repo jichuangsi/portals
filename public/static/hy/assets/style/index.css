@@ -164,22 +164,23 @@ body {
 .center .curriculum .ListBox .box .listtop{
     position: absolute;
     display: flex;
-    top: -0.19rem;
-    left: -0.32rem;
+    /*top: -0.19rem;*/
+    left: 0.22rem;
     width: 1.8rem;
     height: 1.94rem;
     border-radius: 0.18rem;
 }
 .center .curriculum .ListBox .box .listtop img{
-width: 100%;
-height: auto;
-margin: auto;
-border-radius: 11px;
+	width: 100%;
+	height: auto;
+	margin: auto;
+	border-radius: 11px;
+	padding: 0.1rem;
 }
 .center .curriculum .ListBox .box .listbottom{
     position: absolute;
     top: 0px;
-    left: 1.6rem;
+    left: 2rem;
     width: 4.28rem;
     height: 100%;
     padding: 0.2rem 0.2rem;
@@ -237,6 +238,7 @@ border-radius: 11px;
     border-radius: 0.3rem;
     position: absolute;
     bottom: 0.2rem;
+    margin-top: 0.15rem;
 }
 .center .curriculum .ListBox .box .Sold{
     position: absolute;
@@ -254,6 +256,7 @@ border-radius: 11px;
     background-color: #FB9220;
     border-radius: 0.06rem;
     display: flex;
+    display: none;
 }   
 .center .curriculum .ListBox .box .go i{
 	color: #fff;
@@ -278,7 +281,7 @@ border-radius: 11px;
     border-radius: 0.1rem;
 }
 .center .industry .ListBox .box .listbottom{
-    margin-left: 0.52rem;
+    /*margin-left: 0.52rem;*/
 }
 .foot {
     /* margin-top: 100px; */
