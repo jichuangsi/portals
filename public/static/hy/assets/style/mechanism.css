@@ -189,6 +189,7 @@
     color: #666;
     margin-right: 0.2rem;
     float: right;
+    width:10%;
 }
 .list_center .curriculum .ListBox .box .Sold{
     position: absolute;
