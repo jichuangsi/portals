@@ -61,9 +61,19 @@ class Content extends C
 	    $this->assign('gid', $this->get_user_group($id) );
 	    return parent::show($id);
 	}
+	/**
+	 *新闻详情页 
+	 */
 	public function hycmsshow($id){
 		 return parent::hycmsshow($id);
 	}
+	
+	/**
+	 * 
+	 */
+	public function lyguide(){
+		return $this->fetch();
+	} 
 	/*
 	 * 机构入驻
 	 */
