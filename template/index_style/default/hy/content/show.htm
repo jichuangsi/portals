@@ -33,6 +33,10 @@
 		    /* border-radius: 0.2rem; */
 		    background: #fff;
 		}
+		.infocontent img{
+			width: 100%;
+			height: auto;
+		}
     </style>
     <div class="top">
         <div class="state clearfix">
@@ -69,7 +73,7 @@
         </div>
         <div class="text">电话：{$info.telphone}</div>
         <div class="text">地址：{$info.address}</div>
-        <div class="text">简介：{$info.content}</div>
+        <div class="text infocontent">简介：{$info.content}</div>
     </div>
     <?php echo '<script>var domainname="'.$info['domainname'].'";</script>';?>
    <script>
@@ -130,10 +134,10 @@
    		
 		qrcode.makeCode(domain+"/index.php/cms/content/shareurl/d/"+domurl+"/k/"+qrid+"/u/{$userdb.uid}/g/{$info.id}"); */	
 		$("#qrcode").empty();
-		console.log(domain+"/index.php/cms/content/shareurl/d/"+domurl+"/k/"+qrid+"/u/{$userdb.uid}/g/{$info.id}")
+		console.log(domain+"/index.php/cms/content/shareurl/k/"+qrid+"/u/{$userdb.uid}/g/{$info.id}")
 		var qrcode=$("#qrcode").qrcode({
             render : "canvas",    //设置渲染方式，有table和canvas，使用canvas方式渲染性能相对来说比较好
-            text : domain+"/index.php/cms/content/shareurl/d/"+domurl+"/k/"+qrid+"/u/{$userdb.uid}/g/{$info.id}",    //扫描二维码后显示的内容,可以直接填一个网址，扫描二维码后自动跳向该链接
+            text : domain+"/index.php/cms/content/shareurl/k/"+qrid+"/u/{$userdb.uid}/g/{$info.id}",    //扫描二维码后显示的内容,可以直接填一个网址，扫描二维码后自动跳向该链接
             width : "300",               //二维码的宽度
             height : "300",              //二维码的高度
             background : "#ffffff",       //二维码的后景色

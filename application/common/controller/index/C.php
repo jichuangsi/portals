@@ -34,9 +34,11 @@ abstract class C extends IndexBase
 	/*
 	 * $d 机构域名，$k 课程id，$u 用户id，$g 机构id
 	 */
-    public function shareurl($d=null,$k=null,$u=null,$g=null){
+    public function shareurl($k=null,$u=null,$g=null){
 //  	$this->error($domainname.'~~'.$kcid.'~~'.$u.'~~'.$gid);
-        $urls='http://'.$d.'/index.php?s=/live/index/detail/id/'.$k.'/u/'.$u;
+		$rss=query("select domainname from qb_hy_content1 where id=$g");
+//      $urls='http://'.$d.'/index.php?s=/live/index/detail/id/'.$k.'/u/'.$u;
+		$urls=$rss[0]['domainname'].'/index.php?s=/live/index/detail/id/'.$k.'/u/'.$u;
         $rs=query("select gid from qb_memberdata where uid=$u");
 		if($rs[0]['gid']==0){
 			$rss=query("update qb_memberdata set gid=$g where uid=$u");
