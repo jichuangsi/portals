@@ -310,9 +310,11 @@ body {
     color: #888;
 }
 .center .comment .comment_bottom .text{
-    margin-top: 1rem;
-    margin-left: 0.8rem;
-    font-size: 0.18rem;
+    margin-top: 0.8rem;
+    margin-left: 11%;
+    font-size: 0.24rem;
+    word-break: break-all;
+    word-wrap: break-word;
     color: #666666;
     line-height: 0.38rem;
 }

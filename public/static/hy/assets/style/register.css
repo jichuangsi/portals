@@ -7,7 +7,7 @@
     width: 1.62rem;
     height: 1.62rem;
     border-radius: 0.2rem;
-    background-color: #fff;
+    /*background-color: #fff;*/
     position: absolute;
     left: 50%;
     top: 45%;
@@ -59,6 +59,9 @@
 }
 .center .ipt input {
     flex: 1;
+    outline:none;
+    border: none;
+    background: #F5F5F5;
     font-size: 0.26rem;
     height: 0.46rem;
     text-indent: 0.33rem;
@@ -85,6 +88,7 @@
     border-radius: 0.2rem;
 }
 .center .btn {
+	border: none;
     width: 100%;
     height: 0.9rem;
     line-height: 0.9rem;
