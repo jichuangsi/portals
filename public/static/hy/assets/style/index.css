@@ -87,7 +87,7 @@ body {
 .top .tab .tab_left {
     width: 3.14rem;
     height: 1.1rem;
-    background-color: #FF8522;
+    /*background-color: #FF8522;*/
     border-radius: 0.16rem;
     overflow: hidden;
     display: flex;
@@ -98,7 +98,7 @@ body {
 .top .tab .tab_right {
     width: 3.14rem;
     height: 1.1rem;
-    background-color: #6BB1FF;
+    /*background-color: #6BB1FF;*/
     border-radius: 0.16rem;
     overflow: hidden;
     display: flex;
