@@ -38,7 +38,12 @@ abstract class C extends IndexBase
 //  	$this->error($domainname.'~~'.$kcid.'~~'.$u.'~~'.$gid);
 		$rss=query("select domainname from qb_hy_content1 where id=$g");
 //      $urls='http://'.$d.'/index.php?s=/live/index/detail/id/'.$k.'/u/'.$u;
-		$urls=$rss[0]['domainname'].'/index.php?s=/live/index/detail/id/'.$k.'/u/'.$u;
+		if($rss[0]['domainname']){
+			$urls=$rss[0]['domainname'].'/index.php?s=/live/index/detail/id/'.$k.'/u/'.$u;
+		}else{
+			$urls='http://sample.zaixian.jichuangsi.com/index.php?s=/live/index/detail/id/'.$k.'/u/'.$u;
+		}
+		
         $rs=query("select gid from qb_memberdata where uid=$u");
 		if($rs[0]['gid']==0){
 			$rss=query("update qb_memberdata set gid=$g where uid=$u");

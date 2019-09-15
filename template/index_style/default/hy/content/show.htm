@@ -76,7 +76,13 @@
         <div class="text">地址：{$info.address}</div>
         <div class="text infocontent">简介：{$info.content}</div>
     </div>
-    <?php echo '<script>var domainname="'.$info['domainname'].'";</script>';?>
+    <?php 
+    	if($info['domainname']==null || $info['domainname']==""){
+    		echo '<script>var domainname="http://sample.zaixian.jichuangsi.com";</script>';	
+    	}else{
+    		echo '<script>var domainname="'.$info['domainname'].'";</script>';	
+    	}
+    	?>
    <script>
    	function add_fav(id){
 		var url="{:purl('fav/api/add')}?type={:config('system_dirname')}&id="+id;
@@ -161,7 +167,7 @@
    		imgs.src = "__STATIC__/images/nobody.gif"; imgs.onerror = null;
    	}
    	function curriculumlist(clid){
-   		curriculumlisturl=domainname+"/index.php/api/course/courseQuery/r/10/y/"+clid;
+   		curriculumlisturl=domainname+"/index.php/api/course/courseQuery/r/10/o/{$info.id}/y/"+clid;
    		listpages=2;
    		 $('.curriculum').html('');
    		$.ajax({
@@ -247,10 +253,11 @@
         </div>
          <script>
                	$(function(){
+               		console.log(domainname);
                		if(domainname!=null && domainname!=""){
                			$.ajax({
 							    url:domainname+"/index.php/api/course/categoryQuery",
-//								url:"http://sample.zaixian.jichuangsi.com/index.php/api/course/categoryQuery/o/2",
+//								url:"http://sample.zaixian.jichuangsi.com/index.php/api/course/categoryQuery",
 							    type:"GET",
 							    success:function(data){
 							    	 var datas=JSON.parse(data);

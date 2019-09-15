@@ -29,7 +29,7 @@
         <div style="float: right;padding: 0px 0.2rem;" onclick="showsort()">
            		分类
         </div>
-        <div class="title" onclick="sst()">机构列表{$fid}</div>
+        <div class="title" onclick="sst()">机构列表</div>
         
     </div>
 	<?php echo '<script>var retest; </script>'; ?>
@@ -46,7 +46,7 @@
 				{/volist}
             </div>
         </div>
-        {qb:listpage name="hy_waplist_001" where="status>0&title*$hytitle" rows="2" by="asc" order="list"}
+        {qb:listpage name="hy_waplist_001" where="status>0&title*$hytitle" rows="10" by="asc" order="list"}
             <div class="curriculum" >
                     <div class="ListBox" onclick="window.location.href='{$rs.url}'">
                         <div class="box">
@@ -105,7 +105,7 @@
 									}
 					        	}
 					</script>
-                    {if($rs.domainname!=null && $rs.domainname!='')}
+                    
                     <div class="specs_box">
                         <!--<div class="specs clearfix">
                             <div>¥199</div>
@@ -113,8 +113,15 @@
                             <div>已售233</div>
                         </div>-->
                         <script>
+                        	{if($rs.domainname!=null && $rs.domainname!='')}
+                        	var urls="{$rs.domainname}/index.php/api/course/courseQuery/p/1/r/5/";
+                        	var domain={$rs.domainname};
+                        	{else/}
+                        	var domain="http://sample.zaixian.jichuangsi.com";
+                        	var urls="http://sample.zaixian.jichuangsi.com/index.php/api/course/courseQuery/p/1/r/5/o/{$rs.id}";
+                        	{/if}
                         $.ajax({
-										    url:"{$rs.domainname}/index.php/api/course/courseQuery/p/1/r/5/",
+										    url:urls,
 										    type:"GET",
 										    async:false,
 										    success:function(res){
@@ -123,7 +130,7 @@
 										        var listdata=datas.data;
 										        for(var i in listdata){
 										        	retest='';
-										        	retest+='<a href="{$rs.domainname}/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'" class="specs clearfix">';
+										        	retest+='<a href="'+domain+'/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'" class="specs clearfix">';
 										        	retest+='<div>¥'+listdata[i]['price']+'</div>';
 										        	retest+='<div>'+listdata[i]['title']+'</div>';
 										        	retest+=' <div>已售'+listdata[i]['sold']+'</div>';
@@ -140,7 +147,7 @@
                      <div class="button" onclick="window.location.href='{$rs.url}'">
                            	 查看更多
                     </div>
-                    {/if}
+                    
                    
                 </div>
         {/qb:listpage}
