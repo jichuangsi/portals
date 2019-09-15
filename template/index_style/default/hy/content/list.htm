@@ -1,4 +1,5 @@
 ﻿{include file="common/heads" /}
+<!--全部机构列表-->
 	<link rel="stylesheet" href="__STATIC__/hy/assets/style/mechanism.css">
     <link rel='stylesheet' href='__STATIC__/hy/assets/style/reset_android.css'>
 	<link rel="stylesheet" href="__STATIC__/hy/assets/style/sort.css">
@@ -28,7 +29,7 @@
         <div style="float: right;padding: 0px 0.2rem;" onclick="showsort()">
            		分类
         </div>
-        <div class="title" onclick="ssrr()">机构列表</div>
+        <div class="title" onclick="sst()">机构列表{$fid}</div>
         
     </div>
 	<?php echo '<script>var retest; </script>'; ?>
@@ -45,7 +46,7 @@
 				{/volist}
             </div>
         </div>
-        {qb:listpage name="hy_waplist_001" where="status>0&title*$hytitle" rows="10" by="asc" order="list"}
+        {qb:listpage name="hy_waplist_001" where="status>0&title*$hytitle" rows="2" by="asc" order="list"}
             <div class="curriculum" >
                     <div class="ListBox" onclick="window.location.href='{$rs.url}'">
                         <div class="box">
@@ -160,7 +161,29 @@
 //					console.log($('.right .sorttitle').eq(i).offset().top+"~~off~~"+$('.right .sorttitle').eq(i).text());
 //				}
     	}
+    	function sst(){
+//  		$.ajax({
+//  			type:"get",
+//  			url:'{qb:url name="hy_waplist_002"/}2',
+//  			async:true,
+//  			success:function(data){
+//  				console.log(data);
+//  			}
+//  		});
+			$.get('{qb:url name="hy_waplist_001"/}' + haveshowpage[choose_i] + url + Math.random(),function(res){
+				if(res.code==0){
+					if(res.data==''){
+						layer.msg("已经显示完了！",{time:500});
+					}else{
+						console.log(res.data);
+					}
+				}else{
+					layer.msg(res.msg,{time:2500});
+				}
+		});
+    	}
     	$(function(){
+    		
     		$('.center').scrollTop(100)
     		var navnum=$('.nav .nav_box a').length;
     		console.log(navnum);
@@ -246,7 +269,7 @@
     </script>
 
 <script type="text/javascript">
-console.log('{qb:url name="hy_waplist_001"/}2222');
+console.log('{qb:url name="hy_waplist_001"/}');
 var ajax_url_db = ['&order=view&by=desc&','&order=id&by=desc&','&status=2,order=id&by=asc&'];
 var choose_i = 0; //选中第几项
 var haveshowpage = []; //每一项,作个标志,已经已显示到第几页

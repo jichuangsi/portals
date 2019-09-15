@@ -35,7 +35,6 @@ abstract class S extends Model
     {
         return self::where($where)->order('list','desc')->column('id,name');
     }
-    
     public static function getList($where=[])
     {
         return self::where($where)->order('list','desc')->column(true);

@@ -155,7 +155,7 @@ abstract class C extends IndexBase
         	$this->assign('hytitle',$hytitle);
         }
         
-		
+//		return $this->fetch('221111');
         return $this->fetch($template,$vars);
     }
     

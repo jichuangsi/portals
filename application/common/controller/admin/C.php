@@ -193,7 +193,7 @@ abstract class C extends AdminBase
 //                         $array = get_user($value);
 //                         return $array['username'];
 //                     }],
-                    ['uid', '发布者', 'username'],
+                    ['uid', '发布者s', 'username'],
                     ['create_time', '发布日期', 'datetime'],
                     ['view', '浏览量', 'text.edit'],
                     ['list', '排序值', 'text.edit'],

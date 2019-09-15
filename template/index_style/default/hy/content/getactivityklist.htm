@@ -107,92 +107,25 @@
             <img  src="" id="testimg" />
         </div>
     </div>
-    <div class="editimg">
-    		<div onclick="saveFile()">保存图片</div>
-    		<div onclick="editimgcancel()">取消</div>
-    </div>
     <!-- 改 -->
-    <script>  
-			var timeOutEvent=0;//定时器   
-			//开始按   
-			function gtouchstart(){   
-			    timeOutEvent = setTimeout("longPress()",500);//这里设置定时器，定义长按500毫秒触发长按事件，时间可以自己改，个人感觉500毫秒非常合适   
-			    return false;   
-			};   
-			//手释放，如果在500毫秒内就释放，则取消长按事件，此时可以执行onclick应该执行的事件   
-			function gtouchend(){   
-			    clearTimeout(timeOutEvent);//清除定时器   
-			    if(timeOutEvent!=0){   
-			        //这里写要执行的内容（尤如onclick事件）   
-			        console.log("你这是点击，不是长按");   
-			    }   
-			    return false;   
-			};   
-			//如果手指有移动，则取消所有事件，此时说明用户只是要移动而不是长按   
-			function gtouchmove(){   
-			    clearTimeout(timeOutEvent);//清除定时器   
-			    timeOutEvent = 0;   
-			      
-			};   
-			   
-			//真正长按后应该执行的内容   
-			function longPress(){   
-			    timeOutEvent = 0;   
-			    //执行长按要执行的内容，如弹出菜单   
-			    console.log("长按事件触发发");   
-			    $('.editimg').show();
-			}
-			function convertCanvasToImage() {
-				var image = new Image();
-				var canvas=$('#qrcode canvas');
-				image.src = canvas.toDataURL("image/png");
-				console.log(image);
-			}
-			function saveFile(){
-				var data=$('#testimg').attr('src');
-				console.log(data);
-			    var save_link=document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
-			    save_link.href=data;
-			    save_link.download="lxk";
-			    var event=document.createEvent('MouseEvents');
-			    event.initMouseEvent('click',true,false,window,0,0,0,0,0,false,false,false,false,0,null);
-			    save_link.dispatchEvent(event);
-			  };
-	</script> 
     
     
     <div class="cmsinfohead">
     	<div class="state">
-            <div onclick="window.location.href='/index.php/hy'" style="width: 10%;padding: 0.1rem;">
+            <div onclick="window.history.back(-1)" style="width: 10%;padding: 0.1rem;">
                 <img style="height:  0.38rem;margin-left: 0.1rem;" src="__STATIC__/hy/assets/images/return.png" alt="">
             </div>
-            <div style="width: 80%;text-align: center;font-size:0.36rem;" onclick="ss()">精选课程</div>
+            <div style="width: 80%;text-align: center;font-size:0.36rem;" >该机构参与活动的课程</div>
             <div style="width: 10%;padding: 0.1rem;">
             </div>
         </div>
     </div>
-    <script>
-		function ss(){
-			$.ajax({
-				type:"get",
-				url:"/index.php/fenlei/content/getactivity/gid/1",
-				async:true,
-				success:function(data){
-					console.log(data);
-//					console.log(JSON.parse(data));
-				},
-				error:function(res){
-					alert(11);
-				}
-			});
-		}
-	</script>
    		<div class="center" style="margin-bottom: -0.5rem;">
         <div class="curriculum" id="curriculums">
         	
          </div>
         </div>
-        <div onclick="hynext()" class="gengduo" >查看更多</div>
+        <div onclick="hynext()" class="gengduo" >查看更多{$ginfo[0]['domainname']}</div>
         <script>
         	function xs(e,id,gid){
 		         qrcodes(id,gid);
@@ -241,50 +174,28 @@
         		}
         		imgs.src = "__STATIC__/images/jichuangsi.jpg"; imgs.onerror = null; 
         	}
+        	var pages=1;
         	$(function(){
-        		pages++;
-        		$.ajax({
-        			type:"get",
-        			url:'/index.php/hy/content/boutiquelist/rows/2/pages/'+pages,
-        			async:true,
-        			success:function(data){
-        				console.log(data);
-        				for(var i in data){
-        					if(data[i]['domainname']!=null&&data[i]['domainname']!=""){
-        						ssr(data[i]['domainname'],data[i]['id'],data[i]['title'],data[i]['picurl']);
-        					}
-        				}
-        			}
-        		});
+        		ssr();
         	});
-        	var pages=0;
         	function hynext(){
         		pages++;
-        		$.ajax({
-        			type:"get",
-        			url:'/index.php/hy/content/boutiquelist/rows/2/pages/'+pages,
-        			async:true,
-        			success:function(data){
-        				if(data==null||data==""){
-        					layer.msg("没有更多了")
-        				}
-        				if(data!=null&&data!=""){
-	        				for(var i in data){
-	        					if(data[i]['domainname']!=null&&data[i]['domainname']!=""){
-	        						console.log(data[i]['picurl']);
-	        						ssr(data[i]['domainname'],data[i]['id'],data[i]['title'],data[i]['picurl']);
-										        					
-	        					}
-	        				}
-        				}
-        			}
-        		});
+        		ssr();
         	}
-        	
-        	function ssr(domainname,gid,gtitle,gpicurl){
-        		if(domainname!=undefined&&domainname!=null&&domainname!=''){
+        	function ssr(){
 	        		$.ajax({
-					    url:domainname+"/index.php/api/course/recommendQuery",
+    					<?php
+							if($ginfo[0]['domainname']!=null&&$ginfo[0]['domainname']!=""){
+						?>
+    						url:"{$ginfo[0]['domainname']}/index.php/api/course/activiryQuery/i/{$aid}/r/1/p/"+pages,
+    					<?php
+						}else{
+						?>
+    						url:"http://sample.zaixian.jichuangsi.com/index.php/api/course/activiryQuery/i/{$aid}/r/1/p/"+pages,
+			    		<?php
+						}
+						?>
+//						url:"http://192.168.31.108:92/index.php/api/course/activiryQuery/i/{$aid}/r/1/p/"+pages,
 					    type:"GET",
 					    async:true,
 					    success:function(res){
@@ -294,23 +205,23 @@
 					        for(var i in listdata){
 					        	var retest="";
 					        	retest+='<div class="ListBox">';
-					        	retest+='<a href="'+domainname+'/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'">';
+					        	retest+='<a href="{$ginfo.0.domainname}/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'">';
 					        	retest+=' <div class="box">';
-					        	retest+='<div class="listtop"><img src="'+listdata[i]['imageurl']+'" onerror="errorImg(this)" data-data="'+gpicurl+'"  /></div>';
+					        	retest+='<div class="listtop"><img src="'+listdata[i]['imageurl']+'" onerror="errorImg(this)" data-data="{$ginfo.0.picurl}"  /></div>';
 					        	retest+='<div class="listbottom">';
-					        	retest+=' <div class="title" style="color:#333">'+gtitle+'</div>';
+					        	retest+=' <div class="title" style="color:#333">{$ginfo.0.title}</div>';
 					        	retest+=' <div class="title" style="font-size: 0.25rem;line-height: 0.4rem;width:2.5rem">'+listdata[i]['title']+'</div>';
 					        	retest+=' <div class="star">点击次数 : '+listdata[i]['view']+'</div>';
 					        	retest+=' <div class="money">¥ '+listdata[i]["price"]+'</div>';
 					        	retest+='</div>';
 					        	retest+='<div class="Sold">已售'+listdata[i]['sold']+'</div>';
-					        	retest+=' <a href="'+domainname+'/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'" class= "go"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
-					        	
+					        	retest+=' <a href="{$ginfo.0.domainname}/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'" class= "go"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
+
 					        	<?php
 								if($userdb){ 
 								?>
-						        	retest+='<div class="xs" onclick="xs(this,'+listdata[i]['id']+','+gid+')">享客码</div>';
-						        	retest+=' <div class="img" id="qr'+listdata[i]['id']+'" data-url="'+domainname+'"></div>';
+						        	retest+='<div class="xs" onclick="xs(this,'+listdata[i]['id']+','+{$ginfo[0]['id']}+')">享客码</div>';
+						        	retest+=' <div class="img" id="qr'+listdata[i]['id']+'" data-url="{$ginfo.0.domainname}"></div>';
 								<?php
 								}
 								?>
@@ -318,10 +229,9 @@
 					        	retest+=' </div></a> </div>';
 					        	$('#curriculums').append(retest);
 					        }
-					       
+					        
 					    }
 					});	
-				}
         	}
         </script>
 		</div>

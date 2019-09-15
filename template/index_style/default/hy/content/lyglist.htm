@@ -1,0 +1,151 @@
+{include file="common/heads" /}
+<!--活动机构列表-->
+<link rel="stylesheet" href="__STATIC__/hy/assets/style/index.css">
+<link rel='stylesheet' href='__STATIC__/hy/assets/style/reset_android.css'>
+<script src="__STATIC__/hy/assets/js/reset.js"></script>
+<script src="__STATIC__/hy/assets/js/utf.js"></script>
+<style>
+	body {
+		background-color: #fff;
+	}
+	
+	.state {
+		width: 100%;
+		height: 0.9rem;
+		line-height: 0.9rem;
+		zoom: 1;
+		display: flex;
+	}
+	.gengduo{
+    		width: 100%;
+		    height: 1rem;
+		    margin-bottom: 0.6rem;
+		    text-align: center;
+		    line-height: 1rem;
+		    border-top: 1px solid #888888;
+		    border-radius: 0 0 0.2rem 0.2rem;
+		    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
+    	}
+</style>
+<div class="cmsinfohead">
+	<div class="state">
+		<div onclick="window.location.href='/index.php/hy'" style="width: 10%;padding: 0.1rem;">
+			<img style="height:  0.38rem;margin-left: 0.1rem;" src="__STATIC__/hy/assets/images/return.png" alt="">
+		</div>
+		<div style="width: 80%;text-align: center;font-size:0.36rem;" onclick="ss()">活动机构列表</div>
+		<div style="width: 10%;padding: 0.1rem;">
+		</div>
+	</div>
+</div>
+<div class="center">
+	<div class="curriculum">
+		<div class="ListBox" style="display:none">
+			<div class="box">
+				<div class="listtop" style="display: flex;"> 
+					<img src="/public/uploads/images/20190812/1_20190812103456c328e.jpeg" onerror="this.src='/public/static/images/jichuangsi.jpg'">
+				</div>
+				<div class="listbottom">
+					<div class="title">爱学家教育</div>
+					<div class="star_31">
+					<span><img style="width:0.19rem;height:0.18rem" src="/public/static/hy/assets/images/Stars.png" alt=""></span><span><img style="width:0.19rem;height:0.18rem" src="/public/static/hy/assets/images/Stars.png" alt=""></span><span><img style="width:0.19rem;height:0.18rem" src="/public/static/hy/assets/images/Stars.png" alt=""></span><span><img style="width:0.19rem;height:0.18rem" src="/public/static/hy/assets/images/Stars.png" alt=""></span><span><img style="width:0.19rem;height:0.18rem" src="/public/static/hy/assets/images/huix.png" alt=""></span><span style="font-size: 0.23rem;color: #FF8522;margin-left: 0.1rem;">4.0分</span></div>
+					<div class="text">&nbsp;世界500强企业,上市公司,国内著名精品地产品牌,集民生地产/旅游综合体/体育及文化产业于一体的综合性企业,恒大集团</div>
+					<div class="money"></div>
+				</div>
+				<div class="Sold" style="display:none">已售177</div>
+			</div>
+		</div>
+	</div>
+	<div onclick="hynext()" class="gengduo" >查看更多</div>
+</div>
+
+<script>
+	function errorImg(imgs){
+		imgs.src = "__STATIC__/images/jichuangsi.jpg"; imgs.onerror = null; 
+	}
+	var pages=1;
+	$(function(){
+		ssr();
+	});
+	function hynext(){
+		pages++;
+		ssr();
+	}
+	
+	function ssr(){
+		$.ajax({
+			type:"get",
+			url:"/index.php/hy/content/getorgan/rows/10/pages/"+pages,
+			async:true,
+			success:function(data){
+				console.log(data);
+				for(var i in data){
+					var urls="";
+					if(data[i]['domainname']!=null&&data[i]['domainname']!=undefined&&data[i]['domainname']!=""){
+						urls=data[i]['domainname']+"/index.php/api/course/activityCheck/i/{$aid}";
+					}else{
+						urls="http://sample.zaixian.jichuangsi.com/index.php/api/course/activityCheck/i/{$aid}/o/"+data[i]['id'];
+					}
+					console.log(urls);
+					$.ajax({
+						type:"get",
+						url:urls,
+						async:false,
+						success:function(datas){
+							console.log(JSON.parse(datas));
+							var isdata=JSON.parse(datas);
+							if(isdata['count']>=1){
+								console.log(data[i]['title']);
+								var ghtml='<a href="/index.php/hy/content/getactivityklist/aid/{$aid}/gid/'+data[i]['id']+'" class="ListBox">';
+									ghtml+='<div class="box">';
+									ghtml+='<div class="listtop" style="display: flex;"><img src="/public/'+data[i]['picurl']+'" onerror="errorImg(this)"></div>';
+									ghtml+='<div class="listbottom">';
+									ghtml+='<div class="title">'+data[i]['title']+'</div>';
+									ghtml+='<div class="star_'+data[i]['id']+'"></div>';
+									ghtml+='<div class="text">'+data[i]['content']+'</div>';
+									ghtml+='<div class="money"></div>';
+									ghtml+='</div>';
+									ghtml+='<div class="Sold" style="display:none">已售177</div>';
+									ghtml+='</div></a>';
+									getcommgradexin(data[i]['id']);
+								$('.curriculum').append(ghtml);
+							}
+						}
+					});
+				}
+			}
+		});
+	}
+	
+	function getcommgradexin(infoid){
+    		if(infoid==null||infoid==""||infoid==undefined){
+    			return 0;
+    		}
+    		var xinnum=0;
+    		$.ajax({
+				type:"get",
+				url:"/index.php/hy/content/getcommgradexins/infoid/"+infoid,
+				async:true,
+				success:function(data){
+					console.log(parseInt(data));
+					xinnum=parseInt(data);
+					var xinthtml = '';
+					for(var j=1;j<=5;j++){
+						if(j>xinnum){
+							xinthtml+='<img style="width:0.19rem;height:0.18rem" src="/public/static/hy/assets/images/huix.png" alt="">';
+						}else{
+							xinthtml+='<img style="width:0.19rem;height:0.18rem" src="/public/static/hy/assets/images/Stars.png" alt="">';
+						}
+					}
+					xinthtml+='<span style="font-size: 0.23rem;color: #FF8522;margin-left: 0.1rem;"> '+xinnum+'.0分</span>';
+					$(".star_"+infoid).append(xinthtml);
+				}
+			});
+			return xinnum;
+    	}
+	
+</script>
+
+{include file="index@share"/}
+</body>
+
+</html>

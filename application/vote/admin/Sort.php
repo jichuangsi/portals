@@ -17,6 +17,7 @@ class Sort extends S
         $this->form_items = [                
                 ['text', 'name', '项目名称'],
                 ['select', 'pid', '归属上级分类','不选择，则为顶级分类',$this->model->getTreeTitle()],
+                ['textarea', 'description', '投票内容描述'],
                 ['select', 'mid', '所属模型','创建后不能随意修改',$this->m_model->getTitleList(),1],
         ];
         
@@ -83,7 +84,7 @@ class Sort extends S
     		['text', 'name', '投票项目名称'],
     		['radio', 'type', '投票选项','',['单选','多选']],
     		['text', 'limittime', '是否做时间限制:不做限制请输入0,否则请输入限制每次投票的时间间隔','(单位：分钟)'],
-
+			
     		['radio', 'limitip', '是否限制IP重复投票','',['不限制','限制']],
     		['radio', 'forbidguestvote', '是否禁止游客投票','',['不限制','限制']],
     		['radio', 'repeatjoinvote', '是否禁止重复报名','',['不限制','限制']],
@@ -98,7 +99,7 @@ class Sort extends S
     		['checkbox', 'allowpost', '允许报名的用户组','全留空,则不作限制',getGroupByid()],
                     ['checkbox', 'allowpostyz', '报名自动通过审核的用户组','全留空,则默认通过审核',getGroupByid()],
     		['select', 'pid', '归属上级分类','不选择，则为顶级分类',$this->model->getTreeTitle($id)],
-    		//['select', 'mid', '所属模型','创建后不能随意修改',$this->m_model->getTitleList()],
+      		['select', 'mid', '所属模型','创建后不能随意修改',$this->m_model->getTitleList()],
     		['icon', 'logo', '图标',],
                             
                     ],

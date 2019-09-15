@@ -138,7 +138,6 @@ class Content extends C
 	 * 精品课程列表
 	 */
 	public function boutique(){
-		
 		return $this->fetch();
 	}
 	/*
@@ -310,6 +309,40 @@ class Content extends C
 	    $uid=$this->user['uid'];
 	    $rs=query("update qb_memberdata set icon='$iconurl' where uid='$uid'");
 	    return $rs;
+	}
+	/**
+	 *活动的机构列表 
+	 */
+	public function lyglist($aid=null){
+		if($aid==null){
+			return $this->error("缺少活动id");
+		}
+		$this->assign('aid',$aid);
+		return $this->fetch();
+	}
+	/*
+	 * 获取机构列表
+	 */
+	public function getorgan($rows=10,$pages=1){
+		$limits=($pages-1)*$rows;
+		$rs=query("select * from qb_hy_content1 where status>=1 limit $limits,$rows");
+		return $rs;
+	}
+	
+	/*
+	 * 获取这个机构参与活动的课程列表
+	 */
+	public function getactivityklist($aid=null,$gid=null){
+		if($aid==null){
+			return $this->error("缺少活动id");
+		}
+		if($gid==null){
+			return $this->error("缺少机构id");
+		}
+		$rs=query("select * from qb_hy_content1 where id='$gid'");
+		$this->assign('ginfo',$rs);
+		$this->assign('aid',$aid);
+		return $this->fetch();
 	}
 	
 	public function add($mid=1){
