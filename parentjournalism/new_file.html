@@ -12,15 +12,13 @@
 		function ss(){
 			$.ajax({
 				type:"get",
-				url:"http://192.168.31.123:82/parentjournalism/getconfig.php",
-				data:{'domainname':'192.168.31.108:92'},
-				dataType:'json',
+				url:"http://192.168.31.122:82/parentjournalism/gethyinfo.php?pid=9",
 				success:function(data){
 					console.log(data);
 //					console.log(JSON.parse(data));
 				},
 				error:function(res){
-					alert(11);
+					console.log(res);
 				}
 			});
 		}
