@@ -345,6 +345,18 @@ class Content extends C
 		return $this->fetch();
 	}
 	
+	/*
+	 * 用户协议
+	 */
+	public function agreement(){
+		return $this->fetch();
+	}
+	/*
+	 * 隐私政策
+	 */
+	public function privacypolicy(){
+		return $this->fetch();
+	}
 	public function add($mid=1){
 	    if(!$this->user){
 	        return $this->error('你还没登录');
