@@ -183,20 +183,21 @@
         		ssr();
         	}
         	function ssr(){
-	        		$.ajax({
-    					<?php
+        				<?php
 							if($ginfo[0]['domainname']!=null&&$ginfo[0]['domainname']!=""){
 						?>
-    						url:"{$ginfo[0]['domainname']}/index.php/api/course/activiryQuery/i/{$aid}/r/10/p/"+pages,
+    						var urls="{$ginfo[0]['domainname']}/index.php/api/course/activiryQuery/i/{$aid}/r/10/p/"+pages;
     						var domainname={$ginfo[0]['domainname']};
     					<?php
 						}else{
 						?>
-    						url:"http://sample.zaixian.jichuangsi.com/index.php/api/course/activiryQuery/o/{$ginfo.0.id}/i/{$aid}/r/10/p/"+pages,
+    						var urls="http://sample.zaixian.jichuangsi.com/index.php/api/course/activiryQuery/o/{$ginfo.0.id}/i/{$aid}/r/10/p/"+pages;
 			    			var domainname="http://sample.zaixian.jichuangsi.com";
 			    		<?php
 						}
 						?>
+	        		$.ajax({
+    					url:urls;
 //						url:"http://192.168.31.108:92/index.php/api/course/activiryQuery/i/{$aid}/r/1/p/"+pages,
 					    type:"GET",
 					    async:true,
