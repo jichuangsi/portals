@@ -321,11 +321,11 @@ class Content extends C
 		return $this->fetch();
 	}
 	/*
-	 * 获取机构列表
+	 * 获取活动机构列表
 	 */
-	public function getorgan($rows=10,$pages=1){
+	public function getorgan($aid=0,$rows=10,$pages=1){
 		$limits=($pages-1)*$rows;
-		$rs=query("select * from qb_hy_content1 where status>=1 limit $limits,$rows");
+		$rs=query("select * from qb_hy_content1 hy inner join qb_activity_relation ar on hy.id=ar.gid where hy.status>=1 and ar.aid='$aid' group by hy.id limit $limits,$rows");
 		return $rs;
 	}
 	

@@ -74,7 +74,7 @@
 	function ssr(){
 		$.ajax({
 			type:"get",
-			url:"/index.php/hy/content/getorgan/rows/30/pages/"+pages,
+			url:"/index.php/hy/content/getorgan/aid/{$aid}/rows/10/pages/"+pages,
 			async:true,
 			success:function(data){
 				console.log(data);
