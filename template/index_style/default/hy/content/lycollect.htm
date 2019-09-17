@@ -349,7 +349,7 @@
     						collecthtml+='<div class="title">'+data[i]['title']+'</div> ';
     						collecthtml+='<div class="star_'+data[i]['id']+'" data-data="'+data[i]['id']+'">';    						
     						collecthtml+='</div>';
-    						collecthtml+='<div class="text">'+data[i]['content']+'</div>';
+    						collecthtml+='<div class="text">'+context(data[i]['content'])+'</div>';
     						collecthtml+='</div>';
     						collecthtml+='</div>';
     						collecthtml+='</div>';
@@ -364,6 +364,13 @@
     				}
     			}
     		});
+    	}
+    	function context(html_str){
+    		var oDiv = document.createElement('div');
+			oDiv.innerHTML = html_str;
+			var text = oDiv.innerText;
+//			console.log(text);
+			return text;
     	}
     </script>
 {include file="index@share"/}

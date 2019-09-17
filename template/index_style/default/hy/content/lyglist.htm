@@ -74,7 +74,7 @@
 	function ssr(){
 		$.ajax({
 			type:"get",
-			url:"/index.php/hy/content/getorgan/rows/10/pages/"+pages,
+			url:"/index.php/hy/content/getorgan/rows/30/pages/"+pages,
 			async:true,
 			success:function(data){
 				console.log(data);
@@ -101,7 +101,7 @@
 									ghtml+='<div class="listbottom">';
 									ghtml+='<div class="title">'+data[i]['title']+'</div>';
 									ghtml+='<div class="star_'+data[i]['id']+'"></div>';
-									ghtml+='<div class="text">'+data[i]['content']+'</div>';
+									ghtml+='<div class="text">'+contexts(data[i]['content'])+'</div>';
 									ghtml+='<div class="money"></div>';
 									ghtml+='</div>';
 									ghtml+='<div class="Sold" style="display:none">已售177</div>';
@@ -115,6 +115,13 @@
 			}
 		});
 	}
+	function contexts(html_str){
+    		var oDiv = document.createElement('div');
+			oDiv.innerHTML = html_str;
+			var text = oDiv.innerText;
+//			console.log(text);
+			return text;
+    	}
 	
 	function getcommgradexin(infoid){
     		if(infoid==null||infoid==""||infoid==undefined){
