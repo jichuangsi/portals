@@ -79,38 +79,26 @@
 			success:function(data){
 				console.log(data);
 				for(var i in data){
-					var urls="";
-					if(data[i]['domainname']!=null&&data[i]['domainname']!=undefined&&data[i]['domainname']!=""){
-						urls=data[i]['domainname']+"/index.php/api/course/activityCheck/i/{$aid}";
-					}else{
-						urls="http://sample.zaixian.jichuangsi.com/index.php/api/course/activityCheck/i/{$aid}/o/"+data[i]['id'];
-					}
-					console.log(urls);
-					$.ajax({
-						type:"get",
-						url:urls,
-						async:false,
-						success:function(datas){
-							console.log(JSON.parse(datas));
-							var isdata=JSON.parse(datas);
-							if(isdata['count']>=1){
-								console.log(data[i]['title']);
-								var ghtml='<a href="/index.php/hy/content/getactivityklist/aid/{$aid}/gid/'+data[i]['id']+'" class="ListBox">';
-									ghtml+='<div class="box">';
-									ghtml+='<div class="listtop" style="display: flex;"><img src="/public/'+data[i]['picurl']+'" onerror="errorImg(this)"></div>';
-									ghtml+='<div class="listbottom">';
-									ghtml+='<div class="title">'+data[i]['title']+'</div>';
-									ghtml+='<div class="star_'+data[i]['id']+'"></div>';
-									ghtml+='<div class="text">'+contexts(data[i]['content'])+'</div>';
-									ghtml+='<div class="money"></div>';
-									ghtml+='</div>';
-									ghtml+='<div class="Sold" style="display:none">已售177</div>';
-									ghtml+='</div></a>';
-									getcommgradexin(data[i]['id']);
-								$('.curriculum').append(ghtml);
-							}
-						}
-					});
+//					var urls="";
+//					if(data[i]['domainname']!=null&&data[i]['domainname']!=undefined&&data[i]['domainname']!=""){
+//						urls=data[i]['domainname']+"/index.php/api/course/activityCheck/i/{$aid}";
+//					}else{
+//						urls="http://sample.zaixian.jichuangsi.com/index.php/api/course/activityCheck/i/{$aid}/o/"+data[i]['id'];
+//					}
+//					console.log(urls);
+					var ghtml='<a href="/index.php/hy/content/getactivityklist/aid/{$aid}/gid/'+data[i]['id']+'" class="ListBox">';
+					ghtml+='<div class="box">';
+					ghtml+='<div class="listtop" style="display: flex;"><img src="/public/'+data[i]['picurl']+'" onerror="errorImg(this)"></div>';
+					ghtml+='<div class="listbottom">';
+					ghtml+='<div class="title">'+data[i]['title']+'</div>';
+					ghtml+='<div class="star_'+data[i]['id']+'"></div>';
+					ghtml+='<div class="text">'+contexts(data[i]['content'])+'</div>';
+					ghtml+='<div class="money"></div>';
+					ghtml+='</div>';
+					ghtml+='<div class="Sold" style="display:none">已售177</div>';
+					ghtml+='</div></a>';
+					getcommgradexin(data[i]['id']);
+					$('.curriculum').append(ghtml);
 				}
 			}
 		});

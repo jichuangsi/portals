@@ -187,7 +187,7 @@
 							if($ginfo[0]['domainname']!=null&&$ginfo[0]['domainname']!=""){
 						?>
     						var urls="{$ginfo[0]['domainname']}/index.php/api/course/activiryQuery/i/{$aid}/r/10/p/"+pages;
-    						var domainname={$ginfo[0]['domainname']};
+    						var domainname="{$ginfo[0]['domainname']}";
     					<?php
 						}else{
 						?>
@@ -227,11 +227,9 @@
 								<?php
 								}
 								?>
-					        	
 					        	retest+=' </div></a> </div>';
 					        	$('#curriculums').append(retest);
 					        }
-					        
 					    }
 					});	
         	}
