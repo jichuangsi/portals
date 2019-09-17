@@ -197,7 +197,7 @@
 						}
 						?>
 	        		$.ajax({
-    					url:urls;
+    					url:urls,
 //						url:"http://192.168.31.108:92/index.php/api/course/activiryQuery/i/{$aid}/r/1/p/"+pages,
 					    type:"GET",
 					    async:true,
@@ -219,7 +219,6 @@
 					        	retest+='</div>';
 					        	retest+='<div class="Sold">已售'+listdata[i]['sold']+'</div>';
 					        	retest+=' <a href="'+domainname+'/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'" class= "go"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
-
 					        	<?php
 								if($userdb){ 
 								?>
