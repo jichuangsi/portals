@@ -115,7 +115,7 @@
                         <script>
                         	{if($rs.domainname!=null && $rs.domainname!='')}
                         	var urls="{$rs.domainname}/index.php/api/course/courseQuery/p/1/r/5/";
-                        	var domain={$rs.domainname};
+                        	var domain="{$rs.domainname}";
                         	{else/}
                         	var domain="http://sample.zaixian.jichuangsi.com";
                         	var urls="http://sample.zaixian.jichuangsi.com/index.php/api/course/courseQuery/p/1/r/5/o/{$rs.id}";
