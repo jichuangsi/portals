@@ -5,6 +5,13 @@
      <script src="__STATIC__/hy/assets/js/qrcode.js"></script>
      <script src="__STATIC__/hy/assets/js/qrcode_with_logo.js"></script>
     <script src="__STATIC__/hy/assets/js/utf.js"></script>
+    
+    <script src="__STATIC__/hy/assets/js/jquery-v1.10.2.min.js" type="text/javascript"></script>
+	<script src="__STATIC__/hy/assets/js/modernizr-custom-v2.7.1.min.js" type="text/javascript"></script>
+	<script src="__STATIC__/hy/assets/js/jquery-finger-v0.1.0.min.js" type="text/javascript"></script>
+	<!--Include flickerplate-->
+	<link href="__STATIC__/hy/assets/style/flickerplate.css"  type="text/css" rel="stylesheet">
+	<script src="__STATIC__/hy/assets/js/flickerplate.min.js" type="text/javascript"></script>
     <style>
     	.body_Hearcont{
     		display: none !important;
@@ -73,6 +80,9 @@
 		    /* border-radius: 0.2rem; */
 		    background: #fff;
 		}
+		.activity a{
+			display: block;
+		}
     </style>
 <!--幻灯片开始---->
 <div class="top">
@@ -125,9 +135,25 @@
     </div>
     <?php echo '<script> var doma=[]; var gid=[];var gtitle=[];var gpicurl=[]; </script>'; ?>
     <div class="center">
-        <div class="center_img" onclick="window.location.href='/index.php/hy/content/lyglist/aid/3'">
-            <img src="__STATIC__/hy/assets/images/advertisement_2.png" alt="">
-        </div>
+    	<div class="activitys" style="display: none;">
+    		<a href="/index.php/hy/content/lyglist/aid/3" class="center_img" style="display: none;">
+	            <img src="__STATIC__/hy/assets/images/advertisement_2.png" alt="">
+	        </a>
+    	</div>
+    	<div class="flicker-example" data-block-text="false">
+			<ul class="activity">
+				<!--<li data-background="__STATIC__/hy/assets/img/banjia.png">
+				</li>
+				<li data-background="__STATIC__/hy/assets/img/yi.png">
+				</li>
+				<li data-background="__STATIC__/hy/assets/img/field.jpg">
+				</li>
+				<li data-background="/public/uploads/images/20190917/1_20190917161556rqfw3.png">
+				</li>-->
+			</ul>
+		</div>
+		
+		
         <h3>推荐机构</h3>
         <div class="curriculum">
         	{qb:tag name="hy_wapindex002" type="hy" by="asc" order="list" rows="3" where="istop=1" }
@@ -322,6 +348,7 @@
         </script>
         <script>
         	$(function(){
+        		activity();
         		if(doma!=null&&doma!=""&&doma!=undefined&&gid!=null&&gid!=""&&gid!=undefined){
         			for(var i=0;i<doma.length;i++){
         				ssr(doma[i],gid[i],gtitle[i],gpicurl[i]);
@@ -329,6 +356,26 @@
         			}
         		}
         	});
+        	function activity(){
+        		$.ajax({
+        			type:"get",
+        			url:"/index.php/hy/content/getactivitylist",
+        			async:true,
+        			success:function(data){
+        				console.log(data);
+        				if(data!=null&&data!=""){
+        					for(var i in data){
+        						var achtml='<li onclick="aclick('+data[i]['id']+')" data-background="/public/'+data[i]['logo']+'"></li>';
+        						$('.activity').append(achtml);
+        					}
+        					$('.flicker-example').flicker();
+        				}
+        			}
+        		});
+        	}
+        	function aclick(aid){
+        		window.location.href="/index.php/hy/content/lyglist/aid/"+aid;
+        	}
         		function ssr(domainname,gid,gtitle,gpicurl){
         		if(domainname!=undefined&&domainname!=null&&domainname!=''){
 	        		$.ajax({

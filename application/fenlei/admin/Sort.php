@@ -36,6 +36,7 @@ class Sort extends S
         
         $this->form_items = [                
                 ['text', 'name', '活动名称'],
+                ['image', 'logo', '图片'],
                 ['select', 'pid', '归属上级分类','不选择，则为顶级分类',$this->model->getTreeTitle()],
                 ['select', 'isenable', '是否启用','',['是','否']],
                 ['textarea', 'description', '活动内容描述'],
@@ -98,6 +99,7 @@ class Sort extends S
             $this -> tab_ext['group'] = [
                     '基础设置'=>[
     		['text', 'name', '活动名称'],
+    		['image', 'logo', '图片'],
             ['select', 'pid', '归属上级分类','不选择，则为顶级分类',$this->model->getTitleList()],
             ['select', 'isenable', '是否启用','',['是','否']],
             ['textarea', 'description', '活动内容描述'],

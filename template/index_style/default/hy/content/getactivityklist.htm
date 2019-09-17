@@ -125,7 +125,7 @@
         	
          </div>
         </div>
-        <div onclick="hynext()" class="gengduo" >查看更多{$ginfo[0]['domainname']}</div>
+        <div onclick="hynext()" class="gengduo" >查看更多</div>
         <script>
         	function xs(e,id,gid){
 		         qrcodes(id,gid);
@@ -188,10 +188,12 @@
 							if($ginfo[0]['domainname']!=null&&$ginfo[0]['domainname']!=""){
 						?>
     						url:"{$ginfo[0]['domainname']}/index.php/api/course/activiryQuery/i/{$aid}/r/10/p/"+pages,
+    						var domainname={$ginfo[0]['domainname']};
     					<?php
 						}else{
 						?>
     						url:"http://sample.zaixian.jichuangsi.com/index.php/api/course/activiryQuery/o/{$ginfo.0.id}/i/{$aid}/r/10/p/"+pages,
+			    			var domainname="http://sample.zaixian.jichuangsi.com";
 			    		<?php
 						}
 						?>
@@ -205,7 +207,7 @@
 					        for(var i in listdata){
 					        	var retest="";
 					        	retest+='<div class="ListBox">';
-					        	retest+='<a href="{$ginfo.0.domainname}/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'">';
+					        	retest+='<a href="'+domainname+'/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'">';
 					        	retest+=' <div class="box">';
 					        	retest+='<div class="listtop"><img src="'+listdata[i]['imageurl']+'" onerror="errorImg(this)" data-data="{$ginfo.0.picurl}"  /></div>';
 					        	retest+='<div class="listbottom">';
@@ -215,7 +217,7 @@
 					        	retest+=' <div class="money">¥ '+listdata[i]["price"]+'</div>';
 					        	retest+='</div>';
 					        	retest+='<div class="Sold">已售'+listdata[i]['sold']+'</div>';
-					        	retest+=' <a href="{$ginfo.0.domainname}/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'" class= "go"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
+					        	retest+=' <a href="'+domainname+'/index.php?s=/live/index/detail/id/'+listdata[i]['id']+'" class= "go"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>';
 
 					        	<?php
 								if($userdb){ 

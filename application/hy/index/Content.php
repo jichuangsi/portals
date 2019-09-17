@@ -310,6 +310,13 @@ class Content extends C
 	    $rs=query("update qb_memberdata set icon='$iconurl' where uid='$uid'");
 	    return $rs;
 	}
+	/*
+	 * 获取活动列表
+	 */
+	public function getactivitylist(){
+		$rs=query("select * from qb_fenlei_sort where isenable=0");
+		return $rs;
+	}
 	/**
 	 *活动的机构列表 
 	 */
