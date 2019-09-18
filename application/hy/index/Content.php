@@ -320,10 +320,11 @@ class Content extends C
 	/**
 	 *活动的机构列表 
 	 */
-	public function lyglist($aid=null){
+	public function lyglist($aid=null,$name=null){
 		if($aid==null){
 			return $this->error("缺少活动id");
 		}
+		$this->assign('name',$name);
 		$this->assign('aid',$aid);
 		return $this->fetch();
 	}
