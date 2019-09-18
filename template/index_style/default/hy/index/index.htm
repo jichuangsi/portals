@@ -6,11 +6,11 @@
      <script src="__STATIC__/hy/assets/js/qrcode_with_logo.js"></script>
     <script src="__STATIC__/hy/assets/js/utf.js"></script>
     
-    <script src="__STATIC__/hy/assets/js/jquery-v1.10.2.min.js" type="text/javascript"></script>
+    <link href="__STATIC__/hy/assets/style/flickerplate.css"  type="text/css" rel="stylesheet">
+    <!--<script src="__STATIC__/hy/assets/js/jquery-v1.10.2.min.js" type="text/javascript"></script>-->
 	<script src="__STATIC__/hy/assets/js/modernizr-custom-v2.7.1.min.js" type="text/javascript"></script>
 	<script src="__STATIC__/hy/assets/js/jquery-finger-v0.1.0.min.js" type="text/javascript"></script>
-	<!--Include flickerplate-->
-	<link href="__STATIC__/hy/assets/style/flickerplate.css"  type="text/css" rel="stylesheet">
+	
 	<script src="__STATIC__/hy/assets/js/flickerplate.min.js" type="text/javascript"></script>
     <style>
     	.body_Hearcont{
@@ -142,14 +142,6 @@
     	</div>
     	<div class="flicker-example" data-block-text="false">
 			<ul class="activity">
-				<!--<li data-background="__STATIC__/hy/assets/img/banjia.png">
-				</li>
-				<li data-background="__STATIC__/hy/assets/img/yi.png">
-				</li>
-				<li data-background="__STATIC__/hy/assets/img/field.jpg">
-				</li>
-				<li data-background="/public/uploads/images/20190917/1_20190917161556rqfw3.png">
-				</li>-->
 			</ul>
 		</div>
 		
@@ -164,9 +156,6 @@
 	                        <div class="title">{$rs.title}</div>
 	                        
 	                        <div class="star_{$rs.id}">
-	                            <!-- <img src="__STATIC__/hy/assets/images/Stars.png" alt="">
-	                            <img src="__STATIC__/hy/assets/images/Stars.png" alt="">
-	                            <img src="__STATIC__/hy/assets/images/Stars.png" alt=""> -->
 	                        </div>
 	                         <script>
 		                         showXing();
@@ -365,7 +354,7 @@
         				console.log(data);
         				if(data!=null&&data!=""){
         					for(var i in data){
-        						var achtml='<li onclick="aclick('+data[i]['id']+')" data-background="/public/'+data[i]['logo']+'"></li>';
+        						var achtml='<li onclick="aclick(this,'+data[i]['id']+')" data-data="'+data[i]['name']+'" data-background="/public/'+data[i]['logo']+'"></li>';
         						$('.activity').append(achtml);
         					}
         					$('.flicker-example').flicker();
@@ -373,8 +362,9 @@
         			}
         		});
         	}
-        	function aclick(aid){
-        		window.location.href="/index.php/hy/content/lyglist/aid/"+aid;
+        	function aclick(obj,aid){
+        		var name=$(obj).attr("data-data");
+        		window.location.href="/index.php/hy/content/lyglist/aid/"+aid+"/name/"+name;
         	}
         		function ssr(domainname,gid,gtitle,gpicurl){
         		if(domainname!=undefined&&domainname!=null&&domainname!=''){
