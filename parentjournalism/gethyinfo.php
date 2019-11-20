@@ -10,7 +10,8 @@
 		echo $str=json_encode($r);
 		exit();
 	}
-	$result=$conn->query("select con.* from qb_hy_sort sort inner join qb_hy_content1 con on sort.id=con.fid where domainname = '' and sort.id='$pid' or sort.pid='$pid'");
+	//$result=$conn->query("select con.* from qb_hy_sort sort inner join qb_hy_content1 con on sort.id=con.fid where domainname = '' and sort.id='$pid' or sort.pid='$pid'");
+	$result=$conn->query("select con.* from qb_hy_sort sort inner join qb_hy_content1 con on sort.id=con.fid where sort.id='$pid' or sort.pid='$pid'");//去掉域名的过滤
 	$jarr = array();
 	while ($rows=mysqli_fetch_array($result,MYSQL_ASSOC)){
 	    $count=count($rows);//不能在循环语句中，由于每次删除 row数组长度都减小  
